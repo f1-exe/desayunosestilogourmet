@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Shards Dashboard Lite - Free Bootstrap Admin Template – DesignRevision</title>
+    <title>Inicio Panel de administración</title>
     <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -43,7 +43,7 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column" id="exampleAccordion">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">
+                <a class="nav-link active" href="index.php">
                   <i class="material-icons">home</i>
                   <span>Inicio</span>
                 </a>
@@ -55,25 +55,25 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.html">
+                    <a class="nav-link " href="add-new-post.php">
                       <i class="material-icons">list</i>
                       <span>Listar</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.html">
+                    <a class="nav-link " href="add-new-post.php">
                       <i class="material-icons">add</i>
                       <span>Agregar</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.html">
+                    <a class="nav-link " href="add-new-post.php">
                       <i class="material-icons">edit</i>
                       <span>Editar</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.html">
+                    <a class="nav-link " href="add-new-post.php">
                       <i class="material-icons">delete</i>
                       <span>Eliminar</span>
                     </a>
@@ -81,13 +81,13 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="add-new-post.html">
+                <a class="nav-link " href="transacciones.php">
                   <i class="material-icons">credit_card</i>
                   <span>Transacciones</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="form-components.html">
+                <a class="nav-link " href="form-components.php">
                   <i class="material-icons">shopping_cart</i>
                   <span>Stock</span>
                 </a>
@@ -151,11 +151,11 @@
                     <span class="d-none d-md-inline-block">Administrador</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
+                    <a class="dropdown-item" href="user-profile-lite.php">
                       <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    <a class="dropdown-item" href="components-blog-posts.html">
+                    <a class="dropdown-item" href="components-blog-posts.php">
                       <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    <a class="dropdown-item" href="add-new-post.html">
+                    <a class="dropdown-item" href="add-new-post.php">
                       <i class="material-icons">note_add</i> Add New Post</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="#">
@@ -190,16 +190,16 @@
           <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
             <ul class="nav">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Inicio</a>
+                <a class="nav-link" href="index.php">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="productos.html">Productos</a>
+                <a class="nav-link" href="productos.php">Productos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="transacciones.html">Transacciones</a>
+                <a class="nav-link" href="transacciones.php">Transacciones</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="stock.html">Stock</a>
+                <a class="nav-link" href="stock.php">Stock</a>
               </li>
             </ul>
             <span class="copyright ml-auto my-auto mr-2">Copyright © 2018
