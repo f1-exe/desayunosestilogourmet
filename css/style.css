@@ -1,0 +1,58 @@
+    /* ####################################################
+    :: Template Name: Essence - Fashion Ecommerce Template
+    :: Author: Colorlib
+    :: Author URL: https://colorlib.com
+    :: Description: Essence is smart & elegant fashion e-commerce Template. It's suitable for all e-commerce business platform.
+    :: Version: 1.0.0
+    :: Created: April 27, 2018
+    :: Last Updated: May 2, 2018
+    #################################################### */
+
+    /* ---------------------------------------
+    ##### - PLACE YOUR CUSTOM CSS HERE - #####
+    --------------------------------------- */
+
+    /* CSS BOLA FLOTANTE CARRO DE COMPRA*/
+    .sticky-container{
+        padding:0px;
+        margin:0px;
+        position:fixed;
+        right:-130px;
+        top:230px;
+        width:210px;
+        z-index: 1100;
+    }
+    .sticky li{
+        list-style-type:none;
+        color:#efefef;
+        height:43px;
+        padding:0px;
+        margin:0px 0px 1px 0px;
+        -webkit-transition:all 0.25s ease-in-out;
+        -moz-transition:all 0.25s ease-in-out;
+        -o-transition:all 0.25s ease-in-out;
+        transition:all 0.25s ease-in-out;
+        cursor:pointer;
+    }
+    
+    .sticky li img{
+        float:left;
+        margin:-138px 4px;
+        margin-right:5px;
+    }
+    .sticky li p{
+        padding-top:5px;
+        margin:0px;
+        line-height:16px;
+        font-size:11px;
+    }
+    .sticky li p a{
+        text-decoration:none;
+        color:#2C3539;
+    }
+    
+    #contador_carro{
+        margin-top: -150px;
+    }
+
+    /* CSS BOLA FLOTANTE CARRO DE COMPRA*/
