@@ -21,7 +21,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
 
 ?>
 <!doctype html>
-<html class="no-js h-100" lang="en">
+<html class="no-js h-100" lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -206,73 +206,43 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Panel de Administración</span>
-                <h3 class="page-title">Productos / Listar Productos</h3>
+                <h3 class="page-title">Productos / Agregar Producto</h3>
               </div>
             </div>
             <!-- End Page Header -->
-            <!-- Default Light Table -->
-            <div class="row">
-              <div class="col">
-                <div class="card card-small mb-4">
-                  <div class="card-header border-bottom">
-                    <h6 class="m-0">Active Users</h6>
-                  </div>
-                  <div class="card-body p-0 pb-3 text-center">
-                    <div class="table-responsive">
-                      <table class="table table-striped mb-0" width="100%" cellspacing="0">
-                        <thead class="bg-light">
-                          <tr>
-                            <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">Nombre</th>
-                            <th scope="col" class="border-0">Detalle</th>
-                            <th scope="col" class="border-0">Imagen</th>
-                            <th scope="col" class="border-0">Stock</th>
-                            <th scope="col" class="border-0">Fecha</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>Ali</td>
-                            <td>Kerry</td>
-                            <td>Russian Federation</td>
-                            <td>Gdańsk</td>
-                            <td>107-0339</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Clark</td>
-                            <td>Angela</td>
-                            <td>Estonia</td>
-                            <td>Borghetto di Vara</td>
-                            <td>1-660-850-1647</td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Jerry</td>
-                            <td>Nathan</td>
-                            <td>Cyprus</td>
-                            <td>Braunau am Inn</td>
-                            <td>214-4225</td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Colt</td>
-                            <td>Angela</td>
-                            <td>Liberia</td>
-                            <td>Bad Hersfeld</td>
-                            <td>1-848-473-7416</td>
-                          </tr>
-                        </tbody>
-                      </table>
+            
+            <div class="col-sm-12 col-md-12" style="text-align: left;">
+              <br><strong class="text-muted d-block mb-2">Complete el formulario para crear un producto</strong><br>
+              <div class="col-sm-8 col-md-12 col-lg-8">
+                <form>
+                  <div class="form-row">
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
+                      <input type="text" class="form-control" placeholder="Nombre del Producto" required>
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
+                      <input type="text" class="form-control" placeholder="Precio" required>
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
+                      <input type="text" class="form-control" placeholder="Stock" required>
+                    </div>
+                    <div class="form-group custom-file col-md-10 col-12 col-lg-10 col-xl-8">
+                      <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es">
+                      <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
+                      <textarea class="form-control" placeholder="Detalles" rows="14"></textarea>
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
+                      <button class="btn btn-primary">Crear Producto</button>
                     </div>
                   </div>
-                </div>
+                  
+                </form>
               </div>
             </div>
-            <!-- End Default Light Table -->
           </div>
-           
+
+
           <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
             <ul class="nav">
               <li class="nav-item">
@@ -303,5 +273,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="scripts/extras.1.1.0.min.js"></script>
     <script src="scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="scripts/app/app-blog-overview.1.1.0.js"></script>
   </body>
 </html>
