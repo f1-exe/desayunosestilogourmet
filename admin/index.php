@@ -40,10 +40,10 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <script src="js/login/logout.js"></script>
   </head>
   <body class="h-100">
-  <input id="session" type="hidden" value="<?php echo $usuario;?>">
-  <script>
-    validaSesion();
-  </script>
+    <input id="session" type="hidden" value="<?php echo $usuario;?>">
+    <script>
+      validaSesion();
+    </script>
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
@@ -189,7 +189,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                       <i class="material-icons">note_add</i> Add New Post</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="#" onclick="logout()">
-                      <i class="material-icons text-danger">&#xE879;</i> Logout </a>
+                      <i class="material-icons text-danger">&#xE879;</i> Cerrar Sesión </a>
                   </div>
                 </li>
               </ul>

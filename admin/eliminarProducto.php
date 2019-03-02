@@ -206,7 +206,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Panel de Administración</span>
-                <h3 class="page-title">Productos / Listar Productos</h3>
+                <h3 class="page-title">Productos / Eliminar Productos</h3>
               </div>
             </div>
             <!-- End Page Header -->

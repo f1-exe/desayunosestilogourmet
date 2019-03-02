@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+$now = time();
+
+if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
+  if ($now > $_SESSION['expire']) {
+    session_unset();
+    session_destroy();
+    header("location: index.php");
+  }
+}
+
+include 'funciones/funciones.php';
+
+$usuario = "";
+
+if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) == false){
+  $usuario = $_SESSION["session_usuario"];
+}
+
+?>
 <!doctype html>
 <html class="no-js h-100" lang="en">
   <head>
@@ -12,8 +34,16 @@
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- swal include -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
+    <!-- logout script -->
+    <script src="js/login/logout.js"></script>
   </head>
   <body class="h-100">
+    <input id="session" type="hidden" value="<?php echo $usuario;?>">
+    <script>
+      validaSesion();
+    </script>
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
@@ -158,8 +188,8 @@
                     <a class="dropdown-item" href="add-new-post.php">
                       <i class="material-icons">note_add</i> Add New Post</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#">
-                      <i class="material-icons text-danger">&#xE879;</i> Logout </a>
+                    <a class="dropdown-item text-danger" href="#" onclick="logout()">
+                      <i class="material-icons text-danger">&#xE879;</i> Cerrar Sesión </a>
                   </div>
                 </li>
               </ul>
