@@ -55,25 +55,25 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.php">
+                    <a class="nav-link " href="listarProductos.php">
                       <i class="material-icons">list</i>
                       <span>Listar</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.php">
+                    <a class="nav-link " href="agregarProducto.php">
                       <i class="material-icons">add</i>
                       <span>Agregar</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.php">
+                    <a class="nav-link " href="editarProducto.php">
                       <i class="material-icons">edit</i>
                       <span>Editar</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="add-new-post.php">
+                    <a class="nav-link " href="eliminarProducto.php">
                       <i class="material-icons">delete</i>
                       <span>Eliminar</span>
                     </a>
@@ -81,13 +81,13 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="add-new-post.php">
+                <a class="nav-link " href="transacciones.php">
                   <i class="material-icons">credit_card</i>
                   <span>Transacciones</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="form-components.php">
+                <a class="nav-link " href="stock.php">
                   <i class="material-icons">shopping_cart</i>
                   <span>Stock</span>
                 </a>
