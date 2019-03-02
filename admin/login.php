@@ -29,7 +29,7 @@
 		<div class="container-login100" style="background-image: url('images/breakfast.jpg');">
 			<div class="wrap-login100 p-t-70 p-b-30">
 				<div class="contenedor_formulario">
-					<form class="login100-form validate-form">
+					<form class="login100-form validate-form" method="POST" action="">
 						<div class="login100-form-avatar">
 							<img src="images/avatar.png" alt="AVATAR">
 						</div>
@@ -38,16 +38,16 @@
 							Panel de administración
 						</span>
 
-						<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-							<input class="input100" type="text" name="username" placeholder="Usuario">
+						<div class="wrap-input100 validate-input m-b-10">
+							<input class="input100" type="text" name="usuario" id="usuario" placeholder="Usuario">
 							<span class="focus-input100"></span>
 							<span class="symbol-input100">
 								<i class="fa fa-user"></i>
 							</span>
 						</div>
 
-						<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-							<input class="input100" type="password" name="pass" placeholder="Contraseña">
+						<div class="wrap-input100 validate-input m-b-10">
+							<input class="input100" type="password" name="clave" id="clave" placeholder="Contraseña">
 							<span class="focus-input100"></span>
 							<span class="symbol-input100">
 								<i class="fa fa-lock"></i>
@@ -55,7 +55,7 @@
 						</div>
 
 						<div class="container-login100-form-btn p-t-10">
-							<button class="login100-form-btn">
+							<button class="login100-form-btn" id="btn_login">
 								Login
 							</button>
 						</div>
@@ -83,6 +83,11 @@
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+<!--===============================================================================================-->
+	<script src="js/login/login.js"></script>
+<!--===============================================================================================-->	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
+    
 
 </body>
 </html>
