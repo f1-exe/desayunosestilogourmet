@@ -282,23 +282,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <nav class="navbar navbar-expand-lg justify-content-end">
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
                                     <div class="collapse navbar-collapse" id="footerNavContent">
-                                        <ul class="navbar-nav ml-auto">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="index.php">Home</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="shop.php">Shop</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="product-details.php">Product</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cart.php">Cart</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="checkout.php">Checkout</a>
-                                            </li>
-                                        </ul>
+                                        <div class="info-cliente">
+                                            <p>
+                                                Atención al cliente <br>
+                                                Lunes a viernes 9:00 a 20:00 hrs - 
+                                                Sábados 9:00 a 12:00 hrs.<br>
+                                                <i class="fa fa-phone" aria-hidden="true">
+                                                    <a id="href-footer" href="tel:+56912345678"> +56 9 1234 5678</a>
+                                                </i>
+                                                <br>
+                                                <i class="fa fa-envelope" aria-hidden="true">
+                                                    <a id="href-footer" href="mailto:contacto@deg.cl" target="_top">contacto@deg.cl</a>
+                                                </i>
+                                            </p>
+                                        </div>
                                     </div>
                                 </nav>
                          </div>    
