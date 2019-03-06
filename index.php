@@ -84,24 +84,39 @@
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
-                <ul>
+                <ul id="exampleAccordion">
                     <li class="active"><a href="#">Categorías</a></li>
                     <li><a href="#">Para Ella</a></li>
                     <li><a href="#">Para Él</a></li>
                     <li><a href="#">Cumpleaños</a></li>
-                    <li><a href="#">Feliz día</a></li>
+                    <li>
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
+                        <ul class="sidenav-second-level collapse" id="collapseComponents">
+                            <li >
+                                <a href="#">Día del padre</a>
+                            </li>
+                            <li>
+                                <a href="#">Día de la madre</a>
+                            </li>
+                            <li>
+                                <a href="#">San valentín</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="#">Arma tu pedido</a></li>
                     <li><a href="#">Promociones</a></li>
                 </ul>
             </nav>
-            <!-- Button Group -->
+            <!-- Button Group
             <div class="amado-btn-group mt-30 mb-100">
                 <a href="#" class="btn amado-btn mb-15">%Discount%</a>
                 <a href="#" class="btn amado-btn active">New this week</a>
-            </div>
+            </div> 
+            -->
+            <hr>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="cart.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Informaciones</a>
                 <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
@@ -132,8 +147,8 @@
                     </a>
                 </div>
 
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
+                 <!-- Single Catagory -->
+                 <div class="single-products-catagory clearfix">
                     <a href="shop.php">
                         <img src="img/bg-img/2.jpg" alt="">
                         <!-- Hover Content -->
@@ -235,6 +250,7 @@
                         </div>
                     </a>
                 </div>
+               
             </div>
         </div>
         <!-- Product Catagories Area End -->
@@ -258,34 +274,34 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
-                <!-- Single Widget Area -->
-                <div class="col-12 col-lg-8">
+              <!-- Single Widget Area -->
+              <div class="col-12 col-lg-8">
                     <div class="single_widget_area">
-                        <!-- Footer Menu -->
-                        <div class="footer_menu">
-                            <nav class="navbar navbar-expand-lg justify-content-end">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-                                <div class="collapse navbar-collapse" id="footerNavContent">
-                                    <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="index.php">Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="shop.php">Shop</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="product-details.php">Product</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cart.php">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.php">Checkout</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
+                            <!-- Footer Menu -->
+                            <div class="footer_menu">
+                                <nav class="navbar navbar-expand-lg justify-content-end">
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+                                    <div class="collapse navbar-collapse" id="footerNavContent">
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="index.php">Home</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="shop.php">Shop</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="product-details.php">Product</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="cart.php">Cart</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="checkout.php">Checkout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                         </div>    
                     </div>
                 </div>
             </div>
