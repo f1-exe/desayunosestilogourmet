@@ -21,23 +21,21 @@
 
 <body>
 
+<!--Bola flotante de carrito de compras -->
 <div class="sticky-container">
     <ul class="sticky">
         <li>
            
             <a href="cart.php">
                 <img src="img/shopping-cart.png" width="50" height="50">
-                
             </a>
-                
         </li>
-
         <div id="contador_carro">
                 <span class="badge badge-pill badge-danger">2</span>     
-            </div>
-        
+        </div>
     </ul>
 </div>
+<!--Bola flotante de carrito de compras -->
 
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
@@ -87,11 +85,13 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li class="active"><a href="index.php">Home</a></li>
-                    <li><a href="shop.php">Shop</a></li>
-                    <li><a href="product-details.php">Product</a></li>
-                    <li><a href="cart.php">Cart</a></li>
-                    <li><a href="checkout.php">Checkout</a></li>
+                    <li class="active"><a href="#">Categorías</a></li>
+                    <li><a href="#">Para Ella</a></li>
+                    <li><a href="#">Para Él</a></li>
+                    <li><a href="#">Cumpleaños</a></li>
+                    <li><a href="#">Feliz día</a></li>
+                    <li><a href="#">Arma tu pedido</a></li>
+                    <li><a href="#">Promociones</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
