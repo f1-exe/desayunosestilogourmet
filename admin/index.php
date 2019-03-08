@@ -96,18 +96,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                       <span>Agregar</span>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="editarProducto.php">
-                      <i class="material-icons">edit</i>
-                      <span>Editar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="eliminarProducto.php">
-                      <i class="material-icons">delete</i>
-                      <span>Eliminar</span>
-                    </a>
-                  </li>
                 </ul>
               </li>
               <li class="nav-item">

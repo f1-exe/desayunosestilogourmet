@@ -1,5 +1,6 @@
 <?php
 session_start();
+$id = $_GET['id'];
 
 $now = time();
 
@@ -13,6 +14,8 @@ if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
 
 include 'funciones/funciones.php';
 
+$listarCategorias = listarCategorias();
+$listaProducto = listaProducto($id);
 $usuario = "";
 
 if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) == false){
@@ -33,6 +36,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- swal include -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
@@ -94,18 +98,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                     <a class="nav-link " href="agregarProducto.php">
                       <i class="material-icons">add</i>
                       <span>Agregar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="editarProducto.php">
-                      <i class="material-icons">edit</i>
-                      <span>Editar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="eliminarProducto.php">
-                      <i class="material-icons">delete</i>
-                      <span>Eliminar</span>
                     </a>
                   </li>
                 </ul>
@@ -216,27 +208,45 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
               <div class="col-sm-8 col-md-12 col-lg-8">
                 <form>
                   <div class="form-row">
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="text" class="form-control" placeholder="Nombre del Producto" required>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Nombre del Producto</label>
+                      <input type="text" class="form-control" placeholder="Nombre del Producto" value="<?php echo $listaProducto['nombre']; ?>">
                     </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="text" class="form-control" placeholder="Precio" required>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Precio</label>
+                      <input type="text" class="form-control" placeholder="Precio" value="<?php echo $listaProducto['precio']; ?>">
                     </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="text" class="form-control" placeholder="Stock" required>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Stock</label>
+                      <input type="text" class="form-control" placeholder="Stock" value="<?php echo $listaProducto['stock']; ?>">
                     </div>
-                    <div class="form-group custom-file col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es">
-                      <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Categorias</label>
+                      <select id="inputState" class="form-control">
+                        <option value="0" selected>Seleccione una Categoria</option>
+                        <?php while($row = mysqli_fetch_array($listarCategorias)){ 
+                          if($row['id'] == $listaProducto['categoria']){?>
+                        <option selected value="<?php echo $row['id']; ?>"><?php echo utf8_encode($row['nombre']); ?></option>
+                        <?php }else{?>
+                          <option value="<?php echo $row['id']; ?>"><?php echo utf8_encode($row['nombre']); ?></option>
+                        <?php } } ?>
+                      </select>
                     </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <textarea class="form-control" placeholder="Detalles" rows="14"></textarea>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <div><label class="texto">Imagen</label></div>
+                      <div class="form-group custom-file">
+                        <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es">
+                        <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Detalle</label>
+                      <textarea class="form-control" placeholder="Detalles" rows="14"><?php echo $listaProducto['detalle']; ?></textarea>
                     </div>
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
                       <button class="btn btn-primary">Editar Producto</button>
                     </div>
-                  </div>
-                  
+                  </div> 
                 </form>
               </div>
             </div>

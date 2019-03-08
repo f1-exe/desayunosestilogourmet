@@ -32,6 +32,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
+    <link rel="stylesheet" href="css/tabla.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- swal include -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
@@ -222,45 +223,40 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                         <thead class="bg-light">
                           <tr>
                             <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">First Name</th>
-                            <th scope="col" class="border-0">Last Name</th>
-                            <th scope="col" class="border-0">Country</th>
-                            <th scope="col" class="border-0">City</th>
-                            <th scope="col" class="border-0">Phone</th>
+                            <th scope="col" class="border-0">Nombre</th>
+                            <th scope="col" class="border-0">Categoria</th>
+                            <th scope="col" class="border-0">Precio</th>
+                            <th scope="col" class="border-0">Stock</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>1</td>
                             <td>Ali</td>
-                            <td>Kerry</td>
-                            <td>Russian Federation</td>
-                            <td>Gdańsk</td>
-                            <td>107-0339</td>
+                            <td><a href="#" class="card-post__category badge badge-pill badge-warning">Categoria 1</a></td>
+                            <td>$ 10.000</td>
+                            <td>10</td>
                           </tr>
                           <tr>
                             <td>2</td>
-                            <td>Clark</td>
-                            <td>Angela</td>
-                            <td>Estonia</td>
-                            <td>Borghetto di Vara</td>
-                            <td>1-660-850-1647</td>
+                            <td>Ali</td>
+                            <td><a href="#" class="card-post__category badge badge-pill badge-dark">Categoria 2</a></td>
+                            <td>$ 15.000</td>
+                            <td>5</td>
                           </tr>
                           <tr>
                             <td>3</td>
-                            <td>Jerry</td>
-                            <td>Nathan</td>
-                            <td>Cyprus</td>
-                            <td>Braunau am Inn</td>
-                            <td>214-4225</td>
+                            <td>Ali</td>
+                            <td><a href="#" class="card-post__category badge badge-pill badge-primary">Categoria 3</a></td>
+                            <td>$ 20.000</td>
+                            <td>15</td>
                           </tr>
                           <tr>
                             <td>4</td>
-                            <td>Colt</td>
-                            <td>Angela</td>
-                            <td>Liberia</td>
-                            <td>Bad Hersfeld</td>
-                            <td>1-848-473-7416</td>
+                            <td>Ali</td>
+                            <td><a href="#" class="card-post__category badge badge-pill badge-success">Categoria 4</a></td>
+                            <td>$ 25.000</td>
+                            <td>2</td>
                           </tr>
                         </tbody>
                       </table>
@@ -302,5 +298,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="scripts/extras.1.1.0.min.js"></script>
     <script src="scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="js/tabla.js"></script>
   </body>
 </html>
