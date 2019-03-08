@@ -93,7 +93,7 @@ jQuery("#agregar").click(function (e) {
             if(data === "Se ha agregado el producto correctamente"){
                 MensajeFinal(data+", Espere mientras es direccionado a la pagina principal");
                 setTimeout(function nada() {
-                    window.location.replace("index.php");
+                    window.location.replace("listarProductos.php");
                   }, 2500);
             }else{
                 MensajeAlerta(data+", Ha ocurrido un error");
@@ -108,7 +108,6 @@ jQuery("#agregar").click(function (e) {
 
 function MensajeFinal(msg) {
     Swal.fire({
-        position: "top",
         type: "success",
         html: msg,
         showConfirmButton: false,
