@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Detalle producto - Desayunos estilo gourmet</title>
+    <title>Inicio - Desayunos estilo gourmet</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -18,9 +18,32 @@
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <script>
+        function detalle(){
+            window.location.href="product-details.php";
+        }
+    </script>
+  
 </head>
 
 <body>
+
+<!--Bola flotante de carrito de compras -->
+<div class="sticky-container">
+    <ul class="sticky">
+        <li>
+           
+            <a href="cart.php">
+                <img src="img/shopping-cart.png" width="50" height="50">
+            </a>
+        </li>
+        <div id="contador_carro">
+                <span class="badge badge-pill badge-danger">2</span>     
+        </div>
+    </ul>
+</div>
+<!--Bola flotante de carrito de compras -->
+
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
         <div class="search-close">
@@ -56,8 +79,8 @@
             </div>
         </div>
 
-         <!-- Header Area Start -->
-         <header class="header-area clearfix">
+        <!-- Header Area Start -->
+        <header class="header-area clearfix">
             <!-- Close Icon -->
             <div class="nav-close">
                 <i class="fa fa-close" aria-hidden="true"></i>
@@ -114,112 +137,43 @@
         </header>
         <!-- Header Area End -->
 
-        <!-- Product Details Area Start -->
-        <div class="single-product-area section-padding-100 clearfix">
-            <div class="container-fluid">
+        <!-- Product Catagories Area Start -->
+        <div class="products-catagories-area clearfix">
+            <div class="amado-pro-catagory clearfix">
 
-                <!--<div class="row">
-                    <div class="col-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mt-50">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Furniture</a></li>
-                                <li class="breadcrumb-item"><a href="#">Chairs</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">white modern chair</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div> -->
-
-                <div class="row">
-                    <div class="col-12 col-lg-7">
-                        <div class="single_product_thumb">
-                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/pro-big-1.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/pro-big-2.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/pro-big-3.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/pro-big-4.jpg);">
-                                    </li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/pro-big-1.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-1.jpg" alt="First slide">
-                                        </a>
+            <?php $i=0; while($i < 9){ ?>
+                <!-- Single Catagory -->
+                
+                    <div class="single-products-catagory clearfix">
+                            <div class="col-sm-4 py-2">
+                                    <div class="card" style="width: 18rem; margin-top: 25px;">
+                                            <img class="card-img-top" src="img/bg-img/1.jpg" alt="Card image cap">
+                                            <div class="card-body">
+                                                
+                                                <h5 class="card-title">Café</h5>
+                                                <p class="card-text">
+                                                    Precio : $ 4.000 <br>
+                                                   
+                                                </p>
+                                                <div style="text-align:center">
+                                                <button class="btn btn-primary btn-sm" onclick="detalle()">Ver detalle</button>
+                                                
+                                                <button class="btn btn-warning btn-sm" style="color:white;">Añadir al carro</button>
+                                                </div>
+                                            </div>
                                     </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-2.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-2.jpg" alt="Second slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-3.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-3.jpg" alt="Third slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-4.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
                     </div>
-                    <div class="col-12 col-lg-5">
-                        <div class="single_product_desc">
-                            <!-- Product Meta Data -->
-                            <div class="product-meta-data">
-                                <div class="line"></div>
-                                <p class="product-price">$ 4.000</p>
-                                <a href="product-details.php">
-                                    <h6>Café</h6>
-                                </a>
-                               
-                                <!-- Avaiable -->
-                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
-                            </div>
-
-                            <div class="short_overview my-5">
-                                <p>
-                                    <ul>
-                                        <li>Café</li>
-                                        <li>Tazón</li>
-                                        <li>Azucar rubia</li>
-                                        <li>Posa taza</li>
-                                        <li>Media luna</li>
-                                    </ul>
-                                </p>
-                            </div>
-
-                            <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="post">
-                                <div class="cart-btn d-flex mb-50">
-                                    <p>Cantidad</p>
-                                    <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Añadir al carro</button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
+              <?php $i++; } ?>      
+                   
             </div>
         </div>
-        <!-- Product Details Area End -->
+        <!-- Product Catagories Area End -->
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
-     <!-- ##### Footer Area Start ##### -->
-     <footer class="footer_area clearfix" style="margin-top: 25px;">
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix" style="margin-top: 25px;">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Single Widget Area -->
@@ -276,7 +230,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Plugins js -->
     <script src="js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="js/active.js"></script> 
 
 </body>
 
