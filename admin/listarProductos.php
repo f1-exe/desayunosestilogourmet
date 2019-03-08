@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+$now = time();
+
+if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
+  if ($now > $_SESSION['expire']) {
+    session_unset();
+    session_destroy();
+    header("location: index.php");
+  }
+}
+
+include 'funciones/funciones.php';
+
+$listaProductos = listarProductos();
+
+$usuario = "";
+
+if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) == false){
+  $usuario = $_SESSION["session_usuario"];
+}
+
+function name($paso){
+  return str_replace(array("\r\n","\r","\n"), "<br />", $paso);
+}
+
+?>
 <!doctype html>
 <html class="no-js h-100" lang="en">
   <head>
@@ -11,9 +39,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
+    <link rel="stylesheet" href="css/categorias.css">
+    <!-- Ordenar columans tablas CSS -->
+    <link rel="stylesheet" href="css/tabla.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- swal include -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
+    <!-- logout script -->
+    <script src="js/login/logout.js"></script>
   </head>
   <body class="h-100">
+    <input id="session" type="hidden" value="<?php echo $usuario;?>">
+    <script>
+      validaSesion();
+    </script>
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
@@ -64,18 +103,6 @@
                     <a class="nav-link " href="agregarProducto.php">
                       <i class="material-icons">add</i>
                       <span>Agregar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="editarProducto.php">
-                      <i class="material-icons">edit</i>
-                      <span>Editar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="eliminarProducto.php">
-                      <i class="material-icons">delete</i>
-                      <span>Eliminar</span>
                     </a>
                   </li>
                 </ul>
@@ -158,8 +185,8 @@
                     <a class="dropdown-item" href="add-new-post.php">
                       <i class="material-icons">note_add</i> Add New Post</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#">
-                      <i class="material-icons text-danger">&#xE879;</i> Logout </a>
+                    <a class="dropdown-item text-danger" href="#" onclick="logout()">
+                      <i class="material-icons text-danger">&#xE879;</i> Cerrar Sesión </a>
                   </div>
                 </li>
               </ul>
@@ -185,7 +212,7 @@
               <div class="col">
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">Active Users</h6>
+                    <h6 class="m-0">Datos de los Productos</h6>
                   </div>
                   <div class="card-body p-0 pb-3 text-center">
                     <div class="table-responsive">
@@ -193,46 +220,57 @@
                         <thead class="bg-light">
                           <tr>
                             <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">Nombre</th>
-                            <th scope="col" class="border-0">Detalle</th>
                             <th scope="col" class="border-0">Imagen</th>
+                            <th scope="col" class="border-0">Nombre</th>
+                            <th scope="col" class="border-0">Categoria</th>
+                            <th scope="col" class="border-0">Precio</th>
                             <th scope="col" class="border-0">Stock</th>
+                            <th scope="col" class="border-0">Detalle</th>
                             <th scope="col" class="border-0">Fecha</th>
+                            <th scope="col" class="border-0">Acción</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>Ali</td>
-                            <td>Kerry</td>
-                            <td>Russian Federation</td>
-                            <td>Gdańsk</td>
-                            <td>107-0339</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Clark</td>
-                            <td>Angela</td>
-                            <td>Estonia</td>
-                            <td>Borghetto di Vara</td>
-                            <td>1-660-850-1647</td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Jerry</td>
-                            <td>Nathan</td>
-                            <td>Cyprus</td>
-                            <td>Braunau am Inn</td>
-                            <td>214-4225</td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Colt</td>
-                            <td>Angela</td>
-                            <td>Liberia</td>
-                            <td>Bad Hersfeld</td>
-                            <td>1-848-473-7416</td>
-                          </tr>
+                          <?php while($row = mysqli_fetch_array($listaProductos)){ ?>
+                            <tr>
+                              <td><?php echo $row['idP']; ?></td>
+                              <td>
+                                <div class="avatar" style="background-image: url(../img/productos/<?php echo $row['imagen']; ?>)"></div>
+                              </td>
+                              <td><?php echo $row['nombreP']; ?></td>
+
+                              <?php if($row['idC'] == 1){?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-primary"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 2){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-secondary"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 3){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-success"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 4){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-danger"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 5){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-warning"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 6){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-info"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 7){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-violet"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 8){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-dark"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 9){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-orange"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php } ?>
+
+                              <td><?php echo "$ ".number_format($row['precio'], 0, '', '.'); ?></td>
+                              <td><?php echo $row['stock'];?></td>
+                              <td>
+                                <a href="#" onclick='modal("<?php echo name($row["detalle"])?>")'>Detalle</a>
+                              </td>
+                              <td><?php echo substr($row['fecha'], 0, 10);?></td>
+                              <td>
+                                <a href="editarProducto.php?id=<?php echo $row['idP']; ?>" class="card-post__category badge badge-pill badge-warning">Editar</a><br>
+                                <a href="#" onclick='modalEliminar("<?php echo name($row["idP"])?>")' class="card-post__category badge badge-pill badge-danger">Eliminar</a>
+                              </td>
+                            </tr>
+                          <?php } ?>
                         </tbody>
                       </table>
                     </div>
@@ -273,5 +311,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="scripts/extras.1.1.0.min.js"></script>
     <script src="scripts/shards-dashboards.1.1.0.min.js"></script>
+    <script src="js/tabla.js"></script>
+    <script src="js/producto/modal.js"></script>
   </body>
 </html>
