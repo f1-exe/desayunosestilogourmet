@@ -9,14 +9,14 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Inicio - Desayunos estilo gourmet</title>
+    <title>Para Ella - Desayunos estilo gourmet</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="css/core-style.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/core-style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <script>
         function detalle(){
@@ -32,9 +32,8 @@
 <div class="sticky-container">
     <ul class="sticky">
         <li>
-           
             <a href="cart.php">
-                <img src="img/shopping-cart.png" width="50" height="50">
+                <img src="../img/shopping-cart.png" width="50" height="50">
             </a>
         </li>
         <div id="contador_carro">
@@ -44,26 +43,6 @@
 </div>
 <!--Bola flotante de carrito de compras -->
 
-    <!-- Search Wrapper Area Start -->
-    <div class="search-wrapper section-padding-100">
-        <div class="search-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="search-content">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
-                            <button type="submit"><img src="img/core-img/search.png" alt=""></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Search Wrapper Area End -->
-
     <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
 
@@ -71,7 +50,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="../index.php"><img src="../img/core-img/logo.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -87,31 +66,31 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="../index.php"><img src="../img/core-img/logo.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul id="exampleAccordion">
-                    <li class="active"><a href="#">Categorías</a></li>
-                    <li><a href="#">Para Ella</a></li>
-                    <li><a href="#">Para Él</a></li>
-                    <li><a href="#">Cumpleaños</a></li>
+                    <li class="active"><a href="../index.php">Categorías</a></li>
+                    <li><a href="para-ella.php">Para Ella</a></li>
+                    <li><a href="para-el.php">Para Él</a></li>
+                    <li><a href="cumpleanos.php">Cumpleaños</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
                             <li >
-                                <a href="#">Día del padre</a>
+                                <a href="dia-padre.php">Día del padre</a>
                             </li>
                             <li>
-                                <a href="#">Día de la madre</a>
+                                <a href="dia-madre.php">Día de la madre</a>
                             </li>
                             <li>
-                                <a href="#">San valentín</a>
+                                <a href="san-valentin.php">San valentín</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#">Arma tu pedido</a></li>
-                    <li><a href="#">Promociones</a></li>
+                    <li><a href="armar-pedido.php">Arma tu pedido</a></li>
+                    <li><a href="promociones.php">Promociones</a></li>
                 </ul>
             </nav>
             <!-- Button Group
@@ -123,17 +102,8 @@
             <hr>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Informaciones</a>
-                <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
-            </div>
-            <!-- Social Button -->
-            <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
+                <a href="../informaciones.php" class="cart-nav"><img src="../img/info-yellow.png" alt=""> Informaciones</a>
+            </div> 
         </header>
         <!-- Header Area End -->
 
@@ -146,8 +116,8 @@
                 
                     <div class="single-products-catagory clearfix">
                             <div class="col-sm-4 py-2">
-                                    <div class="card" style="width: 18rem; margin-top: 25px;">
-                                            <img class="card-img-top" src="img/bg-img/1.jpg" alt="Card image cap">
+                                    <div class="card mt-25" style="width: 18rem;">
+                                            <img class="card-img-top" src="../img/bg-img/1.jpg" alt="Card image cap">
                                             <div class="card-body">
                                                 
                                                 <h5 class="card-title">Café</h5>
@@ -173,7 +143,7 @@
     <!-- ##### Main Content Wrapper End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer_area clearfix" style="margin-top: 25px;">
+    <footer class="footer_area clearfix mt-25">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Single Widget Area -->
@@ -181,12 +151,24 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.php"><img src="img/core-img/logo2.png" alt=""></a>
+                            <a href="../index.php"><img src="../img/core-img/logo2.png" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+
+                    
+                            <!-- Social Button -->
+                            <div class="d-flex justify-content-between">
+                       
+                                <a id="href-footer" href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a id="href-footer" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a id="href-footer" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a id="href-footer" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                            <!-- Social Button -->
+           
                     </div>
                 </div>
               <!-- Single Widget Area -->
@@ -222,15 +204,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="../js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
+    <script src="../js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
+    <script src="../js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script> 
+    <script src="../js/active.js"></script> 
 
 </body>
 

@@ -69,3 +69,20 @@
     font-size:16px;
 }
 /*estilo del div de informacion del footer*/
+
+/*margen de 25 para cuando sea necesario*/
+.mt-25{
+    margin-top: 25px;
+}
+/*margen de 25 para cuando sea necesario*/
+
+/*
+centra el contenido con respecto a la barra de categorias y el resto de la pantalla
+se usa en : informaciones.php
+*/
+.center-content{
+    margin-top: 25px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+/*centra el contenido con respecto a la barra de categorias y el resto de la pantalla*/
