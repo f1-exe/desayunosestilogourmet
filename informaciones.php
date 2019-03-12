@@ -78,8 +78,8 @@
             </div>
         </div>
 
-        <!-- Header Area Start -->
-        <header class="header-area clearfix">
+          <!-- Header Area Start -->
+          <header class="header-area clearfix">
             <!-- Close Icon -->
             <div class="nav-close">
                 <i class="fa fa-close" aria-hidden="true"></i>
@@ -91,26 +91,26 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul id="exampleAccordion">
-                    <li class="active"><a href="#">Categorías</a></li>
-                    <li><a href="#">Para Ella</a></li>
-                    <li><a href="#">Para Él</a></li>
-                    <li><a href="#">Cumpleaños</a></li>
+                    <li class="active"><a href="index.php">Categorías</a></li>
+                    <li><a href="categorias/para-ella.php">Para Ella</a></li>
+                    <li><a href="categorias/para-el.php">Para Él</a></li>
+                    <li><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
                             <li >
-                                <a href="#">Día del padre</a>
+                                <a href="categorias/dia-padre.php">Día del padre</a>
                             </li>
                             <li>
-                                <a href="#">Día de la madre</a>
+                                <a href="categorias/dia-madre.php">Día de la madre</a>
                             </li>
                             <li>
-                                <a href="#">San valentín</a>
+                                <a href="categorias/san-valentin.php">San valentín</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#">Arma tu pedido</a></li>
-                    <li><a href="#">Promociones</a></li>
+                    <li><a href="categorias/armar-pedido.php">Arma tu pedido</a></li>
+                    <li><a href="categorias/promociones.php">Promociones</a></li>
                 </ul>
             </nav>
             <!-- Button Group
@@ -122,12 +122,10 @@
             <hr>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.php" class="cart-nav"><img src="img/info-yellow.png" alt=""> Informaciones</a>
+                <a href="informaciones.php" class="cart-nav"><img src="img/info-yellow.png" alt=""> Informaciones</a>
             </div> 
         </header>
         <!-- Header Area End -->
-
-
 
 
         <!-- Product Catagories Area Start -->

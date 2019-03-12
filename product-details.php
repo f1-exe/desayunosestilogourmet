@@ -69,26 +69,26 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul id="exampleAccordion">
-                    <li class="active"><a href="#">Categorías</a></li>
-                    <li><a href="#">Para Ella</a></li>
-                    <li><a href="#">Para Él</a></li>
-                    <li><a href="#">Cumpleaños</a></li>
+                    <li class="active"><a href="index.php">Categorías</a></li>
+                    <li><a href="categorias/para-ella.php">Para Ella</a></li>
+                    <li><a href="categorias/para-el.php">Para Él</a></li>
+                    <li><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
                             <li >
-                                <a href="#">Día del padre</a>
+                                <a href="categorias/dia-padre.php">Día del padre</a>
                             </li>
                             <li>
-                                <a href="#">Día de la madre</a>
+                                <a href="categorias/dia-madre.php">Día de la madre</a>
                             </li>
                             <li>
-                                <a href="#">San valentín</a>
+                                <a href="categorias/san-valentin.php">San valentín</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#">Arma tu pedido</a></li>
-                    <li><a href="#">Promociones</a></li>
+                    <li><a href="categorias/armar-pedido.php">Arma tu pedido</a></li>
+                    <li><a href="categorias/promociones.php">Promociones</a></li>
                 </ul>
             </nav>
             <!-- Button Group
@@ -100,17 +100,8 @@
             <hr>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Informaciones</a>
-                <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
-            </div>
-            <!-- Social Button -->
-            <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
+                <a href="informaciones.php" class="cart-nav"><img src="img/info-yellow.png" alt=""> Informaciones</a>
+            </div> 
         </header>
         <!-- Header Area End -->
 
@@ -218,8 +209,8 @@
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
-     <!-- ##### Footer Area Start ##### -->
-     <footer class="footer_area clearfix" style="margin-top: 25px;">
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix mt-25">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Single Widget Area -->
@@ -233,6 +224,18 @@
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+
+                    
+                            <!-- Social Button -->
+                            <div class="d-flex justify-content-between">
+                       
+                                <a id="href-footer" href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a id="href-footer" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a id="href-footer" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a id="href-footer" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                            <!-- Social Button -->
+           
                     </div>
                 </div>
               <!-- Single Widget Area -->
