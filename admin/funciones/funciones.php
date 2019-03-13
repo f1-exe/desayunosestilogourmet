@@ -106,4 +106,18 @@ function editarProductoSinImagen($id, $nombre, $precio, $stock, $categoria, $det
     return false;
   }
 }
+
+// Elimina producto
+function eliminaProducto($id){
+  global $conn;
+  $query = "DELETE FROM producto WHERE id = ".$id."";
+  $resp = mysqli_query($conn, $query);
+
+  if($resp){
+    return true;
+  }else{
+    return false;
+  }
+}
+
 ?>

@@ -12,6 +12,7 @@ if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
 }
 
 include 'funciones/funciones.php';
+$listaProductos = listarProductos();
 
 $usuario = "";
 
@@ -32,6 +33,8 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
+    <link rel="stylesheet" href="css/categorias.css">
+    <!-- Ordenar columans tablas CSS -->
     <link rel="stylesheet" href="css/tabla.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- swal include -->
@@ -230,34 +233,40 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>Ali</td>
-                            <td><a href="#" class="card-post__category badge badge-pill badge-warning">Categoria 1</a></td>
-                            <td>$ 10.000</td>
-                            <td>10</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Ali</td>
-                            <td><a href="#" class="card-post__category badge badge-pill badge-dark">Categoria 2</a></td>
-                            <td>$ 15.000</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Ali</td>
-                            <td><a href="#" class="card-post__category badge badge-pill badge-primary">Categoria 3</a></td>
-                            <td>$ 20.000</td>
-                            <td>15</td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Ali</td>
-                            <td><a href="#" class="card-post__category badge badge-pill badge-success">Categoria 4</a></td>
-                            <td>$ 25.000</td>
-                            <td>2</td>
-                          </tr>
+                          <?php while($row = mysqli_fetch_array($listaProductos)){ 
+                            if($row['stock'] < 5){
+                          ?>
+                            <tr class="table-danger">
+                          <?php }else{ ?>
+                            <tr>
+                          <?php } ?>
+                              <td><?php echo $row['idP']; ?></td>
+                              <td><?php echo $row['nombreP']; ?></td>
+
+                              <?php if($row['idC'] == 1){?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-primary"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 2){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-secondary"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 3){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-success"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 4){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-danger"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 5){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-warning"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 6){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-info"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 7){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-violet"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 8){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-dark"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 9){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-orange"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php } ?>
+
+                              <td><?php echo "$ ".number_format($row['precio'], 0, '', '.'); ?></td>
+                              <td><?php echo $row['stock'];?></td>
+                            </tr>
+                          <?php } ?>
                         </tbody>
                       </table>
                     </div>

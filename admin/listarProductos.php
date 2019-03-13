@@ -266,7 +266,10 @@ function name($paso){
                               </td>
                               <td><?php echo substr($row['fecha'], 0, 10);?></td>
                               <td>
-                                <a href="editarProducto.php?id=<?php echo $row['idP']; ?>" class="card-post__category badge badge-pill badge-warning">Editar</a><br>
+                                <form action="editarProducto.php" method="post">
+                                  <input type="submit" value="Editar" class="btn  btn-editar"><br>
+                                  <input  type="hidden" name="idProducto" id="<?php echo $row['idP'];?>" value="<?php echo $row['idP'];?>">
+                                </form>
                                 <a href="#" onclick='modalEliminar("<?php echo name($row["idP"])?>")' class="card-post__category badge badge-pill badge-danger">Eliminar</a>
                               </td>
                             </tr>

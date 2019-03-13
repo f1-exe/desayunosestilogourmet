@@ -21,47 +21,43 @@ function modalEliminar(id){
     confirmButtonText: 'Si, deseo eliminar el producto',
     cancelButtonText: 'Cancelar'
   }).then((result) => {
+    
     if (result.value) {
-      Swal.fire(
-        '¡Eliminado!',
-        'El producto se ha eliminado correctamente',
-        'success'
-      )
-    }
-  });
-}
-
-function modalEliminar2(id){
-  const swalWithBootstrapButtons = Swal.mixin({
-    confirmButtonClass: 'btn btn-success',
-    cancelButtonClass: 'btn btn-danger',
-    buttonsStyling: false,
-  })
-  
-  swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
-    reverseButtons: true
-  }).then((result) => {
-    if (result.value) {
-      swalWithBootstrapButtons.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
-    } else if (
-      // Read more about handling dismissals
-      result.dismiss === Swal.DismissReason.cancel
-    ) {
-      swalWithBootstrapButtons.fire(
-        'Cancelled',
-        'Your imaginary file is safe :)',
-        'error'
-      )
+      var dataForm = new FormData();
+      dataForm.append('idDel', id);
+      jQuery.ajax({
+        url: 'eliminarProducto_action.php',
+        type: 'POST',
+        data: dataForm,
+        success: function (data) {
+            if(data === "Se ha eliminado el producto correctamente"){
+              Swal.fire(
+                '¡Eliminado!',
+                data+', Espere mientras se actualiza la pagina',
+                'success'
+              )
+                
+              setTimeout(function nada() {
+                window.location.replace("listarProductos.php");
+              }, 2500);
+            }else{
+              Swal.fire(
+                '¡Eliminado!',
+                'Ha ocurrido un error, '+data,
+                'error'
+              )
+            }
+            
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+      });
+      // Swal.fire(
+      //   '¡Eliminado!',
+      //   'El producto se ha eliminado correctamente',
+      //   'success'
+      // )
     }
   });
 }
