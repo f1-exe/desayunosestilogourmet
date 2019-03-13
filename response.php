@@ -16,9 +16,8 @@ $webPay = TransbankServiceFactory::normal($bag);
 //response code = 0  transaccion aprobada
 $result =  $webPay->getTransactionResult();
 
-
-
-/*print_r($result);
+/*echo  '<pre>';
+print_r($result);
 exit;*/
 
 
