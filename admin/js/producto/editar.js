@@ -1,13 +1,16 @@
-jQuery("#agregar").click(function (e) {
+jQuery("#editar").click(function (e) {
     e.preventDefault();
     //var formData = new FormData(this);
+    var idProd = document.getElementById("idProd").value;
     var nombre = document.getElementById("nombre").value;
     var precio = document.getElementById("precio").value;
     var stock = document.getElementById("stock").value;
     var inputState = document.getElementById("inputState");
     var categoria = inputState.options[inputState.selectedIndex].value;
     var detalle = document.getElementById("detalle").value;
+    var imagen = document.getElementById("imagen").value;
     var dataForm = new FormData();
+
 
     var customFileLang = document.getElementById("customFileLang");
     var files_2 = customFileLang.files;
@@ -62,15 +65,16 @@ jQuery("#agregar").click(function (e) {
     if(files_2.length == 1){
         for (i = 0; i < files_2.length; i++) {
             if (/\.(jpg|jpeg)$/i.test(customFileLang.files[i].name)) {
+                dataForm.append('tipo', 0);
                 dataForm.append('archivo' + i, files_2[i]);
+                dataForm.append('nameImagen', files_2[0].name);
             } else {
                 MensajeError("El archivos no contiene el formato correcto, los formatos permitidos son : <br> <label style='color:red'><strong>[ .JPG / .JPEG ]</strong></label>");
                 return false;
             }
         }
     }else{
-        MensajeError("Debe subir dolo 1 archivo, usted esta subiendo " + files_2.length + " archivos");
-        return false;
+        dataForm.append('tipo', 1);
     }
 
     if(detalle === ""){
@@ -78,19 +82,20 @@ jQuery("#agregar").click(function (e) {
         return false;
     }
 
+    dataForm.append('idProd', idProd);
     dataForm.append('nombre', nombre);
     dataForm.append('precio', precio);
     dataForm.append('stock', stock);
     dataForm.append('categoria', categoria);
     dataForm.append('detalle', detalle);
-    dataForm.append('nameImagen', files_2[0].name);
+    //dataForm.append('nameImagen', files_2[0].name);
 
     jQuery.ajax({
-        url: 'agregarProducto_action.php',
+        url: 'editarProducto_action.php',
         type: 'POST',
         data: dataForm,
         success: function (data) {
-            if(data === "Se ha agregado el producto correctamente"){
+            if(data === "Se ha editado el producto correctamente"){
                 MensajeFinal(data+", Espere mientras es direccionado a la pagina principal");
                 setTimeout(function nada() {
                     window.location.replace("listarProductos.php");

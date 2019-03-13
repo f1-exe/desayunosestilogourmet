@@ -230,7 +230,7 @@ function name($paso){
                             <th scope="col" class="border-0">Acción</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="paginacion">
                           <?php while($row = mysqli_fetch_array($listaProductos)){ ?>
                             <tr>
                               <td><?php echo $row['idP']; ?></td>
@@ -266,10 +266,18 @@ function name($paso){
                               </td>
                               <td><?php echo substr($row['fecha'], 0, 10);?></td>
                               <td>
-                                <a href="editarProducto.php?id=<?php echo $row['idP']; ?>" class="card-post__category badge badge-pill badge-warning">Editar</a><br>
+                                <form action="editarProducto.php" method="post">
+                                  <input type="submit" value="Editar" class="btn  btn-editar"><br>
+                                  <input  type="hidden" name="idProducto" id="<?php echo $row['idP'];?>" value="<?php echo $row['idP'];?>">
+                                </form>
                                 <a href="#" onclick='modalEliminar("<?php echo name($row["idP"])?>")' class="card-post__category badge badge-pill badge-danger">Eliminar</a>
                               </td>
                             </tr>
+                            <div class="col-md-12 text-center">
+                                <ul class="pagination pagination-lg pager" id="paginador_page">
+                                
+                                </ul>
+                            </div>
                           <?php } ?>
                         </tbody>
                       </table>
@@ -313,5 +321,6 @@ function name($paso){
     <script src="scripts/shards-dashboards.1.1.0.min.js"></script>
     <script src="js/tabla.js"></script>
     <script src="js/producto/modal.js"></script>
+    <script src="js/paginacion.js"></script>
   </body>
 </html>

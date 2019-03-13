@@ -1,6 +1,11 @@
 <?php
 session_start();
-$id = $_GET['id'];
+
+if(!isset($_POST['idProducto']) && empty($_POST['idProducto'])){
+  header('location: listarProductos.php');
+}else{
+  $id = $_POST['idProducto'];
+}
 
 $now = time();
 
@@ -42,6 +47,12 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
     <!-- logout script -->
     <script src="js/login/logout.js"></script>
+    <style>
+      .responsive {
+        width: 100%;
+        height: auto;
+      }
+    </style>
   </head>
   <body class="h-100">
     <input id="session" type="hidden" value="<?php echo $usuario;?>">
@@ -210,15 +221,15 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                   <div class="form-row">
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
                       <label class="texto">Nombre del Producto</label>
-                      <input type="text" class="form-control" placeholder="Nombre del Producto" value="<?php echo $listaProducto['nombre']; ?>">
+                      <input id="nombre" type="text" class="form-control" placeholder="Nombre del Producto" value="<?php echo $listaProducto['nombre']; ?>">
                     </div>
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
                       <label class="texto">Precio</label>
-                      <input type="text" class="form-control" placeholder="Precio" value="<?php echo $listaProducto['precio']; ?>">
+                      <input id="precio" type="text" class="form-control" placeholder="Precio" value="<?php echo $listaProducto['precio']; ?>">
                     </div>
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
                       <label class="texto">Stock</label>
-                      <input type="text" class="form-control" placeholder="Stock" value="<?php echo $listaProducto['stock']; ?>">
+                      <input id="stock" type="text" class="form-control" placeholder="Stock" value="<?php echo $listaProducto['stock']; ?>">
                     </div>
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
                       <label class="texto">Categorias</label>
@@ -238,13 +249,15 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                         <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es">
                         <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
                       </div>
+                      <div><img id="imagen" class="responsive" src="../img/productos/<?php echo $listaProducto['imagen'];?>" alt="Sin imagen"></div>
                     </div>
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
                       <label class="texto">Detalle</label>
-                      <textarea class="form-control" placeholder="Detalles" rows="14"><?php echo $listaProducto['detalle']; ?></textarea>
+                      <textarea id="detalle" class="form-control" placeholder="Detalles" rows="14"><?php echo $listaProducto['detalle']; ?></textarea>
                     </div>
+                    <input type="hidden" name="idProd" id="idProd" value="<?php echo $listaProducto['id'] ?>">
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <button class="btn btn-primary">Editar Producto</button>
+                      <button id="editar" name="editar" class="btn btn-primary">Editar Producto</button>
                     </div>
                   </div> 
                 </form>
@@ -275,6 +288,9 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
         </main>
       </div>
     </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/producto/editar.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
