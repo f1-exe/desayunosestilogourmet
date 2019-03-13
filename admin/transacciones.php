@@ -128,54 +128,14 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                   <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">--> </div>
               </form>
               <ul class="navbar-nav border-left flex-row ">
-                <li class="nav-item border-right dropdown notifications">
-                  <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="nav-link-icon__wrapper">
-                      <i class="material-icons">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-danger">2</span>
-                    </div>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE6E1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Analytics</span>
-                        <p>Your website’s active users count increased by
-                          <span class="text-success text-semibold">28%</span> in the last week. Great job!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE8D1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Sales</span>
-                        <p>Last week your store’s sales count decreased by
-                          <span class="text-danger text-semibold">5.52%</span>. It could have been worse!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item notification__all text-center" href="#"> View all Notifications </a>
-                  </div>
-                </li>
+                
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="images/avatar.png" alt="User Avatar">
                     <span class="d-none d-md-inline-block">Administrador</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.php">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    <a class="dropdown-item" href="components-blog-posts.php">
-                      <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    <a class="dropdown-item" href="add-new-post.php">
-                      <i class="material-icons">note_add</i> Add New Post</a>
-                    <div class="dropdown-divider"></div>
+                    
                     <a class="dropdown-item text-danger" href="#" onclick="logout()">
                       <i class="material-icons text-danger">&#xE879;</i> Cerrar Sesión </a>
                   </div>
@@ -203,53 +163,37 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
               <div class="col">
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">Active Users</h6>
+                    <h6 class="m-0">Tabla de transacciones</h6>
                   </div>
                   <div class="card-body p-0 pb-3 text-center">
                     <div class="table-responsive">
                       <table class="table table-striped mb-0" width="100%" cellspacing="0">
                         <thead class="bg-light">
                           <tr>
-                            <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">First Name</th>
-                            <th scope="col" class="border-0">Last Name</th>
-                            <th scope="col" class="border-0">Country</th>
-                            <th scope="col" class="border-0">City</th>
-                            <th scope="col" class="border-0">Phone</th>
+                            <th scope="col" class="border-0">id</th>
+                            <th scope="col" class="border-0">Orden Compra</th>
+                            <th scope="col" class="border-0">N°Tarjeta</th>
+                            <th scope="col" class="border-0">Fecha exp</th>
+                            <th scope="col" class="border-0">Cod Autorizacion</th>
+                            <th scope="col" class="border-0">Cod Transacción</th>
+                            <th scope="col" class="border-0">Monto</th>
+                            <th scope="col" class="border-0">Cod Comercio</th>
+                            <th scope="col" class="border-0">Fecha Transacción</th>
+                            <th scope="col" class="border-0">Detalle Compra</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>1</td>
-                            <td>Ali</td>
-                            <td>Kerry</td>
-                            <td>Russian Federation</td>
-                            <td>Gdańsk</td>
-                            <td>107-0339</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Clark</td>
-                            <td>Angela</td>
-                            <td>Estonia</td>
-                            <td>Borghetto di Vara</td>
-                            <td>1-660-850-1647</td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Jerry</td>
-                            <td>Nathan</td>
-                            <td>Cyprus</td>
-                            <td>Braunau am Inn</td>
-                            <td>214-4225</td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Colt</td>
-                            <td>Angela</td>
-                            <td>Liberia</td>
-                            <td>Bad Hersfeld</td>
-                            <td>1-848-473-7416</td>
+                            <td>000-12345</td>
+                            <td>XXXX-XXXX-XXXX-1234</td>
+                            <td>22/25</td>
+                            <td>201139</td>
+                            <td>0 = EXITOSA</td>
+                            <td>$25.000</td>
+                            <td>597020000541</td>
+                            <td>2019-03-13</td>
+                            <td><a href="#">Ver detalle</a></td>
                           </tr>
                         </tbody>
                       </table>
@@ -267,7 +211,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                 <a class="nav-link" href="index.php">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="productos.php">Productos</a>
+                <a class="nav-link" href="listarProductos.php">Productos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="transacciones.php">Transacciones</a>
