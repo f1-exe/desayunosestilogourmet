@@ -12,47 +12,77 @@
     ##### - PLACE YOUR CUSTOM CSS HERE - #####
     --------------------------------------- */
 
-    /* CSS BOLA FLOTANTE CARRO DE COMPRA*/
-    .sticky-container{
-        padding:0px;
-        margin:0px;
-        position:fixed;
-        right:-130px;
-        top:230px;
-        width:210px;
-        z-index: 1100;
-    }
-    .sticky li{
-        list-style-type:none;
-        color:#efefef;
-        height:43px;
-        padding:0px;
-        margin:0px 0px 1px 0px;
-        -webkit-transition:all 0.25s ease-in-out;
-        -moz-transition:all 0.25s ease-in-out;
-        -o-transition:all 0.25s ease-in-out;
-        transition:all 0.25s ease-in-out;
-        cursor:pointer;
-    }
-    
-    .sticky li img{
-        float:left;
-        margin:-138px 4px;
-        margin-right:5px;
-    }
-    .sticky li p{
-        padding-top:5px;
-        margin:0px;
-        line-height:16px;
-        font-size:11px;
-    }
-    .sticky li p a{
-        text-decoration:none;
-        color:#2C3539;
-    }
-    
-    #contador_carro{
-        margin-top: -150px;
-    }
+/* CSS BOLA FLOTANTE CARRO DE COMPRA*/
+.sticky-container{
+    padding:0px;
+    margin:0px;
+    position:fixed;
+    right:-130px;
+    top:230px;
+    width:210px;
+    z-index: 1100;
+}
+.sticky li{
+    list-style-type:none;
+    color:#efefef;
+    height:43px;
+    padding:0px;
+    margin:0px 0px 1px 0px;
+    -webkit-transition:all 0.25s ease-in-out;
+    -moz-transition:all 0.25s ease-in-out;
+    -o-transition:all 0.25s ease-in-out;
+    transition:all 0.25s ease-in-out;
+    cursor:pointer;
+}
 
-    /* CSS BOLA FLOTANTE CARRO DE COMPRA*/
+.sticky li img{
+    float:left;
+    margin:-138px 4px;
+    margin-right:5px;
+}
+.sticky li p{
+    padding-top:5px;
+    margin:0px;
+    line-height:16px;
+    font-size:11px;
+}
+.sticky li p a{
+    text-decoration:none;
+    color:#2C3539;
+}
+
+#contador_carro{
+    margin-top: -150px;
+}
+
+/* CSS BOLA FLOTANTE CARRO DE COMPRA*/
+
+/*estilo del div de informacion del footer*/
+.info-cliente{
+    position: relative;
+    margin-left: auto;
+}
+
+#href-footer{
+    font-family: "helveticaneuemedium";
+    color: grey;  
+    font-size:16px;
+}
+/*estilo del div de informacion del footer*/
+
+/*margen de 25 para cuando sea necesario*/
+.mt-25{
+    margin-top: 25px;
+}
+/*margen de 25 para cuando sea necesario*/
+
+/*
+centra el contenido con respecto a la barra de categorias y el resto de la pantalla
+se usa en : informaciones.php
+*/
+.center-content{
+    margin-top: 25px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+/*centra el contenido con respecto a la barra de categorias y el resto de la pantalla*/

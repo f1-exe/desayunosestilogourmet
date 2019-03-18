@@ -9,14 +9,14 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Inicio - Desayunos estilo gourmet</title>
+    <title>Para Él - Desayunos estilo gourmet</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="css/core-style.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/core-style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <script>
         function detalle(){
@@ -33,7 +33,7 @@
     <ul class="sticky">
         <li>
             <a href="cart.php">
-                <img src="img/shopping-cart.png" width="50" height="50">
+                <img src="../img/shopping-cart.png" width="50" height="50">
             </a>
         </li>
         <div id="contador_carro">
@@ -50,7 +50,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="../index.php"><img src="../img/core-img/logo.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -66,31 +66,31 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="../index.php"><img src="../img/core-img/logo.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul id="exampleAccordion">
-                    <li class="active"><a href="index.php">Categorías</a></li>
-                    <li><a href="categorias/para-ella.php">Para Ella</a></li>
-                    <li><a href="categorias/para-el.php">Para Él</a></li>
-                    <li><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
+                    <li class="active"><a href="../index.php">Categorías</a></li>
+                    <li><a href="para-ella.php">Para Ella</a></li>
+                    <li><a href="para-el.php">Para Él</a></li>
+                    <li><a href="cumpleanos.php">Cumpleaños</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
                             <li >
-                                <a href="categorias/dia-padre.php">Día del padre</a>
+                                <a href="dia-padre.php">Día del padre</a>
                             </li>
                             <li>
-                                <a href="categorias/dia-madre.php">Día de la madre</a>
+                                <a href="dia-madre.php">Día de la madre</a>
                             </li>
                             <li>
-                                <a href="categorias/san-valentin.php">San valentín</a>
+                                <a href="san-valentin.php">San valentín</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="categorias/armar-pedido.php">Arma tu pedido</a></li>
-                    <li><a href="categorias/promociones.php">Promociones</a></li>
+                    <li><a href="armar-pedido.php">Arma tu pedido</a></li>
+                    <li><a href="promociones.php">Promociones</a></li>
                 </ul>
             </nav>
             <!-- Button Group
@@ -102,7 +102,7 @@
             <hr>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="informaciones.php" class="cart-nav"><img src="img/info-yellow.png" alt=""> Informaciones</a>
+                <a href="../informaciones.php" class="cart-nav"><img src="../img/info-yellow.png" alt=""> Informaciones</a>
             </div> 
         </header>
         <!-- Header Area End -->
@@ -117,7 +117,7 @@
                     <div class="single-products-catagory clearfix">
                             <div class="col-sm-4 py-2">
                                     <div class="card mt-25" style="width: 18rem;">
-                                            <img class="card-img-top" src="img/bg-img/1.jpg" alt="Card image cap">
+                                            <img class="card-img-top" src="../img/bg-img/1.jpg" alt="Card image cap">
                                             <div class="card-body">
                                                 
                                                 <h5 class="card-title">Café</h5>
@@ -151,7 +151,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.php"><img src="img/core-img/logo2.png" alt=""></a>
+                            <a href="../index.php"><img src="../img/core-img/logo2.png" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -204,15 +204,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="../js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
+    <script src="../js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
+    <script src="../js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script> 
+    <script src="../js/active.js"></script> 
 
 </body>
 
