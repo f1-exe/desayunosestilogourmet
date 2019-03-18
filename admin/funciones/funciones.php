@@ -119,5 +119,4 @@ function eliminaProducto($id){
     return false;
   }
 }
-
 ?>

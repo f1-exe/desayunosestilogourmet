@@ -34,8 +34,8 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
     <link rel="stylesheet" href="css/categorias.css">
-    <!-- Ordenar columans tablas CSS -->
-    <link rel="stylesheet" href="css/tabla.css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- swal include -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
@@ -97,18 +97,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                     <a class="nav-link " href="agregarProducto.php">
                       <i class="material-icons">add</i>
                       <span>Agregar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="editarProducto.php">
-                      <i class="material-icons">edit</i>
-                      <span>Editar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="eliminarProducto.php">
-                      <i class="material-icons">delete</i>
-                      <span>Eliminar</span>
                     </a>
                   </li>
                 </ul>
@@ -179,9 +167,9 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                   <div class="card-header border-bottom">
                     <h6 class="m-0">Active Users</h6>
                   </div>
-                  <div class="card-body p-0 pb-3 text-center">
+                  <div class="card-body p-0 pb-3">
                     <div class="table-responsive">
-                      <table class="table table-striped mb-0" width="100%" cellspacing="0">
+                      <table class="table table-striped mb-0 text-center" width="100%" id="dataTable" cellspacing="0">
                         <thead class="bg-light">
                           <tr>
                             <th scope="col" class="border-0">#</th>
@@ -266,6 +254,10 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="scripts/extras.1.1.0.min.js"></script>
     <script src="scripts/shards-dashboards.1.1.0.min.js"></script>
-    <script src="js/tabla.js"></script>
+
+    <script src="js/sb-admin.min.js"></script>
+    <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
   </body>
 </html>
