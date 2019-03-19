@@ -17,15 +17,71 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
+    <!--Estilo del date Picker-->
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+    
+    
 
     <style>
         #delivery_span{
             display: none;
         }
+
+        /* CSS DEL TOOLTIP*/    
+        #tooltip {
+        position: relative;
+        display: inline-block;
+        }
+
+        #tooltip #tooltiptext {
+        visibility: hidden;
+        width: 220px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        }
+
+        #tooltip #tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+        }
+
+        #tooltip:hover #tooltiptext {
+        visibility: visible;
+        opacity: 1;
+        }
+        /* CSS DEL TOOLTIP*/
     </style>
+
+   
+
     <script>
 
         function valores(){
+
+            //validacion de terminos  condiciones
+            var terms_conds = $('#terms').prop('checked');
+
+            //cambiar por swal luego
+            if(!terms_conds){
+                alert('Para comprar debes aceptar los términos y condiciones');
+                return false;
+            }
 
             var precio_1 =  parseInt(document.getElementById("precio_1").value);
             var precio_2 =  parseInt(document.getElementById("precio_2").value);
@@ -157,25 +213,6 @@
 </head>
 
 <body>
-    <!-- Search Wrapper Area Start -->
-    <div class="search-wrapper section-padding-100">
-        <div class="search-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="search-content">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
-                            <button type="submit"><img src="img/core-img/search.png" alt=""></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Search Wrapper Area End -->
 
     <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
@@ -275,9 +312,9 @@
                                             <div class="qty-btn d-flex">
                                                 <p>Cant</p>
                                                 <div class="quantity">
-                                                    <span class="qty-minus" id="cant_menos_1" onclick="subtotalmenos()"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" id="quantity" value="1">
-                                                    <span class="qty-plus" id="cant_mas_1" onclick="subtotalmas()"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                    <span class="qty-minus" id="cant_menos_1" onclick="subtotalmenos()"><i class="fa fa-minus" aria-hidden="true" style="color: red;"></i></span>
+                                                    <input type="number" class="qty-text" id="qty" step="1" name="quantity" id="quantity" value="1">
+                                                    <span class="qty-plus" id="cant_mas_1" onclick="subtotalmas()"><i class="fa fa-plus" aria-hidden="true" style="color:green"></i></span>
                                                 </div>
                                             </div>
                                         </td>
@@ -349,6 +386,27 @@
                                 </li>
                                 <div id="delivery_span">
                                     <li>
+                                        <span>Comuna:</span>
+                                        <select name="cbo_delivery" id="cbo_delivery" class="selectpicker">
+                                            <option value="0">Seleccione Comuna</option>
+                                            <?php $i=1; while($i<=4){ ?>
+                                                <option value="<?php echo 'comuna_'.$i; ?>">
+                                                    <?php echo 'Comuna - '.$i; ?>
+                                                </option>
+                                            <?php $i++; } ?>    
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <div id="tooltip">
+                                            <span>Fecha(*):</span>
+                                            <span id="tooltiptext">El delivery está disponible 48hrs después del dia de la compra.</span>
+                                        </div>                                    
+                                        <div class="input-group date" id="form_date" data-date-format="dd/mm/yyyy">
+                                                <input class="form-control" type="text" value="" readonly>
+                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                        </div>
+                                    </li>
+                                    <li>
                                         <span>Valor delivery:</span>
                                         <span>+ $5.000</span>
                                     </li>
@@ -358,6 +416,10 @@
                                      <span>
                                         <div id="total"></div> 
                                      </span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="terms" id="terms" >
+                                    <span>Acepto los <a href="terminos.cl" target="_blank">términos y condiciones</a></span>
                                 </li>
                             </ul>
                             <div class="cart-btn mt-100">
@@ -370,9 +432,6 @@
         </div>
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
-
-   
-  
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer_area clearfix mt-25">
@@ -445,6 +504,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <!-- DatePicker Bootstrap js -->
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <!--Date Picker en español-->
+    <script src="js/bootstrap-datetimepicker.es.js"></script>
+
+    <script type="text/javascript">
+      //$("#mydate").datepicker({ dateFormat: "yy-mm-dd"}).datepicker("setDate", new Date());
+      $('#form_date').datetimepicker({
+        language:  'es',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0,
+        icons: { 
+             date: "fa fa-calendar",
+             up: "fa fa-arrow-up",
+             down: "fa fa-arrow-down"
+        },
+        startDate: '+3d'
+    });
+    </script>
 
 </body>
 
