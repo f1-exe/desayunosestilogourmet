@@ -12,6 +12,7 @@ if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
 }
 
 include 'funciones/funciones.php';
+$listaProductos = listarProductos();
 
 $usuario = "";
 
@@ -32,6 +33,9 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
+    <link rel="stylesheet" href="css/categorias.css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- swal include -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
@@ -95,18 +99,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                       <span>Agregar</span>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="editarProducto.php">
-                      <i class="material-icons">edit</i>
-                      <span>Editar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="eliminarProducto.php">
-                      <i class="material-icons">delete</i>
-                      <span>Eliminar</span>
-                    </a>
-                  </li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -139,54 +131,13 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                   <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">--> </div>
               </form>
               <ul class="navbar-nav border-left flex-row ">
-                <li class="nav-item border-right dropdown notifications">
-                  <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="nav-link-icon__wrapper">
-                      <i class="material-icons">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-danger">2</span>
-                    </div>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE6E1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Analytics</span>
-                        <p>Your website’s active users count increased by
-                          <span class="text-success text-semibold">28%</span> in the last week. Great job!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE8D1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Sales</span>
-                        <p>Last week your store’s sales count decreased by
-                          <span class="text-danger text-semibold">5.52%</span>. It could have been worse!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item notification__all text-center" href="#"> View all Notifications </a>
-                  </div>
-                </li>
+                
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="images/avatar.png" alt="User Avatar">
                     <span class="d-none d-md-inline-block">Administrador</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.php">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    <a class="dropdown-item" href="components-blog-posts.php">
-                      <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    <a class="dropdown-item" href="add-new-post.php">
-                      <i class="material-icons">note_add</i> Add New Post</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="#" onclick="logout()">
                       <i class="material-icons text-danger">&#xE879;</i> Cerrar Sesión </a>
                   </div>
@@ -216,52 +167,53 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                   <div class="card-header border-bottom">
                     <h6 class="m-0">Active Users</h6>
                   </div>
-                  <div class="card-body p-0 pb-3 text-center">
+                  <div class="card-body p-0 pb-3">
                     <div class="table-responsive">
-                      <table class="table table-striped mb-0" width="100%" cellspacing="0">
+                      <table class="table table-striped mb-0 text-center" width="100%" id="dataTable" cellspacing="0">
                         <thead class="bg-light">
                           <tr>
                             <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">First Name</th>
-                            <th scope="col" class="border-0">Last Name</th>
-                            <th scope="col" class="border-0">Country</th>
-                            <th scope="col" class="border-0">City</th>
-                            <th scope="col" class="border-0">Phone</th>
+                            <th scope="col" class="border-0">Nombre</th>
+                            <th scope="col" class="border-0">Categoria</th>
+                            <th scope="col" class="border-0">Precio</th>
+                            <th scope="col" class="border-0">Stock</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>Ali</td>
-                            <td>Kerry</td>
-                            <td>Russian Federation</td>
-                            <td>Gdańsk</td>
-                            <td>107-0339</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Clark</td>
-                            <td>Angela</td>
-                            <td>Estonia</td>
-                            <td>Borghetto di Vara</td>
-                            <td>1-660-850-1647</td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Jerry</td>
-                            <td>Nathan</td>
-                            <td>Cyprus</td>
-                            <td>Braunau am Inn</td>
-                            <td>214-4225</td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Colt</td>
-                            <td>Angela</td>
-                            <td>Liberia</td>
-                            <td>Bad Hersfeld</td>
-                            <td>1-848-473-7416</td>
-                          </tr>
+                          <?php while($row = mysqli_fetch_array($listaProductos)){ 
+                            if($row['stock'] < 5){
+                          ?>
+                            <tr class="table-danger">
+                          <?php }else{ ?>
+                            <tr>
+                          <?php } ?>
+                              <td><?php echo $row['idP']; ?></td>
+                              <td><?php echo $row['nombreP']; ?></td>
+
+                              <?php if($row['idC'] == 1){?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-primary"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 2){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-secondary"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 3){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-success"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 4){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-danger"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 5){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-warning"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 6){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-info"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 7){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-violet"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 8){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-dark"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php }elseif($row['idC'] == 9){ ?>
+                                <td><a href="#" class="card-post__category badge badge-pill badge-orange"><?php echo utf8_encode($row['nombreC']); ?></a></td>
+                              <?php } ?>
+
+                              <td><?php echo "$ ".number_format($row['precio'], 0, '', '.'); ?></td>
+                              <td><?php echo $row['stock'];?></td>
+                            </tr>
+                          <?php } ?>
                         </tbody>
                       </table>
                     </div>
@@ -278,7 +230,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                 <a class="nav-link" href="index.php">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="productos.php">Productos</a>
+                <a class="nav-link" href="listarProductos.php">Productos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="transacciones.php">Transacciones</a>
@@ -302,5 +254,10 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="scripts/extras.1.1.0.min.js"></script>
     <script src="scripts/shards-dashboards.1.1.0.min.js"></script>
+
+    <script src="js/sb-admin.min.js"></script>
+    <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
   </body>
 </html>

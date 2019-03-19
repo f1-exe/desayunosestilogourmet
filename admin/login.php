@@ -21,10 +21,11 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="css/loader.css">
 <!--===============================================================================================-->
 </head>
 <body>
-	
+<div class="loader" id="loader"></div>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/breakfast.jpg');">
 			<div class="wrap-login100 p-t-70 p-b-30">

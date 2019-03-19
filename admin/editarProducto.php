@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if(!isset($_POST['idProducto']) && empty($_POST['idProducto'])){
+  header('location: listarProductos.php');
+}else{
+  $id = $_POST['idProducto'];
+}
+
 $now = time();
 
 if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
@@ -13,6 +19,8 @@ if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
 
 include 'funciones/funciones.php';
 
+$listarCategorias = listarCategorias();
+$listaProducto = listaProducto($id);
 $usuario = "";
 
 if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) == false){
@@ -33,11 +41,18 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- swal include -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
     <!-- logout script -->
     <script src="js/login/logout.js"></script>
+    <style>
+      .responsive {
+        width: 100%;
+        height: auto;
+      }
+    </style>
   </head>
   <body class="h-100">
     <input id="session" type="hidden" value="<?php echo $usuario;?>">
@@ -96,18 +111,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                       <span>Agregar</span>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="editarProducto.php">
-                      <i class="material-icons">edit</i>
-                      <span>Editar</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="eliminarProducto.php">
-                      <i class="material-icons">delete</i>
-                      <span>Eliminar</span>
-                    </a>
-                  </li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -140,55 +143,15 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                   <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">--> </div>
               </form>
               <ul class="navbar-nav border-left flex-row ">
-                <li class="nav-item border-right dropdown notifications">
-                  <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="nav-link-icon__wrapper">
-                      <i class="material-icons">&#xE7F4;</i>
-                      <span class="badge badge-pill badge-danger">2</span>
-                    </div>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE6E1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Analytics</span>
-                        <p>Your website’s active users count increased by
-                          <span class="text-success text-semibold">28%</span> in the last week. Great job!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <div class="notification__icon-wrapper">
-                        <div class="notification__icon">
-                          <i class="material-icons">&#xE8D1;</i>
-                        </div>
-                      </div>
-                      <div class="notification__content">
-                        <span class="notification__category">Sales</span>
-                        <p>Last week your store’s sales count decreased by
-                          <span class="text-danger text-semibold">5.52%</span>. It could have been worse!</p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item notification__all text-center" href="#"> View all Notifications </a>
-                  </div>
-                </li>
+                
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="images/avatar.png" alt="User Avatar">
                     <span class="d-none d-md-inline-block">Administrador</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.php">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    <a class="dropdown-item" href="components-blog-posts.php">
-                      <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    <a class="dropdown-item" href="add-new-post.php">
-                      <i class="material-icons">note_add</i> Add New Post</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#" onclick="logout()">
+                    
+                  <a class="dropdown-item text-danger" href="#" onclick="logout()">
                       <i class="material-icons text-danger">&#xE879;</i> Cerrar Sesión </a>
                   </div>
                 </li>
@@ -216,27 +179,47 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
               <div class="col-sm-8 col-md-12 col-lg-8">
                 <form>
                   <div class="form-row">
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Nombre del Producto</label>
+                      <input id="nombre" type="text" class="form-control" placeholder="Nombre del Producto" value="<?php echo $listaProducto['nombre']; ?>">
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Precio</label>
+                      <input id="precio" type="text" class="form-control" placeholder="Precio" value="<?php echo $listaProducto['precio']; ?>">
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Stock</label>
+                      <input id="stock" type="text" class="form-control" placeholder="Stock" value="<?php echo $listaProducto['stock']; ?>">
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Categorias</label>
+                      <select id="inputState" class="form-control">
+                        <option value="0" selected>Seleccione una Categoria</option>
+                        <?php while($row = mysqli_fetch_array($listarCategorias)){ 
+                          if($row['id'] == $listaProducto['categoria']){?>
+                        <option selected value="<?php echo $row['id']; ?>"><?php echo utf8_encode($row['nombre']); ?></option>
+                        <?php }else{?>
+                          <option value="<?php echo $row['id']; ?>"><?php echo utf8_encode($row['nombre']); ?></option>
+                        <?php } } ?>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <div><label class="texto">Imagen</label></div>
+                      <div class="form-group custom-file">
+                        <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es">
+                        <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+                      </div>
+                      <div><img id="imagen" class="responsive" src="../img/productos/<?php echo $listaProducto['imagen'];?>" alt="Sin imagen"></div>
+                    </div>
+                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
+                      <label class="texto">Detalle</label>
+                      <textarea id="detalle" class="form-control" placeholder="Detalles" rows="14"><?php echo $listaProducto['detalle']; ?></textarea>
+                    </div>
+                    <input type="hidden" name="idProd" id="idProd" value="<?php echo $listaProducto['id'] ?>">
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="text" class="form-control" placeholder="Nombre del Producto" required>
+                      <button id="editar" name="editar" class="btn btn-primary">Editar Producto</button>
                     </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="text" class="form-control" placeholder="Precio" required>
-                    </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="text" class="form-control" placeholder="Stock" required>
-                    </div>
-                    <div class="form-group custom-file col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es">
-                      <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
-                    </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <textarea class="form-control" placeholder="Detalles" rows="14"></textarea>
-                    </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <button class="btn btn-primary">Editar Producto</button>
-                    </div>
-                  </div>
-                  
+                  </div> 
                 </form>
               </div>
             </div>
@@ -249,7 +232,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                 <a class="nav-link" href="index.php">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="productos.php">Productos</a>
+                <a class="nav-link" href="listarProductos.php">Productos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="transacciones.php">Transacciones</a>
@@ -265,6 +248,9 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
         </main>
       </div>
     </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/producto/editar.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
