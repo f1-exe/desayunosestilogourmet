@@ -12,7 +12,7 @@
     <title>San valentín - Desayunos estilo gourmet</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="../img/core-img/icono.ico">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="../css/core-style.css">
@@ -50,7 +50,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="../index.php"><img src="../img/core-img/logo.png" alt=""></a>
+                <a href="../index.php"><img src="../img/core-img/logo_deg.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -66,7 +66,7 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="../index.php"><img src="../img/core-img/logo.png" alt=""></a>
+                <a href="../index.php"><img src="../img/core-img/logo_deg.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
@@ -182,10 +182,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <div class="info-cliente">
                                             <p>
                                                 Atención al cliente <br>
-                                                Lunes a viernes 9:00 a 20:00 hrs - 
+                                                Lunes a viernes 9:00 a 18:00 hrs - 
                                                 Sábados 9:00 a 12:00 hrs.<br>
                                                 <i class="fa fa-phone" aria-hidden="true">
-                                                    <a id="href-footer" href="tel:+56912345678"> +56 9 1234 5678</a>
+                                                    <a id="href-footer" href="tel:+56930981530"> +56 9 3098 1530</a>
                                                 </i>
                                                 <br>
                                                 <i class="fa fa-envelope" aria-hidden="true">

@@ -9,10 +9,10 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | Cart</title>
+    <title>Carrito - Desayunos Estilo Gourmet</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="img/core-img/icono.ico">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
@@ -23,10 +23,6 @@
     
 
     <style>
-        #delivery_span{
-            display: none;
-        }
-
         /* CSS DEL TOOLTIP*/    
         #tooltip {
         position: relative;
@@ -221,7 +217,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="index.php"><img src="img/core-img/logo_deg.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -237,7 +233,7 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="index.php"><img src="img/core-img/logo_deg.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
@@ -369,22 +365,19 @@
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
-                            <h5>Total del carro</h5>
-                            <ul class="summary-table">
-                                <li>
-                                    <span>subtotal:</span>
-                                    <span>
-                                        <div id="subtotal"></div>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>delivery:</span> 
-                                    <span>
-                                       <input onclick="delivery_si()" type="radio" name="delivery" id="delivery" value="0">Sí
-                                       <input onclick="delivery_no()" type="radio" name="delivery" id="delivery" value="1">No
-                                    </span>
-                                </li>
-                                <div id="delivery_span">
+                            <form action="pagar_carro.php" method="POST" name="form_carro" id="form_carro">
+                                <h5>Total del carro</h5>
+                                <ul class="summary-table">
+                                    <li>
+                                        <span>subtotal:</span>
+                                        <span>
+                                            <div id="subtotal"></div>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>Proporcione la informacion del delivery a continuación</span> 
+                                    </li>
+                                    
                                     <li>
                                         <span>Comuna:</span>
                                         <select name="cbo_delivery" id="cbo_delivery" class="selectpicker">
@@ -400,31 +393,27 @@
                                         <div id="tooltip">
                                             <span>Fecha(*):</span>
                                             <span id="tooltiptext">El delivery está disponible 48hrs después del dia de la compra.</span>
-                                        </div>                                    
-                                        <div class="input-group date" id="form_date" data-date-format="dd/mm/yyyy">
-                                                <input class="form-control" type="text" value="" readonly>
-                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                        </div>
+                                        </div>  
+                                        <?php /*fecha minima en php para el input date*/ $date = new DateTime('+1 day'); ?>                                  
+                                        <input type="date" class="form-control" name="fecha_delivery" id="fecha_delivery" min="<?php echo $date->format('Y-m-d');?>">
                                     </li>
                                     <li>
-                                        <span>Valor delivery:</span>
-                                        <span>+ $5.000</span>
+                                        <span>total:</span>
+                                        <span>
+                                            <!--<div id="total"></div> -->
+                                            20000
+                                            <input type="hidden" name="monto_total" id="monto_total" value="20000">
+                                        </span>
                                     </li>
+                                    <li>
+                                        <input type="checkbox" name="terms" id="terms" >
+                                        <span>Acepto los <a href="terminos.cl" target="_blank">términos y condiciones</a></span>
+                                    </li>
+                                </ul>
+                                <div class="cart-btn mt-100">
+                                    <a href="#" onclick="document.getElementById('form_carro').submit();" class="btn amado-btn w-100">Ir a comprar</a>
                                 </div>
-                                <li>
-                                     <span>total:</span>
-                                     <span>
-                                        <div id="total"></div> 
-                                     </span>
-                                </li>
-                                <li>
-                                    <input type="checkbox" name="terms" id="terms" >
-                                    <span>Acepto los <a href="terminos.cl" target="_blank">términos y condiciones</a></span>
-                                </li>
-                            </ul>
-                            <div class="cart-btn mt-100">
-                                <a href="#" onclick="valores()" class="btn amado-btn w-100">Ir a comprar</a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -473,10 +462,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <div class="info-cliente">
                                             <p>
                                                 Atención al cliente <br>
-                                                Lunes a viernes 9:00 a 20:00 hrs - 
+                                                Lunes a viernes 9:00 a 18:00 hrs - 
                                                 Sábados 9:00 a 12:00 hrs.<br>
                                                 <i class="fa fa-phone" aria-hidden="true">
-                                                    <a id="href-footer" href="tel:+56912345678"> +56 9 1234 5678</a>
+                                                    <a id="href-footer" href="tel:+56930981530"> +56 9 3098 1530</a>
                                                 </i>
                                                 <br>
                                                 <i class="fa fa-envelope" aria-hidden="true">
@@ -504,31 +493,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-    <!-- DatePicker Bootstrap js -->
-    <script src="js/bootstrap-datetimepicker.js"></script>
-    <!--Date Picker en español-->
-    <script src="js/bootstrap-datetimepicker.es.js"></script>
-
-    <script type="text/javascript">
-      //$("#mydate").datepicker({ dateFormat: "yy-mm-dd"}).datepicker("setDate", new Date());
-      $('#form_date').datetimepicker({
-        language:  'es',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0,
-        icons: { 
-             date: "fa fa-calendar",
-             up: "fa fa-arrow-up",
-             down: "fa fa-arrow-down"
-        },
-        startDate: '+3d'
-    });
-    </script>
-
 </body>
 
 </html>
