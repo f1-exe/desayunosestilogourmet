@@ -47,7 +47,33 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
   <body class="h-100">
     <input id="session" type="hidden" value="<?php echo $usuario;?>">
     <script>
-      validaSesion();
+     // validaSesion();
+
+         $(function() {
+
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function() {
+               var input = $(this),
+                   numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                   label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+               input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready( function() {
+               $(':file').on('fileselect', function(event, numFiles, label) {
+
+                  var input = $(this).parents('.input-group').find(':text'),
+                      log = numFiles > 1 ? numFiles + ' Archivos Seleccionados' : label;
+
+                  if( input.length ) {
+                     input.val(log);
+                  } else {
+                     if( log ) alert(log);
+                  }
+               });
+            });
+         });
     </script>
     <div class="container-fluid">
       <div class="row">
@@ -185,9 +211,17 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                         <?php } ?>
                       </select>
                     </div>
+                    <div class="input-group" id="archivo">
+                        <label class="input-group-btn">
+                          <span class="btn btn-primary"><i class="fa fa-cloud-upload icon-left"></i> Examinar &hellip; <input type="file" style="display: none;" multiple>
+                          </span>
+                        </label>
+                        <input type="text" class="form-control" value="caca" readonly>
+                      </div>
                     <div class="form-group custom-file col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es" accept="image/*">
-                      <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+                      
+                      <!--<input type="file" class="form-control custom-file-input" id="customFileLang" lang="es" accept="image/*">
+                      <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>-->
                     </div>
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
                       <textarea id="detalle" class="form-control" placeholder="Detalles" rows="14"></textarea>
