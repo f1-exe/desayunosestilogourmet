@@ -81,12 +81,7 @@ $monto_total = $_POST["monto_total"];
                         <li><a href="categorias/promociones.php">Promociones</a></li>
                     </ul>
                 </nav>
-                <!-- Button Group
-            <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
-            </div> 
-            -->
+
                 <hr>
                 <!-- Cart Menu -->
                 <div class="cart-fav-search mb-100">
@@ -102,24 +97,42 @@ $monto_total = $_POST["monto_total"];
                             <div class="cart-title mt-50">
                                 <h2>Finalizar compra</h2>
                                 <p>Para finalizar el proceso de compra, por favor ingrese la siguiente información
-                                    <br>A continuación será redirigido al portal de pago.</p>
+                                    <br>A continuación será redirigido al portal de pago WebPay.</p>
                             </div>
                             <form action="pagar.php" method="post" id="form_finalizar" name="form_finalizar">
                                 <div class="row">
-                                        <div class="col-12 mb-3">
-                                            <input type="text" class="form-control" id="company" placeholder="Nombre Completo">
-                                        </div>
-                                        <div class="col-12 mb-3">
-                                            <input type="email" class="form-control" id="email" placeholder="Correo ej: micorreo@midominio.cl">
-                                        </div>
-                                        <div class="col-12 mb-3">
-                                            <a href="#" onclick="document.getElementById('form_finalizar').submit();" class="btn amado-btn w-100">Ir a pagar</a>
-                                        </div>
-                                        <!--info del carro-->
-                                        <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $monto_total;?>">
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control" id="company" placeholder="Nombre Completo">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <input type="email" class="form-control" id="email" placeholder="Correo ej: micorreo@midominio.cl">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <a href="#" onclick="document.getElementById('form_finalizar').submit();" class="btn amado-btn w-100">Ir a pagar</a>
+                                    </div>
+                                    <!--info del carro-->
+                                    <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $monto_total;?>">
                                 </div>
-                            </form>
                         </div>
+
+                        <!--caja--->
+                        <div class="col-12 col-lg-4">
+                            <div class="cart-summary">
+                                <h5>Detalle de su compra</h5>
+                                <ul class="summary-table">
+                                    <li><span>Producto:</span> <span><?php echo 'Café';?></span></li>
+                                    <li><span>Delivery:</span> <span><?php echo $comuna;?></span></li>
+                                    <li><span>Fecha Delivery:</span><?php echo $fecha_delivery;?><span></span></li>
+                                    <li><span>Cantidad:</span> <span><?php echo '1';?></span></li>
+                                    <li><span>Monto Total:</span> <span><?php echo $monto_total;?></span></li>
+                                </ul>
+                                <div class="cart-btn">
+                                    <a href="#" onclick="document.getElementById('form_finalizar').submit();" class="btn amado-btn w-100">Ir a pagar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--caja-->
+                       </form>
                     </div>
                 </div>
             </div>
@@ -149,11 +162,10 @@ $monto_total = $_POST["monto_total"];
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
 
-                            
-<!-- Social Button -->
-                        <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                        <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-<!-- Social Button -->
+                            <!-- Social Button -->
+                            <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <!-- Social Button -->
 
                         </div>
                     </div>
