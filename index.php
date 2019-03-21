@@ -19,29 +19,29 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script>
-        function detalle(){
-            window.location.href="product-details.php";
+        function detalle() {
+            window.location.href = "product-details.php";
         }
     </script>
-  
+
 </head>
 
 <body>
 
-<!--Bola flotante de carrito de compras -->
-<div class="sticky-container">
-    <ul class="sticky">
-        <li>
-            <a href="cart.php">
-                <img src="img/shopping-cart.png" width="50" height="50">
-            </a>
-        </li>
-        <div id="contador_carro">
-                <span class="badge badge-pill badge-danger">2</span>     
-        </div>
-    </ul>
-</div>
-<!--Bola flotante de carrito de compras -->
+    <!--Bola flotante de carrito de compras -->
+    <div class="sticky-container">
+        <ul class="sticky">
+            <li>
+                <a href="cart.php">
+                    <img src="img/shopping-cart.png" width="50" height="50">
+                </a>
+            </li>
+            <div id="contador_carro">
+                <span class="badge badge-pill badge-danger">2</span>
+            </div>
+        </ul>
+    </div>
+    <!--Bola flotante de carrito de compras -->
 
     <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
@@ -78,7 +78,7 @@
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
-                            <li >
+                            <li>
                                 <a href="categorias/dia-padre.php">Día del padre</a>
                             </li>
                             <li>
@@ -103,7 +103,7 @@
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="informaciones.php" class="cart-nav"><img src="img/info-yellow.png" alt=""> Informaciones</a>
-            </div> 
+            </div>
         </header>
         <!-- Header Area End -->
 
@@ -111,31 +111,32 @@
         <div class="products-catagories-area clearfix">
             <div class="amado-pro-catagory clearfix">
 
-            <?php $i=0; while($i < 9){ ?>
-                <!-- Single Catagory -->
-                
+                <?php $i=0; while($i < 9){ ?>
+                    <!-- Single Catagory -->
+
                     <div class="single-products-catagory clearfix">
-                            <div class="col-sm-4 py-2">
-                                    <div class="card mt-25" style="width: 18rem;">
-                                            <img class="card-img-top" src="img/bg-img/1.jpg" alt="Card image cap">
-                                            <div class="card-body">
-                                                
-                                                <h5 class="card-title">Café</h5>
-                                                <p class="card-text">
-                                                    Precio : $ 4.000 <br>
-                                                   
-                                                </p>
-                                                <div style="text-align:center">
-                                                <button class="btn btn-primary btn-sm" onclick="detalle()">Ver detalle</button>
-                                                
-                                                <button class="btn btn-warning btn-sm" style="color:white;">Añadir al carro</button>
-                                                </div>
-                                            </div>
+                        <div class="col-sm-4 py-2">
+                            <div class="card mt-25" style="width: 18rem;">
+                                <img class="card-img-top" src="img/bg-img/1.jpg" alt="Card image cap">
+                                <div class="card-body">
+
+                                    <h5 class="card-title">Café</h5>
+                                    <p class="card-text">
+                                        Precio : $ 4.000
+                                        <br>
+
+                                    </p>
+                                    <div style="text-align:center">
+                                        <button class="btn btn-primary btn-sm" onclick="detalle()">Ver detalle</button>
+
+                                        <button class="btn btn-warning btn-sm" style="color:white;">Añadir al carro</button>
                                     </div>
+                                </div>
                             </div>
+                        </div>
                     </div>
-              <?php $i++; } ?>      
-                   
+                    <?php $i++; } ?>
+
             </div>
         </div>
         <!-- Product Catagories Area End -->
@@ -154,48 +155,48 @@
                             <a href="index.php"><img src="img/core-img/logo2.png" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
-                        <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        <p class="copywrite">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
 
-                    
-                            <!-- Social Button -->
-                            <div class="d-flex justify-content-between">
-                       
-                                <a id="href-footer" href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                <a id="href-footer" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a id="href-footer" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a id="href-footer" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- Social Button -->
-           
+                        <!-- Social Button -->
+                        <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+
+                        <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <!-- Social Button -->
+
                     </div>
                 </div>
-              <!-- Single Widget Area -->
-              <div class="col-12 col-lg-8">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-lg-8">
                     <div class="single_widget_area">
-                            <!-- Footer Menu -->
-                            <div class="footer_menu">
-                                <nav class="navbar navbar-expand-lg justify-content-end">
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-                                    <div class="collapse navbar-collapse" id="footerNavContent">
-                                        <div class="info-cliente">
-                                            <p>
-                                                Atención al cliente <br>
-                                                Lunes a viernes 9:00 a 18:00 hrs - 
-                                                Sábados 9:00 a 12:00 hrs.<br>
-                                                <i class="fa fa-phone" aria-hidden="true">
+                        <!-- Footer Menu -->
+                        <div class="footer_menu">
+                            <nav class="navbar navbar-expand-lg justify-content-end">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+                                <div class="collapse navbar-collapse" id="footerNavContent">
+                                    <div class="info-cliente">
+                                        <p>
+                                            Atención al cliente
+                                            <br> Lunes a viernes 9:00 a 18:00 hrs - Sábados 9:00 a 12:00 hrs.
+                                            <br>
+                                            <i class="fa fa-phone" aria-hidden="true">
                                                     <a id="href-footer" href="tel:+56930981530"> +56 9 3098 1530</a>
                                                 </i>
-                                                <br>
-                                                <i class="fa fa-envelope" aria-hidden="true">
+                                            <br>
+                                            <i class="fa fa-envelope" aria-hidden="true">
                                                     <a id="href-footer" href="mailto:contacto@deg.cl" target="_top">contacto@deg.cl</a>
                                                 </i>
-                                            </p>
-                                        </div>
+                                        </p>
                                     </div>
-                                </nav>
-                         </div>    
+                                </div>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -212,7 +213,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Plugins js -->
     <script src="js/plugins.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script> 
+    <script src="js/active.js"></script>
 
 </body>
 

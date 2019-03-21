@@ -245,15 +245,11 @@
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
 
-                        <!-- Social Button -->
-                        <div class="d-flex justify-content-between">
-
-                            <a id="href-footer" href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a id="href-footer" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a id="href-footer" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a id="href-footer" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        </div>
-                        <!-- Social Button -->
+                        
+<!-- Social Button -->
+                        <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+<!-- Social Button -->
 
                     </div>
                 </div>
