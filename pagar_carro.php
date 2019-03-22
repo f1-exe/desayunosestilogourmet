@@ -16,7 +16,7 @@ $monto_total = $_POST["monto_total"];
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title  -->
-        <title>Finalizar pago - Desayunos Estilo Gourmet</title>
+        <title>Finalizar compra - Desayunos Estilo Gourmet</title>
 
         <!-- Favicon  -->
         <link rel="icon" href="img/core-img/icono.ico">
@@ -102,10 +102,10 @@ $monto_total = $_POST["monto_total"];
                             <form action="pagar.php" method="post" id="form_finalizar" name="form_finalizar">
                                 <div class="row">
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" id="company" placeholder="Nombre Completo">
+                                        <input type="text" class="form-control" name="nombre_cliente" id="nombre_cliente" placeholder="Nombre Completo">
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" id="email" placeholder="Correo ej: micorreo@midominio.cl">
+                                        <input type="email" class="form-control" id="correo_cliente" name="correo_cliente" placeholder="Correo ej: micorreo@midominio.cl">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <a href="#" onclick="document.getElementById('form_finalizar').submit();" class="btn amado-btn w-100">Ir a pagar</a>
@@ -126,6 +126,14 @@ $monto_total = $_POST["monto_total"];
                                     <li><span>Cantidad:</span> <span><?php echo '1';?></span></li>
                                     <li><span>Monto Total:</span> <span><?php echo $monto_total;?></span></li>
                                 </ul>
+                                <input type="hidden" name="id_producto" id="id_producto" value="<?php echo '1';?>">
+                                <input type="hidden" name="comuna" id="comuna" value="<?php echo $comuna;?>">
+                                <input type="hidden" name="fecha_delivery" id="fecha_delivery" value="<?php echo $fecha_delivery;?>">
+                                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo '1';?>">
+                                <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $monto_total;?>">
+                                
+
+
                                 <div class="cart-btn">
                                     <a href="#" onclick="document.getElementById('form_finalizar').submit();" class="btn amado-btn w-100">Ir a pagar</a>
                                 </div>

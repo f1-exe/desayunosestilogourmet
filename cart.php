@@ -383,7 +383,7 @@
                                         <select name="cbo_delivery" id="cbo_delivery" class="selectpicker">
                                             <option value="0">Seleccione Comuna</option>
                                             <?php $i=1; while($i<=4){ ?>
-                                                <option value="<?php echo 'comuna_'.$i; ?>">
+                                                <option value="<?php echo $i; ?>">
                                                     <?php echo 'Comuna - '.$i; ?>
                                                 </option>
                                             <?php $i++; } ?>    

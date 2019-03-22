@@ -16,9 +16,13 @@ $webPay = TransbankServiceFactory::normal($bag);
 //response code = 0  transaccion aprobada
 $result =  $webPay->getTransactionResult();
 
-/*echo  '<pre>';
+echo  '<pre>';
 print_r($result);
-exit;*/
+echo  '-->'.$result->cardDetail->cardNumber;
+
+
+
+exit;
 
 
 //guardamos este dato solo como prueba para luego recuperarlo en finalizar.php

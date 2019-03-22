@@ -101,3 +101,38 @@ function notificaciones(){
     return $noti;
 }
 
+//metodo para registrar compra 
+function registrarCompra($orden_compra,$estado,$id_producto,$cantidad_productos,$id_comuna_delivery,$fecha_delivery,$monto_compra,$nombre_usuario,$correo_usuario,$medio_pago){
+ global $conn;
+ $query = "INSERT INTO comercio_transacciones(id,orden_compra, estado, id_producto, cantidad_productos, id_comuna_delivery, fecha_delivery, monto_compra, nombre_usuario, correo_usuario, medio_pago) 
+           VALUES (null,'".$orden_compra."',".$estado.",".$id_producto.",".$cantidad_productos.",".$id_comuna_delivery.",'".$fecha_delivery."',".$monto_compra.",'".$nombre_usuario."','".$correo_usuario."','".$medio_pago."')";
+ $resp = mysqli_query($conn,$query);
+
+ if($resp){
+    echo "SI";
+    return true;
+  }else{
+    echo "NO".mysqli_error($conn);
+    return false;
+  }
+ 
+}
+
+//metodo para registrar transaccion transbank
+function registrarTransaccionTBK($orden_compra,$tbk_token_transaccion,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$monto_compra,$tbk_fecha_transaccion){
+  global $conn;
+  $query = "INSERT INTO tbk_transacciones(id, orden_compra, tbk_token_transaccion, numero_tarjeta, fecha_expiracion_tarjeta, tbk_codigo_autorizacion, tbk_codigo_transaccion, codigo_comercio, monto_compra, tbk_fecha_transaccion) 
+            VALUES (null,'".$orden_compra."','".$tbk_token_transaccion."','".$numero_tarjeta."','".$fecha_expiracion_tarjeta."',".$tbk_codigo_autorizacion.",".$tbk_codigo_transaccion.",".$codigo_comercio.",".$monto_compra.",'".$tbk_fecha_transaccion."')";
+
+  $resp = mysqli_query($conn,$query);
+
+  if($resp){
+    echo "SI";
+    return true;
+  }else{
+    echo "NO".mysqli_error($conn);
+    return false;
+  }
+
+}
+
