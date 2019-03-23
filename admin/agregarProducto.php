@@ -197,19 +197,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                         <?php } ?>
                       </select>
                     </div>
-<<<<<<< HEAD
-                    <div class="input-group" id="archivo">
-                        <label class="input-group-btn">
-                          <span class="btn btn-primary"><i class="fa fa-cloud-upload icon-left"></i> Examinar &hellip; <input type="file" style="display: none;" multiple>
-                          </span>
-                        </label>
-                        <input type="text" class="form-control" value="caca" readonly>
-                      </div>
-                    <div class="form-group custom-file col-md-10 col-12 col-lg-10 col-xl-8">
-                      
-                      <!--<input type="file" class="form-control custom-file-input" id="customFileLang" lang="es" accept="image/*">
-                      <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>-->
-=======
                     <div class="form-group input-group input-file col-md-10 col-12 col-lg-10 col-xl-8" name="Fichier1" id="entrada">
                       <span class="input-group-btn">
                           <button class="btn btn-default btn-choose" type="button">Elegir</button>
@@ -218,7 +205,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                       <span class="input-group-btn">
                               <button class="btn btn-warning btn-reset" type="button">Limpiar</button>
                       </span>
->>>>>>> 54603678852de90109d463dc6679b37c1ec3bc68
                     </div>
 
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
