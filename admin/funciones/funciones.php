@@ -129,4 +129,24 @@ function selectDatosCompraAndTBK(){
   $result = mysqli_query($conn,$query);
   return $result;
 }
+
+//Listar tabla comercio_transacciones
+function selectDatosComercioTran(){
+  global $conn;
+  $query = "SELECT * FROM comercio_transacciones";
+
+  $result = mysqli_query($conn, $query);
+  return $result;
+}
+
+//Obtiene comuna por id
+function obtieneComunaPorID($id){
+  global $conn;
+  $query = "SELECT * FROM comunas WHERE id = ".$id."";
+
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_array($result);
+
+  return $row;
+}
 ?>

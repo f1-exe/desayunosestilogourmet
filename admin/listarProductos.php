@@ -114,6 +114,12 @@ function name($paso){
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link " href="compras.php">
+                  <i class="material-icons">credit_card</i>
+                  <span>compras</span>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link " href="stock.php">
                   <i class="material-icons">shopping_cart</i>
                   <span>Stock</span>
@@ -221,7 +227,7 @@ function name($paso){
                               <td><?php echo "$ ".number_format($row['precio'], 0, '', '.'); ?></td>
                               <td><?php echo $row['stock'];?></td>
                               <td>
-                                <a href="#" onclick='modal("<?php echo name($row["detalle"])?>")'>Detalle</a>
+                                <a href="#" onclick='modal("<?php echo name($row["detalle"])?>", "Detalle")'>Ver</a>
                               </td>
                               <td><?php echo substr($row['fecha'], 0, 10);?></td>
                               <td>
@@ -253,6 +259,9 @@ function name($paso){
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="transacciones.php">Transacciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Compras.php">Compras</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="stock.php">Stock</a>

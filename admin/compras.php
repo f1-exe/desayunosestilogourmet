@@ -13,7 +13,7 @@ if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
 
 include 'funciones/funciones.php';
 
-$listarCategorias = listarCategorias();
+$listaComercio = selectDatosComercioTran();
 
 $usuario = "";
 
@@ -21,9 +21,12 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
   $usuario = $_SESSION["session_usuario"];
 }
 
+function name($paso){
+  return str_replace(array("\r\n","\r","\n"), "<br />", $paso);
+}
 ?>
 <!doctype html>
-<html class="no-js h-100" lang="es">
+<html class="no-js h-100" lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -35,45 +38,18 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="styles/extras.1.1.0.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- swal include -->
-    <link href="css/animate.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
     <!-- logout script -->
     <script src="js/login/logout.js"></script>
-    
   </head>
   <body class="h-100">
     <input id="session" type="hidden" value="<?php echo $usuario;?>">
     <script>
-     // validaSesion();
-
-         $(function() {
-
-            // We can attach the `fileselect` event to all file inputs on the page
-            $(document).on('change', ':file', function() {
-               var input = $(this),
-                   numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                   label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-               input.trigger('fileselect', [numFiles, label]);
-            });
-
-            // We can watch for our custom `fileselect` event like this
-            $(document).ready( function() {
-               $(':file').on('fileselect', function(event, numFiles, label) {
-
-                  var input = $(this).parents('.input-group').find(':text'),
-                      log = numFiles > 1 ? numFiles + ' Archivos Seleccionados' : label;
-
-                  if( input.length ) {
-                     input.val(log);
-                  } else {
-                     if( log ) alert(log);
-                  }
-               });
-            });
-         });
+      validaSesion();
     </script>
     <div class="container-fluid">
       <div class="row">
@@ -92,6 +68,15 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
               </a>
             </nav>
           </div>
+          <!--<form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
+            <div class="input-group input-group-seamless ml-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fas fa-search"></i>
+                </div>
+              </div>
+              <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>
+          </form>-->
           <div class="nav-wrapper">
             <ul class="nav flex-column" id="exampleAccordion">
               <li class="nav-item">
@@ -148,9 +133,15 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
             <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
               <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
                 <div class="input-group input-group-seamless ml-3">
-                </div>
+                  <!--<div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fas fa-search"></i>
+                    </div>
+                  </div>
+                  <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">--> </div>
               </form>
               <ul class="navbar-nav border-left flex-row ">
+                
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="images/avatar.png" alt="User Avatar">
@@ -176,57 +167,69 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Panel de Administración</span>
-                <h3 class="page-title">Productos / Agregar Producto</h3>
+                <h3 class="page-title">Transacciones</h3>
               </div>
             </div>
             <!-- End Page Header -->
-            
-            <div class="col-sm-12 col-md-12" style="text-align: left;">
-              <br><strong class="text-muted d-block mb-2">Complete el formulario para crear un producto</strong><br>
-              <div class="col-sm-8 col-md-12 col-lg-8">
-                <form id="formAgregar">
-                  <div class="form-row">
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
-                      <input id="nombre" type="text" class="form-control" placeholder="Nombre del Producto">
-                    </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
-                      <input id="precio" type="text" class="form-control" placeholder="Precio">
-                    </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
-                      <input id="stock" type="text" class="form-control" placeholder="Stock" >
-                    </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
-                      <select id="inputState" class="form-control">
-                        <option value="0" selected>Seleccione una Categoria</option>
-                        <?php while($row = mysqli_fetch_array($listarCategorias)){ ?>
-                        <option value="<?php echo $row['id']; ?>"><?php echo utf8_encode($row['nombre']); ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                    <div class="form-group input-group input-file col-md-10 col-12 col-lg-10 col-xl-8" name="Fichier1" id="entrada">
-                      <span class="input-group-btn">
-                          <button class="btn btn-default btn-choose" type="button">Elegir</button>
-                      </span>
-                      <input id="nameImagen" type="text" class="form-control" placeholder='Seleccionar Imagen' readonly/>
-                      <span class="input-group-btn">
-                              <button class="btn btn-warning btn-reset" type="button">Limpiar</button>
-                      </span>
-                    </div>
-
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
-                      <textarea id="detalle" class="form-control" placeholder="Detalles" rows="14"></textarea>
-                    </div>
-                    <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8">
-                      <button id="agregar" name="agregar" class="btn btn-primary submit">Crear Producto</button>
+            <!-- Default Light Table -->
+            <div class="row">
+              <div class="col">
+                <div class="card card-small mb-4">
+                  <div class="card-header border-bottom">
+                    <h6 class="m-0">Tabla de compras</h6>
+                  </div>
+                  <div class="card-body p-0 pb-3">
+                    <div class="table-responsive">
+                      <table class="table table-striped mb-0 text-center" width="100%" id="dataTable" cellspacing="0">
+                        <thead class="bg-light">
+                          <tr>
+                            <th scope="col" class="border-0">#</th>
+                            <th scope="col" class="border-0">OC</th>
+                            <th scope="col" class="border-0">Estado</th>
+                            <th scope="col" class="border-0">Dirección</th>
+                            <th scope="col" class="border-0">Comuna</th>
+                            <th scope="col" class="border-0">Fecha Delivery</th>
+                            <th scope="col" class="border-0">Monto</th>
+                            <th scope="col" class="border-0">Nombre</th>
+                            <th scope="col" class="border-0">Correo</th>
+                            <th scope="col" class="border-0">Mensaje</th>
+                            <th scope="col" class="border-0">Fecha Compra</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php while($row = mysqli_fetch_array($listaComercio)){ $comuna = obtieneComunaPorID($row['id_comuna_delivery']); ?>
+                            <tr>
+                              <td><?php echo $row['id']; ?></td>
+                              <td><?php echo $row['orden_compra']; ?></td>
+                              <td>
+                                <?php if($row['estado'] == 99){ ?>
+                                  <a href="#" class="card-post__category badge badge-pill badge-warning">Pendiente</a>
+                                <?php }else if($row['estado'] == 0){?>
+                                  <a href="#" class="card-post__category badge badge-pill badge-success">Exitosa</a>
+                                <?php }else{?>
+                                  <a href="#" class="card-post__category badge badge-pill badge-danger">Error</a>
+                                <?php }?>
+                              </td>
+                              <td><a href="#" onclick='modal("<?php echo name($row["direccion"])?>", "Dirección")'>Ver</a></td>
+                              <td><?php echo utf8_encode($comuna['nombre']); ?></td>
+                              <td><?php echo $row['fecha_delivery']; ?></td>
+                              <td><?php echo "$ ".number_format($row['monto_compra'], 0, '', '.'); ?></td>
+                              <td><?php echo $row['nombre_usuario']; ?></td>
+                              <td><?php echo $row['correo_usuario']; ?></td>
+                              <td><a href="#" onclick='modal("<?php echo name($row["mensaje"])?>", "Mensaje")'>Ver</a></td>
+                              <td><?php echo substr($row['fecha_transaccion'], 0, 10); ?></td>
+                            </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
-                  
-                </form>
+                </div>
               </div>
             </div>
+            <!-- End Default Light Table -->
           </div>
-
-
+           
           <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
             <ul class="nav">
               <li class="nav-item">
@@ -252,12 +255,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
         </main>
       </div>
     </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/producto/agregar.js"></script>
-    <script src="js/input-file.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
@@ -265,6 +263,11 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="scripts/extras.1.1.0.min.js"></script>
     <script src="scripts/shards-dashboards.1.1.0.min.js"></script>
-    <script src="scripts/app/app-blog-overview.1.1.0.js"></script>
+    <script src="js/producto/modal.js"></script>
+
+    <script src="js/sb-admin.min.js"></script>
+    <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
-function modal(mensaje){
+function modal(mensaje, titulo){
     Swal({
-        title: '<h1 style="color:blue;">Detalles</h1>',
+        title: '<h1 style="color:blue;">'+titulo+'</h1>',
         html: mensaje,
         imageUrl: '../img/core-img/logo_deg.png',
         imageWidth: 400,

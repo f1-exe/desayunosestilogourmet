@@ -109,6 +109,12 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link " href="compras.php">
+                  <i class="material-icons">credit_card</i>
+                  <span>compras</span>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link " href="stock.php">
                   <i class="material-icons">shopping_cart</i>
                   <span>Stock</span>
@@ -175,8 +181,8 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                         <thead class="bg-light">
                           <tr>
                             <th scope="col" class="border-0">#</th>
-                            <th scope="col" class="border-0">Orden Compra</th>
-                            <th scope="col" class="border-0">N°Tarjeta</th>
+                            <th scope="col" class="border-0">OC</th>
+                            <th scope="col" class="border-0">N° Tarjeta</th>
                             <th scope="col" class="border-0">Fecha exp</th>
                             <th scope="col" class="border-0">Cod Autorizacion</th>
                             <th scope="col" class="border-0">Cod Transacción</th>
@@ -196,9 +202,9 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                               <td><?php echo $row['tbk_codigo_autorizacion']; ?></td>
                               <td>
                                 <?php if($row['tbk_codigo_transaccion'] == 0){ ?>
-                                  <a href="#" class="card-post__category badge badge-pill badge-success">EXITOSA</a>
+                                  <a href="#" class="card-post__category badge badge-pill badge-success">Exitosa</a>
                                 <?php }else{ ?>
-                                  <a href="#" class="card-post__category badge badge-pill badge-danger">ERROR</a>
+                                  <a href="#" class="card-post__category badge badge-pill badge-danger">Error</a>
                                 <?php } ?>
                               </td>
                               <td><?php echo "$ ".number_format($row['monto_compra'], 0, '', '.'); ?></td>
@@ -227,6 +233,9 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="transacciones.php">Transacciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Compras.php">Compras</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="stock.php">Stock</a>
