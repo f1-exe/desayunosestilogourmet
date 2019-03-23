@@ -108,6 +108,12 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link " href="compras.php">
+                  <i class="material-icons">credit_card</i>
+                  <span>compras</span>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link " href="stock.php">
                   <i class="material-icons">shopping_cart</i>
                   <span>Stock</span>
@@ -234,6 +240,9 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="transacciones.php">Transacciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Compras.php">Compras</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="stock.php">Stock</a>

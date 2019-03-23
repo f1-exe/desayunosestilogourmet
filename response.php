@@ -53,7 +53,7 @@ if($result->detailOutput->responseCode == 0 ){
 
    
     //se actualizan los datos de la tabla tbk_transacciones pero con el tbk_codigo_transaccion distinto de 0
-    actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$tbk_fecha_transaccion,$tbk_url_retorno,$tbk_vci,$orden_compra);
+    actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$tbk_url_retorno,$tbk_vci,$orden_compra);
 
     $estado = $tbk_codigo_transaccion;
     actualizarEstadoCompra($estado,$orden_compra);

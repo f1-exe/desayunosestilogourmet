@@ -119,4 +119,34 @@ function eliminaProducto($id){
     return false;
   }
 }
+
+//metodo para traer los datos de la transaccion y la compra segun orden de compra
+function selectDatosCompraAndTBK(){
+  global $conn;
+  $query =  "SELECT id, orden_compra, numero_tarjeta, fecha_expiracion_tarjeta, tbk_codigo_autorizacion, tbk_codigo_transaccion, monto_compra, codigo_comercio, fecha_registro
+             FROM tbk_transacciones";
+
+  $result = mysqli_query($conn,$query);
+  return $result;
+}
+
+//Listar tabla comercio_transacciones
+function selectDatosComercioTran(){
+  global $conn;
+  $query = "SELECT * FROM comercio_transacciones";
+
+  $result = mysqli_query($conn, $query);
+  return $result;
+}
+
+//Obtiene comuna por id
+function obtieneComunaPorID($id){
+  global $conn;
+  $query = "SELECT * FROM comunas WHERE id = ".$id."";
+
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_array($result);
+
+  return $row;
+}
 ?>
