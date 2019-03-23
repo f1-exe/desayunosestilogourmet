@@ -119,12 +119,7 @@
 										Login
 									</button>
 								</div>
-		
-								<div class="text-center w-full p-t-25 p-b-5">
-									<a href="#" class="txt1">
-										Olvidaste tu Usuario / Contraseña?
-									</a>
-								</div>
+	
 							</form>
 					  </div>
 					</div>

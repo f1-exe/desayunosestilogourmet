@@ -9,7 +9,7 @@ jQuery("#agregar").click(function (e) {
     var detalle = document.getElementById("detalle").value;
     var dataForm = new FormData();
 
-    var customFileLang = document.getElementById("customFileLang");
+    var customFileLang = document.getElementById("nameImagen");
     var files_2 = customFileLang.files;
 
     //alert("Nombre => "+nombre+" - Precio => "+precio+" - Stock => "+stock+" - Categoria => "+categoria+" - Detalle => "+detalle+" - IMG => "+customFileLang.files[0].name+" - Largo => "+files_2.length);
