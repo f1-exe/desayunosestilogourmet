@@ -204,10 +204,15 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                       </select>
                     </div>
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
-                      <div><label class="texto">Imagen</label></div>
-                      <div class="form-group custom-file">
-                        <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es">
-                        <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+                      <label class="texto">Imagen</label>
+                      <div class="form-group input-group input-file" name="Fichier1">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default btn-choose" type="button">Elegir</button>
+                        </span>
+                        <input id="nameImagen" type="text" class="form-control" placeholder='Seleccionar Imagen' readonly/>
+                        <span class="input-group-btn">
+                          <button class="btn btn-warning btn-reset" type="button">Limpiar</button>
+                        </span>
                       </div>
                       <div><img id="imagen" class="responsive" src="../img/productos/<?php echo $listaProducto['imagen'];?>" alt="Sin imagen"></div>
                     </div>
@@ -250,6 +255,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/producto/editar.js"></script>
+    <script src="js/input-file.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

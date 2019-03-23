@@ -66,15 +66,6 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
               </a>
             </nav>
           </div>
-          <!--<form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
-            <div class="input-group input-group-seamless ml-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-search"></i>
-                </div>
-              </div>
-              <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>
-          </form>-->
           <div class="nav-wrapper">
             <ul class="nav flex-column" id="exampleAccordion">
               <li class="nav-item">
@@ -125,12 +116,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
             <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
               <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
                 <div class="input-group input-group-seamless ml-3">
-                  <!--<div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <i class="fas fa-search"></i>
-                    </div>
-                  </div>
-                  <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">--> </div>
+                </div>
               </form>
               <ul class="navbar-nav border-left flex-row ">
                 <li class="nav-item dropdown">
@@ -185,10 +171,16 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                         <?php } ?>
                       </select>
                     </div>
-                    <div class="form-group custom-file col-md-10 col-12 col-lg-10 col-xl-8">
-                      <input type="file" class="form-control custom-file-input" id="customFileLang" lang="es" accept="image/*">
-                      <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+                    <div class="form-group input-group input-file col-md-10 col-12 col-lg-10 col-xl-8" name="Fichier1" id="entrada">
+                      <span class="input-group-btn">
+                          <button class="btn btn-default btn-choose" type="button">Elegir</button>
+                      </span>
+                      <input id="nameImagen" type="text" class="form-control" placeholder='Seleccionar Imagen' readonly/>
+                      <span class="input-group-btn">
+                              <button class="btn btn-warning btn-reset" type="button">Limpiar</button>
+                      </span>
                     </div>
+
                     <div class="form-group col-md-10 col-12 col-lg-10 col-xl-8" id="entrada">
                       <textarea id="detalle" class="form-control" placeholder="Detalles" rows="14"></textarea>
                     </div>
@@ -228,6 +220,7 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
 
     <script src="js/jquery.min.js"></script>
     <script src="js/producto/agregar.js"></script>
+    <script src="js/input-file.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

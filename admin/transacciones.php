@@ -191,7 +191,13 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                             <td>XXXX-XXXX-XXXX-1234</td>
                             <td>22/25</td>
                             <td>201139</td>
-                            <td>0 = EXITOSA</td>
+                            <td>
+                              <?php if(1 == 0){ ?>
+                                <a href="#" class="card-post__category badge badge-pill badge-success">0 = EXITOSA</a>
+                              <?php }else{ ?>
+                                <a href="#" class="card-post__category badge badge-pill badge-danger">ERROR</a>
+                              <?php } ?>
+                            </td>
                             <td>$25.000</td>
                             <td>597020000541</td>
                             <td>2019-03-13</td>
