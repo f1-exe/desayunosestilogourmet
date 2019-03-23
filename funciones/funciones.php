@@ -102,10 +102,10 @@ function notificaciones(){
 }
 
 //metodo para registrar compra 
-function registrarCompra($orden_compra,$estado,$id_producto,$cantidad_productos,$id_comuna_delivery,$fecha_delivery,$monto_compra,$nombre_usuario,$correo_usuario,$mensaje){
+function registrarCompra($orden_compra,$estado,$direccion_delivery,$id_comuna_delivery,$fecha_delivery,$monto_compra,$nombre_usuario,$correo_usuario,$mensaje){
  global $conn;
- $query = "INSERT INTO comercio_transacciones(id,orden_compra, estado, id_producto, cantidad_productos, id_comuna_delivery, fecha_delivery, monto_compra, nombre_usuario, correo_usuario, mensaje) 
-           VALUES (null,'".$orden_compra."',".$estado.",".$id_producto.",".$cantidad_productos.",".$id_comuna_delivery.",'".$fecha_delivery."',".$monto_compra.",'".$nombre_usuario."','".$correo_usuario."','".$mensaje."')";
+ $query = "INSERT INTO comercio_transacciones(id,orden_compra, estado, direccion_delivery, id_comuna_delivery, fecha_delivery, monto_compra, nombre_usuario, correo_usuario, mensaje) 
+           VALUES (null,'".$orden_compra."',".$estado.",'".$direccion_delivery."',".$id_comuna_delivery.",'".$fecha_delivery."',".$monto_compra.",'".$nombre_usuario."','".$correo_usuario."','".$mensaje."')";
  $resp = mysqli_query($conn,$query);
 
  if($resp){
@@ -170,8 +170,9 @@ function actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_ex
 }
 
 //funcion para actualizar el estado de la compra a aprobado
-//estado = 0  significa aprovado
+//estado = 0  significa aprobado
 //estado = 99 no aprobado
+//esta tabla se lleva el mismo estado de la tabla de TBK
 function actualizarEstadoCompra($estado,$orden_compra){
   global $conn;
   $query =  "UPDATE comercio_transacciones SET estado = 0 WHERE orden_compra =  '".$orden_compra."'";

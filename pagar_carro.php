@@ -15,9 +15,11 @@ $monto_total = $_POST["monto_total"];
 
         <title>Finalizar compra - Desayunos Estilo Gourmet</title>
         <link rel="icon" href="img/core-img/icono.ico">
-
+        <link rel="stylesheet" href="css/animate.css">
         <!-- Bootstrap CDN CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- swal include -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
         <style>
             .avatar {
                 height: 150px;
@@ -104,11 +106,17 @@ $monto_total = $_POST["monto_total"];
                                 <div class="col-sm-6">
                                     <select name="comuna" id="comuna" class="form-control">
                                         
-                                        <option>Seleccione comuna</option>
+                                        <option value="0">Seleccione comuna</option>
                                         <?php $i=1; while($i<=30){ ?>
                                             <option value="<?php echo $i;?>">Comuna <?php echo $i;?></option>
                                         <?php $i++; } ?>   
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center">
+                                <label for="cbo_delivery" class="col-sm-2 col-form-label">Dirección del delivery</label>
+                                <div class="col-sm-6">
+                                <input  type="text" class="form-control" name="direccion_delivery" id="direccion_delivery" placeholder="Nombre Calle 2334, Departamento , Nombre calle referencia, Comuna">    
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center">
@@ -118,19 +126,19 @@ $monto_total = $_POST["monto_total"];
                                     </div>
                                    
                                     <div class="col-sm-6">
-                                        <?php /*fecha minima en php para el input date*/ $date = new DateTime('+1 day'); ?>                                  
+                                        <?php /*fecha minima en php para el input date*/ $date = new DateTime('+2 day'); ?>                                  
                                         <input type="date" class="form-control" name="fecha_delivery" id="fecha_delivery" min="<?php echo $date->format('Y-m-d');?>">
                                     </div>
                             </div>
                             <div class="form-group row justify-content-center">
-                                    <label for="cbo_delivery" class="col-sm-2 col-form-label">Añade una nota para el delivery</label>
+                                    <label for="cbo_delivery" class="col-sm-2 col-form-label">Añade una nota para tu amigo(a)</label>
                                     <div class="col-sm-6">
                                         <textarea name="mensaje" id="mensaje" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Querido(a) amigo(a) espero que disfrutes este desayuno que envié con cariño para ti."></textarea>
                                     </div>
                             </div>
                             <div class="form-group row justify-content-center">
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Continuar a webPay</button>
+                                    <button type="submit" class="btn btn-primary" id="btn_enviar"> Continuar a webPay</button>
                                 </div>
                             </div>
                             <input type="hidden" name="id_producto" id="id_producto" value="<?php echo '1';?>">
@@ -140,6 +148,8 @@ $monto_total = $_POST["monto_total"];
                 </div>
             </div>
         </div>
-
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/pagar_carro.js"></script>    
     </body>
     </html>

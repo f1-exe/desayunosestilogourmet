@@ -442,7 +442,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                                 </i>
                                                 <br>
                                                 <i class="fa fa-envelope" aria-hidden="true">
-                                                    <a id="href-footer" href="mailto:contacto@deg.cl" target="_top">contacto@deg.cl</a>
+                                                    <a id="href-footer" href="mailto:ventas@desayunosestilogourmet.cl" target="_top">ventas@desayunosestilogourmet.cl</a>
+                                                </i>
+												<br>
+												<i class="fa fa-envelope" aria-hidden="true">
+                                                    <a id="href-footer" href="mailto:soporte@desayunosestilogourmet.cl" target="_top">soporte@desayunosestilogourmet.cl</a>
                                                 </i>
                                             </p>
                                         </div>

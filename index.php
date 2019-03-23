@@ -23,6 +23,17 @@
             window.location.href = "product-details.php";
         }
     </script>
+    <style>
+        .avatar {
+        height: 150px;
+        width: 150px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+        display: inline-block;
+        }
+  </style>
 
 </head>
 
@@ -50,7 +61,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="img/core-img/logo_deg.png" alt=""></a>
+                <a href="index.php"><img src="img/core-img/logo_deg.png" alt="Desayunos Estilo Gourmet"></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -190,8 +201,12 @@
                                                 </i>
                                             <br>
                                             <i class="fa fa-envelope" aria-hidden="true">
-                                                    <a id="href-footer" href="mailto:contacto@deg.cl" target="_top">contacto@deg.cl</a>
-                                                </i>
+                                                    <a id="href-footer" href="mailto:ventas@desayunosestilogourmet.cl" target="_top">ventas@desayunosestilogourmet.cl</a>
+                                            </i>
+                                            <br>
+                                            <i class="fa fa-envelope" aria-hidden="true">
+                                                    <a id="href-footer" href="mailto:soporte@desayunosestilogourmet.cl" target="_top">soporte@desayunosestilogourmet.cl</a>
+                                            </i>
                                         </p>
                                     </div>
                                 </div>
