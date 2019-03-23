@@ -1,8 +1,8 @@
 function modal(mensaje){
     Swal({
-        title: 'Mensaje',
+        title: '<h1 style="color:blue;">Detalles</h1>',
         html: mensaje,
-        imageUrl: 'images/avatars/0.jpg',
+        imageUrl: '../img/core-img/logo_deg.png',
         imageWidth: 400,
         imageHeight: 200,
         imageAlt: 'Custom image',

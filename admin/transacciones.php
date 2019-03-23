@@ -13,6 +13,8 @@ if(isset($_SESSION["expire"]) || empty($_SESSION["expire"]) == false){
 
 include 'funciones/funciones.php';
 
+$listaTbk = selectDatosCompraAndTBK();
+
 $usuario = "";
 
 if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) == false){
@@ -185,24 +187,26 @@ if(isset($_SESSION["session_usuario"]) || empty($_SESSION["session_usuario"]) ==
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>000-12345</td>
-                            <td>XXXX-XXXX-XXXX-1234</td>
-                            <td>22/25</td>
-                            <td>201139</td>
-                            <td>
-                              <?php if(1 == 0){ ?>
-                                <a href="#" class="card-post__category badge badge-pill badge-success">0 = EXITOSA</a>
-                              <?php }else{ ?>
-                                <a href="#" class="card-post__category badge badge-pill badge-danger">ERROR</a>
-                              <?php } ?>
-                            </td>
-                            <td>$25.000</td>
-                            <td>597020000541</td>
-                            <td>2019-03-13</td>
-                            <td><a href="#">Ver detalle</a></td>
-                          </tr>
+                          <?php while($row = mysqli_fetch_array($listaTbk)){ ?>
+                            <tr>
+                              <td><?php echo $row['id']; ?></td>
+                              <td><?php echo $row['orden_compra']; ?></td>
+                              <td><?php echo $row['numero_tarjeta']; ?></td>
+                              <td><?php echo $row['fecha_expiracion_tarjeta']; ?></td>
+                              <td><?php echo $row['tbk_codigo_autorizacion']; ?></td>
+                              <td>
+                                <?php if($row['tbk_codigo_transaccion'] == 0){ ?>
+                                  <a href="#" class="card-post__category badge badge-pill badge-success">EXITOSA</a>
+                                <?php }else{ ?>
+                                  <a href="#" class="card-post__category badge badge-pill badge-danger">ERROR</a>
+                                <?php } ?>
+                              </td>
+                              <td><?php echo "$ ".number_format($row['monto_compra'], 0, '', '.'); ?></td>
+                              <td><?php echo $row['codigo_comercio']; ?></td>
+                              <td><?php echo substr($row['fecha_registro'], 0, 10); ?></td>
+                              <td><a href="#">Ver detalle</a></td>
+                            </tr>
+                          <?php } ?>
                         </tbody>
                       </table>
                     </div>

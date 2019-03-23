@@ -119,10 +119,10 @@ function registrarCompra($orden_compra,$estado,$id_producto,$cantidad_productos,
 }
 
 //metodo para registrar transaccion transbank
-function registrarTransaccionTBK($orden_compra,$tbk_token_transaccion,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$monto_compra,$tbk_fecha_transaccion,$tbk_url_retorno,$tbk_vci){
+function registrarTransaccionTBK($orden_compra,$tbk_token_transaccion,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$monto_compra,$tbk_url_retorno,$tbk_vci){
   global $conn;
-  $query = "INSERT INTO tbk_transacciones(id, orden_compra, tbk_token_transaccion, numero_tarjeta, fecha_expiracion_tarjeta, tbk_codigo_autorizacion, tbk_codigo_transaccion, codigo_comercio, monto_compra, tbk_fecha_transaccion,tbk_url_retorno,tbk_vci) 
-            VALUES (null,'".$orden_compra."','".$tbk_token_transaccion."','".$numero_tarjeta."','".$fecha_expiracion_tarjeta."',".$tbk_codigo_autorizacion.",".$tbk_codigo_transaccion.",".$codigo_comercio.",".$monto_compra.",'".$tbk_fecha_transaccion."','".$tbk_url_retorno."','".$tbk_vci."')";
+  $query = "INSERT INTO tbk_transacciones(id, orden_compra, tbk_token_transaccion, numero_tarjeta, fecha_expiracion_tarjeta, tbk_codigo_autorizacion, tbk_codigo_transaccion, codigo_comercio, monto_compra,tbk_url_retorno,tbk_vci) 
+            VALUES (null,'".$orden_compra."','".$tbk_token_transaccion."','".$numero_tarjeta."','".$fecha_expiracion_tarjeta."',".$tbk_codigo_autorizacion.",".$tbk_codigo_transaccion.",".$codigo_comercio.",".$monto_compra.",'".$tbk_url_retorno."','".$tbk_vci."')";
 
   $resp = mysqli_query($conn,$query);
 
@@ -152,12 +152,12 @@ function obtenerMaxIdComercio_transacciones(){
 }
 
 //metodo para actualizar la informacion de la tabla tbk_transacciones segun orden de compra
-function actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$tbk_fecha_transaccion,$tbk_url_retorno,$tbk_vci,$orden_compra){
+function actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$tbk_url_retorno,$tbk_vci,$orden_compra){
   global $conn;
   $query = "UPDATE tbk_transacciones SET codigo_tipo_pago = '".$codigo_tipo_pago."', numero_tarjeta = '".$numero_tarjeta."',
                                           fecha_expiracion_tarjeta = '".$fecha_expiracion_tarjeta."',tbk_codigo_autorizacion = ".$tbk_codigo_autorizacion.",
                                           tbk_codigo_transaccion = ".$tbk_codigo_transaccion." ,codigo_comercio = ".$codigo_comercio.",
-                                          tbk_fecha_transaccion = '".$tbk_fecha_transaccion."',tbk_url_retorno = '".$tbk_url_retorno."',
+                                          tbk_url_retorno = '".$tbk_url_retorno."',
                                           tbk_vci = '".$tbk_vci."' WHERE orden_compra = '".$orden_compra."'";
   $resp = mysqli_query($conn,$query);
 
