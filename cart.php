@@ -375,29 +375,6 @@
                                         </span>
                                     </li>
                                     <li>
-                                        <span>Proporcione la informacion del delivery a continuación</span> 
-                                    </li>
-                                    
-                                    <li>
-                                        <span>Comuna:</span>
-                                        <select name="cbo_delivery" id="cbo_delivery" class="selectpicker">
-                                            <option value="0">Seleccione Comuna</option>
-                                            <?php $i=1; while($i<=4){ ?>
-                                                <option value="<?php echo $i; ?>">
-                                                    <?php echo 'Comuna - '.$i; ?>
-                                                </option>
-                                            <?php $i++; } ?>    
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <div id="tooltip">
-                                            <span>Fecha(*):</span>
-                                            <span id="tooltiptext">El delivery está disponible 48hrs después del dia de la compra.</span>
-                                        </div>  
-                                        <?php /*fecha minima en php para el input date*/ $date = new DateTime('+1 day'); ?>                                  
-                                        <input type="date" class="form-control" name="fecha_delivery" id="fecha_delivery" min="<?php echo $date->format('Y-m-d');?>">
-                                    </li>
-                                    <li>
                                         <span>total:</span>
                                         <span>
                                             <!--<div id="total"></div> -->
@@ -411,7 +388,7 @@
                                     </li>
                                 </ul>
                                 <div class="cart-btn mt-100">
-                                    <a href="#" onclick="document.getElementById('form_carro').submit();" class="btn amado-btn w-100">Ir a comprar</a>
+                                    <a href="#" onclick="document.getElementById('form_carro').submit();" class="btn amado-btn w-100">Siguiente paso</a>
                                 </div>
                             </form>
                         </div>

@@ -1,3 +1,13 @@
+<?php 
+session_start();
+include 'funciones/funciones.php';
+
+$orden_compra = $_SESSION['orden_compra'];
+
+$row = selectDatosCompraAndTBK($orden_compra);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +44,10 @@
         <div>
           <img src="img/core-img/logo_deg.png" class="avatar mt-3"> 
         </div> 
-        <h1 class="mt-5">Transacción Finalizada</h1>
+        <?php if($row['tbk_codigo_transaccion'] == 0){ ?> 
+        <h1 class="mt-5">
+             <label style="color:green">Transacción Finalizada correctamente</label>
+        </h1>
         <p>Gracias por comprar con nosotros</p>
          <div>
          <table class="table">
@@ -45,20 +58,46 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Orden Compra</td><td>DEG-00001</td></tr>
-              <tr><td>Cod Autorizacion</td><td>67567282813</td></tr>
-              <tr><td>Estado Transacción</td><td><img src="img/transaccion_success.png" width="30" height="30"></td></tr>
-              <tr><td>Fecha Transacción</td><td><?php echo date("Y-m-d");?></td></tr>
-              <tr><td>Nombre</td><td>Miguel marquez</td></tr>
-              <tr><td>Correo</td><td>mikemreyes.mm@gmail.com</td></tr>
-              <tr><td>Monto</td><td>$20.000</td></tr>
-              <tr><td>Comuna delivery</td><td>Conchalí</td></tr>
-              <tr><td>Fecha delivery</td><td><?php echo date("Y-m-d");?> </td></tr>
-              <tr><td>Producto</td><td>Café</td></tr>
+              <tr><td>Orden Compra</td><td><?php echo $row['orden_compra'];?></td></tr>
+              <tr><td>Cod Autorizacion</td><td><?php echo $row['tbk_codigo_autorizacion'];?></td></tr>
+              <tr>
+                <td>Estado Transacción</td>
+                <td><img src="img/transaccion_success.png" width="30" height="30"></td></tr>
+              <tr><td>Fecha Transacción</td><td><?php echo $row['tbk_fecha_transaccion']; ?></td></tr>
+              <tr><td>Nombre</td><td><?php echo $row['nombre_usuario'];?></td></tr>
+              <tr><td>Correo</td><td><?php echo $row['correo_usuario'];?></td></tr>
+              <tr><td>Monto</td><td><?php echo $row['monto_compra'];?></td></tr>
+              <tr><td>Comuna delivery</td><td><?php echo $row['id_comuna_delivery']; ?></td></tr>
+              <tr><td>Fecha delivery</td><td><?php echo $row['fecha_delivery']; ?> </td></tr>
             </tbody>
           </table>
           <button class="btn  btn-primary" onclick="window.location.href='index.php'">Volver a Desayunos estilo gourmet</button>
          </div>
+        <?php }else{ ?>
+          <div>
+          <h1 class="mt-5">
+             <label style="color:red">Transacción Finalizada con error</label>
+        </h1>
+         <div>
+         <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Información</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Orden Compra</td><td><?php echo $row['orden_compra'];?></td></tr>
+              <tr>
+                <td>Estado Transacción</td>
+                <td><img src="img/transaccion_failure.png" width="30" height="30"></td></tr>
+              <tr><td>Fecha Transacción</td><td><?php echo $row['tbk_fecha_transaccion']; ?></td></tr>
+              <tr><td>Monto</td><td><?php echo $row['monto_compra'];?></td></tr>
+            </tbody>
+          </table>
+          <button class="btn  btn-primary" onclick="window.location.href='index.php'">Volver a Desayunos estilo gourmet</button> 
+          </div>
+        <?php } ?>  
       </div>
     </div>
   </div>

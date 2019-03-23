@@ -102,37 +102,98 @@ function notificaciones(){
 }
 
 //metodo para registrar compra 
-function registrarCompra($orden_compra,$estado,$id_producto,$cantidad_productos,$id_comuna_delivery,$fecha_delivery,$monto_compra,$nombre_usuario,$correo_usuario,$medio_pago){
+function registrarCompra($orden_compra,$estado,$id_producto,$cantidad_productos,$id_comuna_delivery,$fecha_delivery,$monto_compra,$nombre_usuario,$correo_usuario,$mensaje){
  global $conn;
- $query = "INSERT INTO comercio_transacciones(id,orden_compra, estado, id_producto, cantidad_productos, id_comuna_delivery, fecha_delivery, monto_compra, nombre_usuario, correo_usuario, medio_pago) 
-           VALUES (null,'".$orden_compra."',".$estado.",".$id_producto.",".$cantidad_productos.",".$id_comuna_delivery.",'".$fecha_delivery."',".$monto_compra.",'".$nombre_usuario."','".$correo_usuario."','".$medio_pago."')";
+ $query = "INSERT INTO comercio_transacciones(id,orden_compra, estado, id_producto, cantidad_productos, id_comuna_delivery, fecha_delivery, monto_compra, nombre_usuario, correo_usuario, mensaje) 
+           VALUES (null,'".$orden_compra."',".$estado.",".$id_producto.",".$cantidad_productos.",".$id_comuna_delivery.",'".$fecha_delivery."',".$monto_compra.",'".$nombre_usuario."','".$correo_usuario."','".$mensaje."')";
  $resp = mysqli_query($conn,$query);
 
  if($resp){
-    echo "SI";
+    //echo "SI";
     return true;
   }else{
-    echo "NO".mysqli_error($conn);
+    //echo "NO".mysqli_error($conn);
     return false;
   }
  
 }
 
 //metodo para registrar transaccion transbank
-function registrarTransaccionTBK($orden_compra,$tbk_token_transaccion,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$monto_compra,$tbk_fecha_transaccion){
+function registrarTransaccionTBK($orden_compra,$tbk_token_transaccion,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$monto_compra,$tbk_fecha_transaccion,$tbk_url_retorno,$tbk_vci){
   global $conn;
-  $query = "INSERT INTO tbk_transacciones(id, orden_compra, tbk_token_transaccion, numero_tarjeta, fecha_expiracion_tarjeta, tbk_codigo_autorizacion, tbk_codigo_transaccion, codigo_comercio, monto_compra, tbk_fecha_transaccion) 
-            VALUES (null,'".$orden_compra."','".$tbk_token_transaccion."','".$numero_tarjeta."','".$fecha_expiracion_tarjeta."',".$tbk_codigo_autorizacion.",".$tbk_codigo_transaccion.",".$codigo_comercio.",".$monto_compra.",'".$tbk_fecha_transaccion."')";
+  $query = "INSERT INTO tbk_transacciones(id, orden_compra, tbk_token_transaccion, numero_tarjeta, fecha_expiracion_tarjeta, tbk_codigo_autorizacion, tbk_codigo_transaccion, codigo_comercio, monto_compra, tbk_fecha_transaccion,tbk_url_retorno,tbk_vci) 
+            VALUES (null,'".$orden_compra."','".$tbk_token_transaccion."','".$numero_tarjeta."','".$fecha_expiracion_tarjeta."',".$tbk_codigo_autorizacion.",".$tbk_codigo_transaccion.",".$codigo_comercio.",".$monto_compra.",'".$tbk_fecha_transaccion."','".$tbk_url_retorno."','".$tbk_vci."')";
 
   $resp = mysqli_query($conn,$query);
 
   if($resp){
-    echo "SI";
+    //echo "SI";
     return true;
   }else{
-    echo "NO".mysqli_error($conn);
+    //echo "NO".mysqli_error($conn);
     return false;
   }
 
+}
+
+//metodo para obtner el max id para concatenarlo la orden de compra
+function obtenerMaxIdComercio_transacciones(){
+  global $conn;
+  $query = "SELECT max(id) as id FROM comercio_transacciones";
+  $resp =  mysqli_query($conn,$query);
+  $id =  mysqli_fetch_array($resp);
+    
+  if($id['id'] ==  NULL){
+    return 1;
+  }else{
+    return $id['id']+1;
+  }
+  
+}
+
+//metodo para actualizar la informacion de la tabla tbk_transacciones segun orden de compra
+function actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$tbk_fecha_transaccion,$tbk_url_retorno,$tbk_vci,$orden_compra){
+  global $conn;
+  $query = "UPDATE tbk_transacciones SET codigo_tipo_pago = '".$codigo_tipo_pago."', numero_tarjeta = '".$numero_tarjeta."',
+                                          fecha_expiracion_tarjeta = '".$fecha_expiracion_tarjeta."',tbk_codigo_autorizacion = ".$tbk_codigo_autorizacion.",
+                                          tbk_codigo_transaccion = ".$tbk_codigo_transaccion." ,codigo_comercio = ".$codigo_comercio.",
+                                          tbk_fecha_transaccion = '".$tbk_fecha_transaccion."',tbk_url_retorno = '".$tbk_url_retorno."',
+                                          tbk_vci = '".$tbk_vci."' WHERE orden_compra = '".$orden_compra."'";
+  $resp = mysqli_query($conn,$query);
+
+
+  if($resp){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+//funcion para actualizar el estado de la compra a aprobado
+//estado = 0  significa aprovado
+//estado = 99 no aprobado
+function actualizarEstadoCompra($estado,$orden_compra){
+  global $conn;
+  $query =  "UPDATE comercio_transacciones SET estado = 0 WHERE orden_compra =  '".$orden_compra."'";
+  $resp =  mysqli_query($conn,$query);
+  if($resp){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+//metodo para traer los datos de la transaccion y la compra segun orden de compra
+function selectDatosCompraAndTBK($orden_compra){
+  global $conn;
+  $query =  "SELECT c.fecha_delivery,c.nombre_usuario,c.correo_usuario,c.id_comuna_delivery,c.monto_compra, tbk.tbk_codigo_autorizacion,tbk.tbk_codigo_transaccion,tbk.tbk_fecha_transaccion,tbk.orden_compra
+             FROM comercio_transacciones c 
+             JOIN tbk_transacciones tbk on tbk.orden_compra = c.orden_compra
+             WHERE tbk.orden_compra =  '".$orden_compra."'";
+  $resp =  mysqli_query($conn,$query);
+  $row =  mysqli_fetch_array($resp);
+
+  return $row;
 }
 

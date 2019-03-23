@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use Freshwork\Transbank\CertificationBagFactory;
 use Freshwork\Transbank\TransbankServiceFactory;
@@ -6,6 +7,8 @@ use Freshwork\Transbank\RedirectorHelper;
 
 include 'vendor/autoload.php';
 include 'funciones/funciones.php';
+
+
 //rescato los datos de la transaccion
 $monto_total = $_POST["monto_total"];
 $nombre_cliente = $_POST["nombre_cliente"];
@@ -14,9 +17,16 @@ $id_producto = $_POST["id_producto"];
 $comuna_delivery = $_POST["comuna"];
 $fecha_delivery = $_POST["fecha_delivery"];
 $cantidad = $_POST["cantidad"];
-$orden_compra =  "DEG-00001";
+$mensaje = $_POST['mensaje'];
 
-$registrarCompra = registrarCompra($orden_compra,0,1,$cantidad,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,"tarjeta");
+$orden_compra =  "DEG-".obtenerMaxIdComercio_transacciones();
+
+//se registra la compra
+registrarCompra($orden_compra,99,1,$cantidad,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,$mensaje);
+
+//guardo la orden de compra en sesion para luego rescatar los datos de la transaccion en la vista 
+//boucher_final.php
+$_SESSION["orden_compra"] = $orden_compra;
 
 // Obtenemos los certificados y llaves para utilizar el ambiente de integración de Webpay Normal.
 $bag =  CertificationBagFactory::integrationWebPayNormal();
@@ -34,7 +44,7 @@ exit;
 */
 
 //registro los datos de la transaccion de transbank
-$registrarTransaccionTBK =  registrarTransaccionTBK($orden_compra,$response->token,"","",1,0,0,$monto_total,"");
+registrarTransaccionTBK($orden_compra,$response->token,"NULL","NULL",0,1,0,$monto_total,"NULL","NULL","NULL");
 
 
 //la respuesta me entrega el token y una url donde debe ser redirigido el usuario junto al token
