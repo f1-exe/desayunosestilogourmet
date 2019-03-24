@@ -198,3 +198,17 @@ function selectDatosCompraAndTBK($orden_compra){
   return $row;
 }
 
+function insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto){
+  global $conn;
+  $query= "INSERT INTO productos_compras (orden_compra,id_producto,cantidad_producto) VALUES ('".$orden_compra."',".$id_producto.",".$cantidad_producto.")";
+  $result =  mysqli_query($conn,$query);
+  
+  if($result){
+    return true;
+  }else{
+    return false;
+  }
+
+
+}
+

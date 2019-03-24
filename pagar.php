@@ -8,11 +8,6 @@ use Freshwork\Transbank\RedirectorHelper;
 include 'vendor/autoload.php';
 include 'funciones/funciones.php';
 
-echo 'llego al pagar ';
-
-exit;
-
-
 //rescato los datos de la transaccion
 $monto_total = $_POST["monto_total"];
 $nombre_cliente = $_POST["nombre_cliente"];
@@ -20,7 +15,7 @@ $correo_cliente = $_POST["correo_cliente"];
 $id_producto = $_POST["id_producto"];
 $comuna_delivery = $_POST["comuna"];
 $fecha_delivery = $_POST["fecha_delivery"];
-$cantidad = $_POST["cantidad"];
+$cantidad_producto = $_POST["cantidad"];
 $direccion_delivery =  $_POST["direccion_delivery"];
 $mensaje = $_POST['mensaje'];
 
@@ -29,9 +24,8 @@ $orden_compra =  "DEG-".obtenerMaxIdComercio_transacciones();
 //se registra la compra
 registrarCompra($orden_compra,99,$direccion_delivery,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,$mensaje);
 
-/****************************************************************************/
-//hacer insert de PRODUCTOS_COMPRAS
-/****************************************************************************/
+insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto);
+
 
 //guardo la orden de compra en sesion para luego rescatar los datos de la transaccion en la vista 
 //boucher_final.php
