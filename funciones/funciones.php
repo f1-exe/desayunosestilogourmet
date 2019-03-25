@@ -198,6 +198,7 @@ function selectDatosCompraAndTBK($orden_compra){
   return $row;
 }
 
+//funcion para insertar los productos y su cantidad en una compra
 function insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto){
   global $conn;
   $query= "INSERT INTO productos_compras (orden_compra,id_producto,cantidad_producto) VALUES ('".$orden_compra."',".$id_producto.",".$cantidad_producto.")";
@@ -212,3 +213,39 @@ function insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto){
 
 }
 
+
+/**************************[SECCION PARA LISTAR PRODUCTOS POR CATEGORIAS]********************************/
+
+/**[Categorias]**/
+
+/*
+
+TABLA :  categorias
+_______________________________________
+|       ID       |     NOMBRE         |
+|________________|____________________|
+|        1       |   PARA ELLAS       |
+|        2       |   PARA EL          |  
+|        3       |   CUMPLEAÑOS       |
+|        4       |   NACIMIENTOS      |   
+|        5       |   DIA DEL PADRE    |
+|        6       |   DIA DE LA MADRE  |
+|        7       |   SAN VALENTIN     |
+|        8       |   ARMA TU PEDIDO   | 
+|        9       |   PROMOCIONES      |
+|_____________________________________|
+
+*/
+
+/**[Categorias]**/
+
+
+//funcion para listar productos / categoria : Para-ella
+function listarProductosParaEllas(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  1";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+/**************************[SECCION PARA LISTAR PRODUCTOS POR CATEGORIAS]********************************/

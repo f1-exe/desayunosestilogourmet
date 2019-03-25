@@ -26,6 +26,8 @@ registrarCompra($orden_compra,99,$direccion_delivery,$comuna_delivery,$fecha_del
 
 insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto);
 
+exit;
+
 
 //guardo la orden de compra en sesion para luego rescatar los datos de la transaccion en la vista 
 //boucher_final.php

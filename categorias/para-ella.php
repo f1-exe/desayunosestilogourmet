@@ -1,3 +1,18 @@
+<?php
+include("../funciones/funciones.php");
+
+$productos = listarProductosParaEllas();
+
+
+// echo get_include_path();
+
+// phpinfo();
+//$myRoot = $_SERVER["DOCUMENT_ROOT"];
+// echo $myRoot/
+//include('../funciones/funciones.php');
+
+// exit;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,7 +126,7 @@
         <div class="products-catagories-area clearfix">
             <div class="amado-pro-catagory clearfix">
 
-            <?php $i=0; while($i < 9){ ?>
+            <?php  while($row =  mysqli_fetch_array($productos)){ ?>
                 <!-- Single Catagory -->
                 
                     <div class="single-products-catagory clearfix">
@@ -120,7 +135,7 @@
                                             <img class="card-img-top" src="../img/bg-img/1.jpg" alt="Card image cap">
                                             <div class="card-body">
                                                 
-                                                <h5 class="card-title">Café</h5>
+                                                <h5 class="card-title"><?php echo $row["nombre"];?></h5>
                                                 <p class="card-text">
                                                     Precio : $ 4.000 <br>
                                                    
