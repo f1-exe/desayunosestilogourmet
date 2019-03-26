@@ -1,17 +1,6 @@
 <?php
-include("../funciones/funciones.php");
-
-$productos = listarProductosParaEllas();
-
-
-// echo get_include_path();
-
-// phpinfo();
-//$myRoot = $_SERVER["DOCUMENT_ROOT"];
-// echo $myRoot/
-//include('../funciones/funciones.php');
-
-// exit;
+include '../funciones/funciones.php';
+$resp  = listarProductosParaEllas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +115,7 @@ $productos = listarProductosParaEllas();
         <div class="products-catagories-area clearfix">
             <div class="amado-pro-catagory clearfix">
 
-            <?php  while($row =  mysqli_fetch_array($productos)){ ?>
+            <?php  while($row =  mysqli_fetch_array($resp)){ ?>
                 <!-- Single Catagory -->
                 
                     <div class="single-products-catagory clearfix">
@@ -137,23 +126,26 @@ $productos = listarProductosParaEllas();
                                                 
                                                 <h5 class="card-title"><?php echo $row["nombre"];?></h5>
                                                 <p class="card-text">
-                                                    Precio : $ 4.000 <br>
+                                                    Precio : <?php echo "$ ".number_format($row['precio'], 0, '', '.');?> <br>
                                                    
                                                 </p>
-                                                <div style="text-align:center">
-                                                <button class="btn btn-primary btn-sm" onclick="detalle()">Ver detalle</button>
-                                                
-                                                <button class="btn btn-warning btn-sm" style="color:white;">Añadir al carro</button>
-                                                </div>
+                                                <form name="form_ver_detalle" method="POST" action="../product-details.php">
+                                                    <div style="text-align:center">
+                                                    
+                                                            <button class="btn btn-primary btn-sm">Ver detalle</button>
+                                                            <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>" id="id_producto"/>
+                                                        
+                                                        <button class="btn btn-warning btn-sm" style="color:white;">Añadir al carro</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                     </div>
                             </div>
                     </div>
-              <?php $i++; } ?>      
                    
+              <?php  } ?>  
             </div>
-        </div>
-        <!-- Product Catagories Area End -->
+        </div>        
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 

@@ -1,3 +1,7 @@
+<?php
+include 'funciones/funciones.php';
+$resp =  listarProductosIndex();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,7 +126,7 @@
         <div class="products-catagories-area clearfix">
             <div class="amado-pro-catagory clearfix">
 
-                <?php $i=0; while($i < 9){ ?>
+                <?php while($row =  mysqli_fetch_array($resp)){ ?>
                     <!-- Single Catagory -->
 
                     <div class="single-products-catagory clearfix">
@@ -131,9 +135,9 @@
                                 <img class="card-img-top" src="img/bg-img/1.jpg" alt="Card image cap">
                                 <div class="card-body">
 
-                                    <h5 class="card-title">Café</h5>
+                                    <h5 class="card-title"><?php echo $row["nombre"];?></h5>
                                     <p class="card-text">
-                                        Precio : $ 4.000
+                                        Precio : <?php echo "$ ".number_format($row['precio'], 0, '', '.');?>
                                         <br>
 
                                     </p>
@@ -146,7 +150,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php $i++; } ?>
+                    <?php  } ?>
 
             </div>
         </div>

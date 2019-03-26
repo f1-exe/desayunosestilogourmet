@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion/BDconexion.php';
+include 'C:/xampp/htdocs/Proyectos/desayunosestilogourmet/conexion/BDconexion.php';
 
 
 
@@ -213,6 +213,16 @@ function insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto){
 
 }
 
+//funcion para listar los datos del producto segun id de producto
+//se utiliza en la vista product-details.php
+function verDetalleProducto($id_producto){
+  global $conn;
+  $query = "SELECT * FROM producto WHERE id =  ".$id_producto."";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+
+}
+
 
 /**************************[SECCION PARA LISTAR PRODUCTOS POR CATEGORIAS]********************************/
 
@@ -239,6 +249,16 @@ _______________________________________
 
 /**[Categorias]**/
 
+//funcion para listar porductos / categoria : index
+//aqui se listan 9 productos en aleatoriamente de cualquier categoria
+
+function listarProductosIndex(){
+  global $conn;
+  $query = "SELECT nombre,id,precio FROM producto ORDER BY RAND() LIMIT 9 ";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
 
 //funcion para listar productos / categoria : Para-ella
 function listarProductosParaEllas(){
@@ -247,5 +267,77 @@ function listarProductosParaEllas(){
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
+
+//funcion para listar productos / categoria : Para-el
+function listarProductosParaEl(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  2";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+
+//funcion para listar productos / categoria : Cumpleaños
+function listarProductosCumpleanos(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  3";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+
+//funcion para listar productos / categoria : nacimientos
+function listarProductosNacimientos(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  4";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+
+//funcion para listar productos / categoria : dia del padre
+function listarProductosDiaPadre(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  5";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+
+//funcion para listar productos / categoria : Dia madre
+function listarProductosDiaMadre(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  6";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+
+//funcion para listar productos / categoria : san valentin
+function listarProductosSanValentin(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  7";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+
+//funcion para listar productos / categoria : Arma tu pedido
+function listarProductosArmaTuPedido(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  8";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
+
+//funcion para listar productos / categoria : promociones
+function listarProductosPromociones(){
+  global $conn;
+  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  9";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
+
 
 /**************************[SECCION PARA LISTAR PRODUCTOS POR CATEGORIAS]********************************/

@@ -1,3 +1,10 @@
+<?php 
+include 'funciones/funciones.php';
+
+$id_producto = $_POST["id_producto"];
+$resp =  verDetalleProducto($id_producto);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
