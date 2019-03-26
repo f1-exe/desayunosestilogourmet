@@ -3,9 +3,7 @@ session_start();
 include 'funciones/funciones.php';
 
 $orden_compra = $_SESSION['orden_compra'];
-
 $row = selectDatosCompraAndTBK($orden_compra);
-
 
 ?>
 <!DOCTYPE html>
@@ -63,7 +61,7 @@ $row = selectDatosCompraAndTBK($orden_compra);
               <tr>
                 <td>Estado Transacción</td>
                 <td><img src="img/transaccion_success.png" width="30" height="30"></td></tr>
-              <tr><td>Fecha Transacción</td><td><?php echo $row['tbk_fecha_transaccion']; ?></td></tr>
+              <tr><td>Fecha Transacción</td><td><?php echo $row['fecha_registro']; ?></td></tr>
               <tr><td>Nombre</td><td><?php echo $row['nombre_usuario'];?></td></tr>
               <tr><td>Correo</td><td><?php echo $row['correo_usuario'];?></td></tr>
               <tr><td>Monto</td><td><?php echo $row['monto_compra'];?></td></tr>
@@ -91,7 +89,7 @@ $row = selectDatosCompraAndTBK($orden_compra);
               <tr>
                 <td>Estado Transacción</td>
                 <td><img src="img/transaccion_failure.png" width="30" height="30"></td></tr>
-              <tr><td>Fecha Transacción</td><td><?php echo $row['tbk_fecha_transaccion']; ?></td></tr>
+              <tr><td>Fecha Transacción</td><td><?php echo $row['fecha_registro']; ?></td></tr>
               <tr><td>Monto</td><td><?php echo $row['monto_compra'];?></td></tr>
             </tbody>
           </table>

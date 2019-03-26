@@ -126,16 +126,20 @@ $resp  = listarProductosArmaTuPedido();
                                             <img class="card-img-top" src="../img/bg-img/1.jpg" alt="Card image cap">
                                             <div class="card-body">
                                                 
-                                                <h5 class="card-title"><?php echo $row["nombre"];?></h5>
+                                                <h5 class="card-title"><?php echo utf8_encode($row["nombre"]);?></h5>
                                                 <p class="card-text">
                                                     Precio :<?php echo "$ ".number_format($row['precio'], 0, '', '.');?> <br>
                                                    
                                                 </p>
-                                                <div style="text-align:center">
-                                                <button class="btn btn-primary btn-sm" onclick="detalle()">Ver detalle</button>
-                                                
-                                                <button class="btn btn-warning btn-sm" style="color:white;">Añadir al carro</button>
-                                                </div>
+                                                <form name="form_detalle_prod" method="POST" action="../product-details.php">
+                                                    <div style="text-align:center">
+
+                                                        <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
+                                                        <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
+                                                        
+                                                        <button type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                     </div>
                             </div>

@@ -3,6 +3,7 @@ include 'funciones/funciones.php';
 
 $id_producto = $_POST["id_producto"];
 $resp =  verDetalleProducto($id_producto);
+$row = mysqli_fetch_array($resp);
 
 ?>
 <!DOCTYPE html>
@@ -173,9 +174,9 @@ $resp =  verDetalleProducto($id_producto);
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price">$ 4.000</p>
-                                <a href="product-details.php">
-                                    <h6>Café</h6>
+                                <p class="product-price"><?php echo "$ ".number_format($row['precio'], 0, '', '.');?></p>
+                                <a href="#">
+                                    <h6><?php echo $row["nombre"];?></h6>
                                 </a>
                                
                                 <!-- Avaiable -->
@@ -185,11 +186,7 @@ $resp =  verDetalleProducto($id_producto);
                             <div class="short_overview my-5">
                                 <p>
                                     <ul>
-                                        <li>Café</li>
-                                        <li>Tazón</li>
-                                        <li>Azucar rubia</li>
-                                        <li>Posa taza</li>
-                                        <li>Media luna</li>
+                                        <?php echo $row["detalle"];?>
                                     </ul>
                                 </p>
                             </div>

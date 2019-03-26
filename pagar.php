@@ -21,13 +21,13 @@ $mensaje = $_POST['mensaje'];
 
 $orden_compra =  "DEG-".obtenerMaxIdComercio_transacciones();
 
+
 //se registra la compra
 registrarCompra($orden_compra,99,$direccion_delivery,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,$mensaje);
 
-insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto);
+//[CONTINUAR CON LOGICA DESPUES] - NO OLVIDAR
 
-exit;
-
+//insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto);
 
 //guardo la orden de compra en sesion para luego rescatar los datos de la transaccion en la vista 
 //boucher_final.php
@@ -50,6 +50,7 @@ exit;
 
 //registro los datos de la transaccion de transbank
 registrarTransaccionTBK($orden_compra,$response->token,"NULL","NULL",0,1,0,$monto_total,"NULL","NULL","NULL");
+
 
 
 //la respuesta me entrega el token y una url donde debe ser redirigido el usuario junto al token

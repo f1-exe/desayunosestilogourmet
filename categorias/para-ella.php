@@ -21,13 +21,10 @@ $resp  = listarProductosParaEllas();
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="../css/core-style.css">
     <link rel="stylesheet" href="../css/style.css">
-
+    
     <script>
-        function detalle(){
-            window.location.href="product-details.php";
-        }
+            
     </script>
-  
 </head>
 
 <body>
@@ -129,15 +126,16 @@ $resp  = listarProductosParaEllas();
                                                     Precio : <?php echo "$ ".number_format($row['precio'], 0, '', '.');?> <br>
                                                    
                                                 </p>
-                                                <form name="form_ver_detalle" method="POST" action="../product-details.php">
+                                                
+                                                <form name="form_detalle_prod" method="POST" action="../product-details.php">
                                                     <div style="text-align:center">
-                                                    
-                                                            <button class="btn btn-primary btn-sm">Ver detalle</button>
-                                                            <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>" id="id_producto"/>
+
+                                                        <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
+                                                        <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
                                                         
-                                                        <button class="btn btn-warning btn-sm" style="color:white;">Añadir al carro</button>
+                                                        <button type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
                                                     </div>
-                                                </form>
+                                                </form>    
                                             </div>
                                     </div>
                             </div>

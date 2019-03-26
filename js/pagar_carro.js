@@ -1,15 +1,11 @@
-jQuery("#btn_enviar").click(function (e) {
-    e.preventDefault();
-    //var formData = new FormData(this);
-    
-
+jQuery("#btn_enviar").click(function() {
+  
     var nombre = document.getElementById("nombre_cliente").value;
     var correo = document.getElementById("correo_cliente").value;
     var comuna = document.getElementById("comuna").value;
     var direccion_delivery = document.getElementById("direccion_delivery").value;
     var fecha_delivery = document.getElementById("fecha_delivery").value;
     var mensaje = document.getElementById("mensaje").value;
-    //var dataForm = new FormData();
 
     //validacion de fecha de delivery
     let today = new Date().toISOString().slice(0, 10);

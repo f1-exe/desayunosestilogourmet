@@ -138,7 +138,7 @@ $monto_total = $_POST["monto_total"];
                             </div>
                             <div class="form-group row justify-content-center">
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary" id="btn_enviar"> Continuar a webPay</button>
+                                    <input type="submit" class="btn btn-primary" id="btn_enviar" value="Continuar a webPay"> 
                                 </div>
                             </div>
                             <input type="hidden" name="id_producto" id="id_producto" value="<?php echo '1';?>">
