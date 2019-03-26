@@ -255,7 +255,7 @@ _______________________________________
 
 function listarProductosIndex(){
   global $conn;
-  $query = "SELECT nombre,id,precio FROM producto ORDER BY RAND() LIMIT 9 ";
+  $query = "SELECT nombre,id,precio,imagen FROM producto ORDER BY RAND() LIMIT 9 ";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -264,7 +264,7 @@ function listarProductosIndex(){
 //funcion para listar productos / categoria : Para-ella
 function listarProductosParaEllas(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  1";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  1";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -272,7 +272,7 @@ function listarProductosParaEllas(){
 //funcion para listar productos / categoria : Para-el
 function listarProductosParaEl(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  2";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  2";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -281,7 +281,7 @@ function listarProductosParaEl(){
 //funcion para listar productos / categoria : Cumpleaños
 function listarProductosCumpleanos(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  3";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  3";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -290,7 +290,7 @@ function listarProductosCumpleanos(){
 //funcion para listar productos / categoria : nacimientos
 function listarProductosNacimientos(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  4";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  4";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -299,7 +299,7 @@ function listarProductosNacimientos(){
 //funcion para listar productos / categoria : dia del padre
 function listarProductosDiaPadre(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  5";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  5";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -308,7 +308,7 @@ function listarProductosDiaPadre(){
 //funcion para listar productos / categoria : Dia madre
 function listarProductosDiaMadre(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  6";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  6";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -317,7 +317,7 @@ function listarProductosDiaMadre(){
 //funcion para listar productos / categoria : san valentin
 function listarProductosSanValentin(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  7";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  7";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -326,7 +326,7 @@ function listarProductosSanValentin(){
 //funcion para listar productos / categoria : Arma tu pedido
 function listarProductosArmaTuPedido(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  8";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  8";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -335,7 +335,7 @@ function listarProductosArmaTuPedido(){
 //funcion para listar productos / categoria : promociones
 function listarProductosPromociones(){
   global $conn;
-  $query = "SELECT id,nombre,precio FROM producto WHERE categoria =  9";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  9";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }

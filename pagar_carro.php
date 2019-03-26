@@ -16,62 +16,11 @@ $monto_total = $_POST["monto_total"];
         <title>Finalizar compra - Desayunos Estilo Gourmet</title>
         <link rel="icon" href="img/core-img/icono.ico">
         <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/style.css">
         <!-- Bootstrap CDN CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- swal include -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
-        <style>
-            .avatar {
-                height: 150px;
-                width: 150px;
-                background-repeat: no-repeat;
-                background-position: 50%;
-                /*border-radius: 50%;*/
-                background-size: 100% auto;
-                display: inline-block;
-            }
-        
-            /* CSS DEL TOOLTIP*/    
-            #tooltip {
-            position: relative;
-            display: inline-block;
-            }
-
-            #tooltip #tooltiptext {
-            visibility: hidden;
-            width: 220px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            }
-
-            #tooltip #tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-            }
-
-            #tooltip:hover #tooltiptext {
-            visibility: visible;
-            opacity: 1;
-            }
-        /* CSS DEL TOOLTIP*/
-    
-        </style>
     </head>
 
     <body>
@@ -150,6 +99,7 @@ $monto_total = $_POST["monto_total"];
         </div>
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/pagar_carro.js"></script>    
+    <script src="js/pagar_carro.js"></script>
+      
     </body>
     </html>

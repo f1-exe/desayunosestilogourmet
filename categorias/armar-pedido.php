@@ -24,11 +24,8 @@ $resp  = listarProductosArmaTuPedido();
     <link rel="stylesheet" href="../css/core-style.css">
     <link rel="stylesheet" href="../css/style.css">
 
-    <script>
-        function detalle(){
-            window.location.href="product-details.php";
-        }
-    </script>
+    <!-- swal include -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
   
 </head>
 
@@ -123,7 +120,7 @@ $resp  = listarProductosArmaTuPedido();
                     <div class="single-products-catagory clearfix">
                             <div class="col-sm-4 py-2">
                                     <div class="card mt-25" style="width: 18rem;">
-                                            <img class="card-img-top" src="../img/bg-img/1.jpg" alt="Card image cap">
+                                            <img class="card-img-top" src="../img/productos/<?php echo $row["imagen"];?>" alt="Producto Desayuno Estilo Gourmet">
                                             <div class="card-body">
                                                 
                                                 <h5 class="card-title"><?php echo utf8_encode($row["nombre"]);?></h5>
@@ -137,7 +134,7 @@ $resp  = listarProductosArmaTuPedido();
                                                         <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
                                                         <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
                                                         
-                                                        <button type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                                        <button onclick='modal("<?php echo $row["nombre"];?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -232,7 +229,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Plugins js -->
     <script src="../js/plugins.js"></script>
     <!-- Active js -->
-    <script src="../js/active.js"></script> 
+    <script src="../js/active.js"></script>
+    <!--Modal para añadir al carro-->
+    <script src="../js/modal_categorias/anadir_carro.js"></script>  
 
 </body>
 
