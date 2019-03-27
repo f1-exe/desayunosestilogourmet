@@ -120,7 +120,7 @@ $resp  = listarProductosDiaPadre();
                     <div class="single-products-catagory clearfix">
                             <div class="col-sm-4 py-2">
                                     <div class="card mt-25" style="width: 18rem;">
-                                            <img class="card-img-top" src="../img/productos/<?php echo $row["imagen"];?> alt="Card image cap">
+                                            <img class="card-img-top" src="../img/productos/<?php echo $row["imagen"];?>" alt="Card image cap">
                                             <div class="card-body">
                                                 
                                                 <h5 class="card-title"><?php echo utf8_encode($row["nombre"]);?></h5>

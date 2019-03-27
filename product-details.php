@@ -192,7 +192,7 @@ $row = mysqli_fetch_array($resp);
                             </div>
 
                             <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="post">
+                            <form class="cart clearfix" method="POST" action="cart.php">
                                 <div class="cart-btn d-flex mb-50">
                                     <p>Cantidad</p>
                                     <div class="quantity">
@@ -202,6 +202,7 @@ $row = mysqli_fetch_array($resp);
                                     </div>
                                 </div>
                                 <button type="submit" name="addtocart" value="5" class="btn amado-btn">Añadir al carro</button>
+                                <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $row["id"];?>">
                             </form>
 
                         </div>

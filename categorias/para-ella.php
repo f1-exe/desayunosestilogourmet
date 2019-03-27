@@ -24,8 +24,7 @@ $resp  = listarProductosParaEllas();
         <!-- swal include -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
 
-        <script>
-        </script>
+       
     </head>
 
     <body>
@@ -34,7 +33,7 @@ $resp  = listarProductosParaEllas();
         <div class="sticky-container">
             <ul class="sticky">
                 <li>
-                    <a href="cart.php">
+                    <a href="../cart.php">
                         <img src="../img/shopping-cart.png" width="50" height="50">
                     </a>
                 </li>
