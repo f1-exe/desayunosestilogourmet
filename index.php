@@ -113,7 +113,6 @@
 
                 <?php $i=0; while($i < 9){ ?>
                     <!-- Single Catagory -->
-
                     <div class="single-products-catagory clearfix">
                         <div class="col-sm-4 py-2">
                             <div class="card mt-25" style="width: 18rem;">
