@@ -22,7 +22,7 @@ $tbk_codigo_autorizacion =  $result->detailOutput->authorizationCode;
 $codigo_tipo_pago =  $result->detailOutput->paymentTypeCode;
 $tbk_codigo_transaccion =  $result->detailOutput->responseCode;
 $codigo_comercio =  $result->detailOutput->commerceCode;
-$tbk_fecha_transaccion =  $result->transactionDate;
+//$tbk_fecha_transaccion =  $result->transactionDate;
 $tbk_url_retorno = $result->urlRedirection;
 $tbk_vci = $result->VCI;
 
@@ -42,7 +42,7 @@ if($result->detailOutput->responseCode == 0 ){
     //LOS DATOS DE LA TRANSACCION 
 
     //se actualizan los datos de la tabla tbk_transacciones con los datos de la respuesta de transbank
-    actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$tbk_fecha_transaccion,$tbk_url_retorno,$tbk_vci,$orden_compra);
+    actualizarTbk_transacciones($codigo_tipo_pago,$numero_tarjeta,$fecha_expiracion_tarjeta,$tbk_codigo_autorizacion,$tbk_codigo_transaccion,$codigo_comercio,$tbk_url_retorno,$tbk_vci,$orden_compra);
 
     //se actualiza el estado de la compra    
     $estado = $tbk_codigo_transaccion;

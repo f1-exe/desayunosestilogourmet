@@ -1,3 +1,67 @@
+<?php
+session_start();
+//var_dump($_POST);
+
+$conn = mysqli_connect("localhost", "root","", "dev_desayunosgourmet");
+
+if(isset($_SESSION['carrito_compras'])){
+    if(isset($_POST['id_producto'])){
+                $arreglo=$_SESSION['carrito_compras'];
+                $encontro=false;
+                $numero=0;
+                for($i=0;$i<count($arreglo);$i++){
+                    if($arreglo[$i]['Id']==$_POST['id_producto']){
+                        $encontro=true;
+                        $numero=$i;
+                    }
+                }
+                if($encontro==true){
+                    $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
+                    $_SESSION['carrito_compras']=$arreglo;
+                }else{
+                    $nombre="";
+                    $precio=0;
+                    $imagen="";
+                    $re=mysqli_query($conn,"select * from producto where id=".$_POST['id_producto']);
+                    while ($f=mysqli_fetch_array($re)) {
+                        $nombre=$f['nombre'];
+                        $precio=$f['precio'];
+                        $imagen=$f['imagen'];
+                    }
+                    $datosNuevos=array('Id'=>$_POST['id_producto'],
+                                    'Nombre'=>$nombre,
+                                    'Precio'=>$precio,
+                                    'Imagen'=>$imagen,
+                                    'Cantidad'=>1);
+
+                    array_push($arreglo, $datosNuevos);
+                    $_SESSION['carrito_compras']=$arreglo;
+
+                }
+    }
+}else{
+    if(isset($_POST['id_producto'])){
+        $nombre="";
+        $precio=0;
+        $imagen="";
+        $QUERY = "select * from producto where id=".$_POST['id_producto']."";
+        $re=mysqli_query($conn,$QUERY);
+        while ($f=mysqli_fetch_array($re)) {
+            $nombre=$f['nombre'];
+            $precio=$f['precio'];
+            $imagen=$f['imagen'];
+        }
+        $arreglo[]=array('Id'=>$_POST['id_producto'],
+                        'Nombre'=>$nombre,
+                        'Precio'=>$precio,
+                        'Imagen'=>$imagen,
+                        'Cantidad'=>1);
+        $_SESSION['carrito_compras']=$arreglo;
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,53 +82,7 @@
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
     <!--Estilo del date Picker-->
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
-    
-    
-
-    <style>
-        /* CSS DEL TOOLTIP*/    
-        #tooltip {
-        position: relative;
-        display: inline-block;
-        }
-
-        #tooltip #tooltiptext {
-        visibility: hidden;
-        width: 220px;
-        background-color: #555;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -60px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        }
-
-        #tooltip #tooltiptext::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: #555 transparent transparent transparent;
-        }
-
-        #tooltip:hover #tooltiptext {
-        visibility: visible;
-        opacity: 1;
-        }
-        /* CSS DEL TOOLTIP*/
-    </style>
-
-   
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">   
 
     <script>
 
@@ -279,7 +297,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="cart-title mt-50">
-                            <h2>Carro de compras</h2>
+                            <h2>Carrito de compras</h2>
                         </div>
 
                         <div class="cart-table clearfix">
@@ -293,15 +311,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                <?php
+
+                                    if(isset($_SESSION['carrito_compras'])){ 
+                                        $datos=$_SESSION['carrito_compras'];
+                                        $total = 0;
+                                        for($i=0; $i < count($datos); $i++) { 
+                                            
+                                            $total += $datos[$i]["Precio"];
+                                ?>
                                     <tr>
                                         <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart1.jpg" alt="Product"></a>
+                                            <a href="#"><img src="img/productos/<?php echo $datos[$i]['Imagen'];?>" alt="Producto del carrito"></a>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <h5>White Modern Chair</h5>
+                                            <h5><?php echo utf8_encode($datos[$i]['Nombre']);?></h5>
                                         </td>
                                         <td class="price">
-                                            <span>$13.000</span>
+                                            <span><?php echo "$ ".number_format($datos[$i]["Precio"], 0, '', '.');?></span>
                                             <input type="hidden" name="precio_1" id="precio_1" value="13000">
                                         </td>
                                         <td class="qty">
@@ -315,54 +343,18 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart2.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10.000</span>
-                                            <input type="hidden" name="precio_2" id="precio_2" value="10000">
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Cant</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty2" step="1" min="1" max="300" name="quantity" id="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart3.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10.000</span>
-                                            <input type="hidden" name="precio_3" id="precio_3" value="10000">
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Cant</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty3" step="1" min="1" max="300" name="quantity"  id="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php } }else{ ?>
+                                      <tr>
+                                          <td>
+                                               <div>Aún no ha agregado nada a su carrito :c<div>
+                                          </td>
+                                      </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
                             <form action="pagar_carro.php" method="POST" name="form_carro" id="form_carro">
@@ -378,8 +370,8 @@
                                         <span>total:</span>
                                         <span>
                                             <!--<div id="total"></div> -->
-                                            20000
-                                            <input type="hidden" name="monto_total" id="monto_total" value="20000">
+                                            <?php echo "$ ".number_format($total, 0, '', '.');?>
+                                            <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $total; ?>">
                                         </span>
                                     </li>
                                     <li>
@@ -387,7 +379,7 @@
                                         <span>Acepto los <a href="documentos/terminos_condiciones_DEG.pdf" target="_blank">términos y condiciones</a></span>
                                     </li>
                                 </ul>
-                                <div class="cart-btn mt-100">
+                                <div class="cart-btn">
                                     <a href="#" onclick="document.getElementById('form_carro').submit();" class="btn amado-btn w-100">Siguiente paso</a>
                                 </div>
                             </form>
@@ -442,7 +434,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                                 </i>
                                                 <br>
                                                 <i class="fa fa-envelope" aria-hidden="true">
-                                                    <a id="href-footer" href="mailto:contacto@deg.cl" target="_top">contacto@deg.cl</a>
+                                                    <a id="href-footer" href="mailto:ventas@desayunosestilogourmet.cl" target="_top">ventas@desayunosestilogourmet.cl</a>
+                                                </i>
+												<br>
+												<i class="fa fa-envelope" aria-hidden="true">
+                                                    <a id="href-footer" href="mailto:soporte@desayunosestilogourmet.cl" target="_top">soporte@desayunosestilogourmet.cl</a>
                                                 </i>
                                             </p>
                                         </div>

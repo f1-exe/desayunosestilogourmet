@@ -8,7 +8,6 @@ use Freshwork\Transbank\RedirectorHelper;
 include 'vendor/autoload.php';
 include 'funciones/funciones.php';
 
-
 //rescato los datos de la transaccion
 $monto_total = $_POST["monto_total"];
 $nombre_cliente = $_POST["nombre_cliente"];
@@ -16,13 +15,19 @@ $correo_cliente = $_POST["correo_cliente"];
 $id_producto = $_POST["id_producto"];
 $comuna_delivery = $_POST["comuna"];
 $fecha_delivery = $_POST["fecha_delivery"];
-$cantidad = $_POST["cantidad"];
+$cantidad_producto = $_POST["cantidad"];
+$direccion_delivery =  $_POST["direccion_delivery"];
 $mensaje = $_POST['mensaje'];
 
 $orden_compra =  "DEG-".obtenerMaxIdComercio_transacciones();
 
+
 //se registra la compra
-registrarCompra($orden_compra,99,1,$cantidad,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,$mensaje);
+registrarCompra($orden_compra,99,$direccion_delivery,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,$mensaje);
+
+//[CONTINUAR CON LOGICA DESPUES] - NO OLVIDAR
+
+//insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto);
 
 //guardo la orden de compra en sesion para luego rescatar los datos de la transaccion en la vista 
 //boucher_final.php
@@ -45,6 +50,7 @@ exit;
 
 //registro los datos de la transaccion de transbank
 registrarTransaccionTBK($orden_compra,$response->token,"NULL","NULL",0,1,0,$monto_total,"NULL","NULL","NULL");
+
 
 
 //la respuesta me entrega el token y una url donde debe ser redirigido el usuario junto al token

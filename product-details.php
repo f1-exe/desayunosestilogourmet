@@ -1,3 +1,11 @@
+<?php 
+include 'funciones/funciones.php';
+
+$id_producto = $_POST["id_producto"];
+$resp =  verDetalleProducto($id_producto);
+$row = mysqli_fetch_array($resp);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -166,9 +174,9 @@
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price">$ 4.000</p>
-                                <a href="product-details.php">
-                                    <h6>Café</h6>
+                                <p class="product-price"><?php echo "$ ".number_format($row['precio'], 0, '', '.');?></p>
+                                <a href="#">
+                                    <h6><?php echo $row["nombre"];?></h6>
                                 </a>
                                
                                 <!-- Avaiable -->
@@ -178,17 +186,13 @@
                             <div class="short_overview my-5">
                                 <p>
                                     <ul>
-                                        <li>Café</li>
-                                        <li>Tazón</li>
-                                        <li>Azucar rubia</li>
-                                        <li>Posa taza</li>
-                                        <li>Media luna</li>
+                                        <?php echo $row["detalle"];?>
                                     </ul>
                                 </p>
                             </div>
 
                             <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="post">
+                            <form class="cart clearfix" method="POST" action="cart.php">
                                 <div class="cart-btn d-flex mb-50">
                                     <p>Cantidad</p>
                                     <div class="quantity">
@@ -198,6 +202,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" name="addtocart" value="5" class="btn amado-btn">Añadir al carro</button>
+                                <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $row["id"];?>">
                             </form>
 
                         </div>
@@ -251,7 +256,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                                 </i>
                                                 <br>
                                                 <i class="fa fa-envelope" aria-hidden="true">
-                                                    <a id="href-footer" href="mailto:contacto@deg.cl" target="_top">contacto@deg.cl</a>
+                                                    <a id="href-footer" href="mailto:ventas@desayunosestilogourmet.cl" target="_top">ventas@desayunosestilogourmet.cl</a>
+                                                </i>
+												<br>
+												<i class="fa fa-envelope" aria-hidden="true">
+                                                    <a id="href-footer" href="mailto:soporte@desayunosestilogourmet.cl" target="_top">soporte@desayunosestilogourmet.cl</a>
                                                 </i>
                                             </p>
                                         </div>
