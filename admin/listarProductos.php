@@ -202,7 +202,7 @@ function name($paso){
                               <td>
                                 <div class="avatar" style="background-image: url(../img/productos/<?php echo $row['imagen']; ?>)"></div>
                               </td>
-                              <td><?php echo $row['nombreP']; ?></td>
+                              <td><?php echo utf8_encode($row['nombreP']); ?></td>
 
                               <?php if($row['idC'] == 1){?>
                                 <td><a href="#" class="card-post__category badge badge-pill badge-primary"><?php echo utf8_encode($row['nombreC']); ?></a></td>
@@ -227,7 +227,7 @@ function name($paso){
                               <td><?php echo "$ ".number_format($row['precio'], 0, '', '.'); ?></td>
                               <td><?php echo $row['stock'];?></td>
                               <td>
-                                <a href="#" onclick='modal("<?php echo name($row["detalle"])?>", "Detalle")'>Ver</a>
+                                <a href="#" onclick='modal("<?php echo utf8_encode(name($row["detalle"]))?>", "Detalle")'>Ver</a>
                               </td>
                               <td><?php echo substr($row['fecha'], 0, 10);?></td>
                               <td>

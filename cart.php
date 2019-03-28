@@ -316,15 +316,17 @@ if(isset($_SESSION['carrito_compras'])){
 
                                     if(isset($_SESSION['carrito_compras'])){ 
                                         $datos=$_SESSION['carrito_compras'];
+                                        $total = 0;
                                         for($i=0; $i < count($datos); $i++) { 
-
+                                            
+                                            $total += $datos[$i]["Precio"];
                                 ?>
                                     <tr>
                                         <td class="cart_product_img">
                                             <a href="#"><img src="img/productos/<?php echo $datos[$i]['Imagen'];?>" alt="Producto del carrito"></a>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <h5><?php echo $datos[$i]['Nombre'];?></h5>
+                                            <h5><?php echo utf8_encode($datos[$i]['Nombre']);?></h5>
                                         </td>
                                         <td class="price">
                                             <span><?php echo "$ ".number_format($datos[$i]["Precio"], 0, '', '.');?></span>
@@ -368,8 +370,8 @@ if(isset($_SESSION['carrito_compras'])){
                                         <span>total:</span>
                                         <span>
                                             <!--<div id="total"></div> -->
-                                            20000
-                                            <input type="hidden" name="monto_total" id="monto_total" value="20000">
+                                            <?php echo "$ ".number_format($total, 0, '', '.');?>
+                                            <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $total; ?>">
                                         </span>
                                     </li>
                                     <li>
@@ -377,7 +379,7 @@ if(isset($_SESSION['carrito_compras'])){
                                         <span>Acepto los <a href="documentos/terminos_condiciones_DEG.pdf" target="_blank">términos y condiciones</a></span>
                                     </li>
                                 </ul>
-                                <div class="cart-btn mt-100">
+                                <div class="cart-btn">
                                     <a href="#" onclick="document.getElementById('form_carro').submit();" class="btn amado-btn w-100">Siguiente paso</a>
                                 </div>
                             </form>

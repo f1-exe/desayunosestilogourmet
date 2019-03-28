@@ -134,7 +134,7 @@ $resp  = listarProductosArmaTuPedido();
                                                         <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
                                                         <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
                                                         
-                                                        <button onclick='modal("<?php echo $row["nombre"];?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                                        <button onclick='modalIndex("<?php echo utf8_encode($row["nombre"]);?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
                                                     </div>
                                                 </form>
                                             </div>
