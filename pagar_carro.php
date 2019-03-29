@@ -1,6 +1,8 @@
 <?php 
+include 'funciones/funciones.php';
 
 $monto_total = $_POST["monto_total"];
+$resp = listarComunas();
 
 ?>
     <!DOCTYPE html>
@@ -56,9 +58,9 @@ $monto_total = $_POST["monto_total"];
                                     <select name="comuna" id="comuna" class="form-control">
                                         
                                         <option value="0">Seleccione comuna</option>
-                                        <?php $i=1; while($i<=30){ ?>
-                                            <option value="<?php echo $i;?>">Comuna <?php echo $i;?></option>
-                                        <?php $i++; } ?>   
+                                        <?php while($row =  mysqli_fetch_array($resp)){ ?>
+                                            <option value="<?php echo $row["id"];?>">Comuna <?php echo utf8_encode($row["nombre"])." - $".number_format($row["valor"], 0, '', '.');;?></option>
+                                        <?php } ?>   
                                     </select>
                                 </div>
                             </div>

@@ -81,6 +81,7 @@ $row = mysqli_fetch_array($resp);
                     <li><a href="categorias/para-ella.php">Para Ella</a></li>
                     <li><a href="categorias/para-el.php">Para Él</a></li>
                     <li><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
+                    <li><a href="categorias/nacimientos.php">Nacimientos</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -115,21 +116,133 @@ $row = mysqli_fetch_array($resp);
 
         <!-- Product Details Area Start -->
         <div class="single-product-area section-padding-100 clearfix">
-            <div class="container-fluid">
-
-                <!--<div class="row">
-                    <div class="col-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mt-50">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Furniture</a></li>
-                                <li class="breadcrumb-item"><a href="#">Chairs</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">white modern chair</li>
-                            </ol>
-                        </nav>
+            <div class="mt-3 ml-20">
+                <h2>Detalle del producto</h2>
+                <p>Revisa aquí el detalle de los productos</p>
+            </div>
+        <!--BREAD CRUMBS POR CATEGORIA-->
+        <?php if($row["categoria"] == 1){ ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="categorias/para-ella.php">Para Ellas</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
-                </div> -->
+                <?php }else if($row["categoria"] == 2){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/para-el.php">Para Él</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php }else if($row["categoria"] == 3){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php }else if($row["categoria"] == 4){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/nacimientos.php">Nacimientos</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php }else if($row["categoria"] == 5){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/dia-padre.php">Día del padre</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php }else if($row["categoria"] == 6){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/dia-madre.php">Día de la madre</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php }else if($row["categoria"] == 7){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/san-valentin.php">San valentín</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php }else if($row["categoria"] == 8){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/armar-pedido.php">Arma tu pedido</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php }else if($row["categoria"] == 9){ ?>
+                    <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="categorias/promociones.php">Promociones</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Detalle producto</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><?php echo utf8_encode($row["nombre"]);?></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    </div>
+                <?php } ?>          
 
+                <!--BREAD CRUMBS POR CATEGORIA-->
+            
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-lg-7">
                         <div class="single_product_thumb">
@@ -176,7 +289,7 @@ $row = mysqli_fetch_array($resp);
                                 <div class="line"></div>
                                 <p class="product-price"><?php echo "$ ".number_format($row['precio'], 0, '', '.');?></p>
                                 <a href="#">
-                                    <h6><?php echo $row["nombre"];?></h6>
+                                    <h6><?php echo utf8_encode($row["nombre"]);?></h6>
                                 </a>
                                
                                 <!-- Avaiable -->
@@ -186,7 +299,7 @@ $row = mysqli_fetch_array($resp);
                             <div class="short_overview my-5">
                                 <p>
                                     <ul>
-                                        <?php echo $row["detalle"];?>
+                                        <?php echo utf8_encode($row["detalle"]);?>
                                     </ul>
                                 </p>
                             </div>

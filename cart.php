@@ -1,32 +1,33 @@
 <?php
 session_start();
-//var_dump($_POST);
+//var_dump($_POST); 
+$total = 0;
 
 $conn = mysqli_connect("localhost", "root","", "dev_desayunosgourmet");
 
 if(isset($_SESSION['carrito_compras'])){
     if(isset($_POST['id_producto'])){
-                $arreglo=$_SESSION['carrito_compras'];
-                $encontro=false;
-                $numero=0;
-                for($i=0;$i<count($arreglo);$i++){
-                    if($arreglo[$i]['Id']==$_POST['id_producto']){
-                        $encontro=true;
-                        $numero=$i;
-                    }
+            $arreglo=$_SESSION['carrito_compras'];
+            $encontro=false;
+            $numero=0;
+            for($i=0;$i<count($arreglo);$i++){
+                if($arreglo[$i]['Id']==$_POST['id_producto']){
+                    $encontro=true;
+                    $numero=$i;
                 }
-                if($encontro==true){
-                    $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
-                    $_SESSION['carrito_compras']=$arreglo;
-                }else{
-                    $nombre="";
-                    $precio=0;
-                    $imagen="";
-                    $re=mysqli_query($conn,"select * from producto where id=".$_POST['id_producto']);
-                    while ($f=mysqli_fetch_array($re)) {
-                        $nombre=$f['nombre'];
-                        $precio=$f['precio'];
-                        $imagen=$f['imagen'];
+            }
+            if($encontro==true){
+                $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
+                $_SESSION['carrito_compras']=$arreglo;
+            }else{
+                $nombre="";
+                $precio=0;
+                $imagen="";
+                $re=mysqli_query($conn,"select * from producto where id=".$_POST['id_producto']);
+                while ($f=mysqli_fetch_array($re)) {
+                    $nombre=$f['nombre'];
+                    $precio=$f['precio'];
+                    $imagen=$f['imagen'];
                     }
                     $datosNuevos=array('Id'=>$_POST['id_producto'],
                                     'Nombre'=>$nombre,
@@ -260,6 +261,7 @@ if(isset($_SESSION['carrito_compras'])){
                     <li><a href="categorias/para-ella.php">Para Ella</a></li>
                     <li><a href="categorias/para-el.php">Para Él</a></li>
                     <li><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
+                    <li><a href="categorias/nacimientos.php">Nacimientos</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -316,7 +318,6 @@ if(isset($_SESSION['carrito_compras'])){
 
                                     if(isset($_SESSION['carrito_compras'])){ 
                                         $datos=$_SESSION['carrito_compras'];
-                                        $total = 0;
                                         for($i=0; $i < count($datos); $i++) { 
                                             
                                             $total += $datos[$i]["Precio"];

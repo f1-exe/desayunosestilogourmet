@@ -1,6 +1,6 @@
 <?php
-include 'funciones/funciones.php';
-$resp =  listarProductosIndex();
+include '../funciones/funciones.php';
+$resp  = listarProductosNacimientos();
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -13,30 +13,18 @@ $resp =  listarProductosIndex();
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title  -->
-        <title>Inicio - Desayunos estilo gourmet</title>
+        <title>Nacimientos - Desayunos estilo gourmet</title>
 
         <!-- Favicon  -->
-        <link rel="icon" href="img/core-img/icono.ico">
+        <link rel="icon" href="../img/core-img/icono.ico">
 
         <!-- Core Style CSS -->
-        <link rel="stylesheet" href="css/core-style.css">
-        <link rel="stylesheet" href="css/style.css">
-
+        <link rel="stylesheet" href="../css/core-style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <!-- swal include -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
 
-        <style>
-            .avatar {
-                height: 150px;
-                width: 150px;
-                background-repeat: no-repeat;
-                background-position: 50%;
-                border-radius: 50%;
-                background-size: 100% auto;
-                display: inline-block;
-            }
-        </style>
-
+       
     </head>
 
     <body>
@@ -45,8 +33,8 @@ $resp =  listarProductosIndex();
         <div class="sticky-container">
             <ul class="sticky">
                 <li>
-                    <a href="cart.php">
-                        <img src="img/shopping-cart.png" width="50" height="50">
+                    <a href="../cart.php">
+                        <img src="../img/shopping-cart.png" width="50" height="50">
                     </a>
                 </li>
                 <div id="contador_carro">
@@ -63,7 +51,7 @@ $resp =  listarProductosIndex();
             <div class="mobile-nav">
                 <!-- Navbar Brand -->
                 <div class="amado-navbar-brand">
-                    <a href="index.php"><img src="img/core-img/logo_deg.png" alt="Desayunos Estilo Gourmet"></a>
+                    <a href="../index.php"><img src="../img/core-img/logo_deg.png" alt=""></a>
                 </div>
                 <!-- Navbar Toggler -->
                 <div class="amado-navbar-toggler">
@@ -79,32 +67,32 @@ $resp =  listarProductosIndex();
                 </div>
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.php"><img src="img/core-img/logo_deg.png" alt=""></a>
+                    <a href="../index.php"><img src="../img/core-img/logo_deg.png" alt=""></a>
                 </div>
                 <!-- Amado Nav -->
                 <nav class="amado-nav">
                     <ul id="exampleAccordion">
-                        <li class="active"><a href="index.php">Categorías</a></li>
-                        <li><a href="categorias/para-ella.php">Para Ella</a></li>
-                        <li><a href="categorias/para-el.php">Para Él</a></li>
-                        <li><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
-                        <li><a href="categorias/nacimientos.php">Nacimientos</a></li>
+                        <li class="active"><a href="../index.php">Categorías</a></li>
+                        <li><a href="para-ella.php">Para Ella</a></li>
+                        <li><a href="para-el.php">Para Él</a></li>
+                        <li><a href="cumpleanos.php">Cumpleaños</a></li>
+                        <li><a href="nacimientos.php">Nacimientos</a></li>
                         <li>
                             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                             <ul class="sidenav-second-level collapse" id="collapseComponents">
                                 <li>
-                                    <a href="categorias/dia-padre.php">Día del padre</a>
+                                    <a href="dia-padre.php">Día del padre</a>
                                 </li>
                                 <li>
-                                    <a href="categorias/dia-madre.php">Día de la madre</a>
+                                    <a href="dia-madre.php">Día de la madre</a>
                                 </li>
                                 <li>
-                                    <a href="categorias/san-valentin.php">San valentín</a>
+                                    <a href="san-valentin.php">San valentín</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="categorias/armar-pedido.php">Arma tu pedido</a></li>
-                        <li><a href="categorias/promociones.php">Promociones</a></li>
+                        <li><a href="armar-pedido.php">Arma tu pedido</a></li>
+                        <li><a href="promociones.php">Promociones</a></li>
                     </ul>
                 </nav>
                 <!-- Button Group
@@ -116,7 +104,7 @@ $resp =  listarProductosIndex();
                 <hr>
                 <!-- Cart Menu -->
                 <div class="cart-fav-search mb-100">
-                    <a href="informaciones.php" class="cart-nav"><img src="img/info-yellow.png" alt=""> Informaciones</a>
+                    <a href="../informaciones.php" class="cart-nav"><img src="../img/info-yellow.png" alt="Carrito compra"> Informaciones</a>
                 </div>
             </header>
             <!-- Header Area End -->
@@ -124,45 +112,45 @@ $resp =  listarProductosIndex();
             <!-- Product Catagories Area Start -->
             <div class="products-catagories-area clearfix">
                     <div class="mt-3 ml-20">
-                        <h2>Bienvenido a Desayunos estilo gourmet</h2>
-                        <p>Navega por nuestro sitio y regala desayunos a todos tus seres queridos 😍</p>
-                    </div>
+                        <h2>Categorias/ Nacimientos</h2>
+                        <p>Productos seleccionados especialmente para los nacimientos</p>
+                    </div> 
                 <div class="amado-pro-catagory clearfix">
 
-                    <?php while($row =  mysqli_fetch_array($resp)){ ?>
+                    <?php  while($row =  mysqli_fetch_array($resp)){ ?>
                         <!-- Single Catagory -->
 
                         <div class="single-products-catagory clearfix">
                             <div class="col-sm-4 py-2">
                                 <div class="card mt-25" style="width: 18rem;">
-                                    <img class="card-img-top" src="img/productos/<?php echo $row["imagen"];?>" alt="Producto Desayuno Estilo Gourmet">
+                                    <img class="card-img-top" src="../img/productos/<?php echo $row["imagen"];?>" alt="Producto Desayuno Estilo Gourmet">
                                     <div class="card-body">
 
-                                        <h5 class="card-title"><?php echo utf8_encode($row["nombre"]);?></h5>
+                                        <h5 class="card-title"><?php echo $row["nombre"];?></h5>
                                         <p class="card-text">
                                             Precio :
                                             <?php echo "$ ".number_format($row['precio'], 0, '', '.');?>
-                                                <br>
+                                            <br>
 
                                         </p>
-                                        <form name="form_detalle_prod" method="POST" action="product-details.php">
+
+                                        <form name="form_detalle_prod" method="POST" action="../product-details.php">
                                             <div style="text-align:center">
 
                                                 <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
                                                 <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
 
-                                                <button onclick='modalIndex("<?php echo $row["nombre"];?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                                <button onclick='modalIndex("<?php echo utf8_encode($row["nombre"]);?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php  } ?>
 
+                        <?php  } ?>
                 </div>
             </div>
-            <!-- Product Catagories Area End -->
         </div>
         <!-- ##### Main Content Wrapper End ##### -->
 
@@ -175,7 +163,7 @@ $resp =  listarProductosIndex();
                         <div class="single_widget_area">
                             <!-- Logo -->
                             <div class="footer-logo mr-50">
-                                <a href="index.php"><img src="img/core-img/logo2.png" alt=""></a>
+                                <a href="../index.php"><img src="../img/core-img/logo2.png" alt=""></a>
                             </div>
                             <!-- Copywrite Text -->
                             <p class="copywrite">
@@ -189,7 +177,6 @@ $resp =  listarProductosIndex();
 
                             <!-- Social Button -->
                             <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-
                             <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                             <!-- Social Button -->
 
@@ -214,11 +201,11 @@ $resp =  listarProductosIndex();
                                                 <br>
                                                 <i class="fa fa-envelope" aria-hidden="true">
                                                     <a id="href-footer" href="mailto:ventas@desayunosestilogourmet.cl" target="_top">ventas@desayunosestilogourmet.cl</a>
-                                            </i>
+                                                </i>
                                                 <br>
                                                 <i class="fa fa-envelope" aria-hidden="true">
                                                     <a id="href-footer" href="mailto:soporte@desayunosestilogourmet.cl" target="_top">soporte@desayunosestilogourmet.cl</a>
-                                            </i>
+                                                </i>
                                             </p>
                                         </div>
                                     </div>
@@ -232,17 +219,17 @@ $resp =  listarProductosIndex();
         <!-- ##### Footer Area End ##### -->
 
         <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
-        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="../js/jquery/jquery-2.2.4.min.js"></script>
         <!-- Popper js -->
-        <script src="js/popper.min.js"></script>
+        <script src="../js/popper.min.js"></script>
         <!-- Bootstrap js -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <!-- Plugins js -->
-        <script src="js/plugins.js"></script>
+        <script src="../js/plugins.js"></script>
         <!-- Active js -->
-        <script src="js/active.js"></script>
+        <script src="../js/active.js"></script>
         <!--Modal para añadir al carro-->
-        <script src="js/modal_categorias/anadir_carro.js"></script>
+        <script src="../js/modal_categorias/anadir_carro.js"></script>  
 
     </body>
 

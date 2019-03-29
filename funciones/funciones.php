@@ -342,3 +342,11 @@ function listarProductosPromociones(){
 
 
 /**************************[SECCION PARA LISTAR PRODUCTOS POR CATEGORIAS]********************************/
+
+//funcion para listar comunas 
+function listarComunas(){
+  global $conn;
+  $query = "SELECT * FROM comunas";
+  $resp =  mysqli_query($conn,$query);  
+  return $resp;
+}
