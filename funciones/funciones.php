@@ -350,3 +350,11 @@ function listarComunas(){
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
+
+//funcion para traer los datos de la comuna por id comuna
+function getDatosComuna($id){
+  global $conn;
+  $query =  "SELECT * FROM comunas WHERE id =  ".$id."";
+  $resp =  mysqli_query($conn,$query);
+  return $resp;
+}

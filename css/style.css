@@ -152,3 +152,10 @@ visibility: visible;
 opacity: 1;
 }
 /* CSS DEL TOOLTIP*/
+
+/*btn eliminar del carro*/
+.btn-eliminar-carro{
+    width: 120px;
+    margin-top: 5px;
+}
+/*btn eliminar del carro*/
