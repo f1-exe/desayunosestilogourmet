@@ -52,7 +52,7 @@ function modalIndex(nombre_producto, precio,id,imagen){
                 '<td colspan="2"><a href="javascript:void(0)" onclick="Swal.close();"><button class="btn btn-primary">Seguir comprando</button></a><td>&nbsp;&nbsp;'+
                 '<td colspan="2"><a href="/Proyectos/desayunosestilogourmet/cart.php"><button class="btn btn-warning" style="color:white;">Revisar el carrito</button></a><td>'+
                 '<hr>'+
-                '<a href="javascript:void(0)" onclick="Swal.close();">o siguir comprando</a>'+
+                '<a href="javascript:void(0)">Desayunos Estilo Gourmet</a>'+
             '</div>',
         imageUrl: '/Proyectos/desayunosestilogourmet/img/productos/'+imagen,
         imageWidth: 200,
