@@ -35,7 +35,7 @@ $resp  = listarProductosParaEl();
 <div class="sticky-container">
     <ul class="sticky">
         <li>
-            <a href="cart.php">
+            <a href="../cart.php">
                 <img src="../img/shopping-cart.png" width="50" height="50">
             </a>
         </li>
@@ -78,6 +78,7 @@ $resp  = listarProductosParaEl();
                     <li><a href="para-ella.php">Para Ella</a></li>
                     <li><a href="para-el.php">Para Él</a></li>
                     <li><a href="cumpleanos.php">Cumpleaños</a></li>
+                    <li><a href="nacimientos.php">Nacimientos</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -96,12 +97,6 @@ $resp  = listarProductosParaEl();
                     <li><a href="promociones.php">Promociones</a></li>
                 </ul>
             </nav>
-            <!-- Button Group
-            <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
-            </div> 
-            -->
             <hr>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
@@ -112,8 +107,12 @@ $resp  = listarProductosParaEl();
 
         <!-- Product Catagories Area Start -->
         <div class="products-catagories-area clearfix">
-            <div class="amado-pro-catagory clearfix">
+                <div class="mt-3 ml-20">
+                    <h2>Categorias/ Para Él</h2>
+                    <p>Los mejores productos para regalonearlo a él</p>
+                </div>
 
+            <div class="amado-pro-catagory clearfix">
             <?php while($row =  mysqli_fetch_array($resp)){ ?>
                 <!-- Single Catagory -->
                 

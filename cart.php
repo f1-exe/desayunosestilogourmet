@@ -1,32 +1,33 @@
 <?php
 session_start();
-//var_dump($_POST);
+//var_dump($_POST); 
+$total = 0;
 
 $conn = mysqli_connect("localhost", "root","", "dev_desayunosgourmet");
 
 if(isset($_SESSION['carrito_compras'])){
     if(isset($_POST['id_producto'])){
-                $arreglo=$_SESSION['carrito_compras'];
-                $encontro=false;
-                $numero=0;
-                for($i=0;$i<count($arreglo);$i++){
-                    if($arreglo[$i]['Id']==$_POST['id_producto']){
-                        $encontro=true;
-                        $numero=$i;
-                    }
+            $arreglo=$_SESSION['carrito_compras'];
+            $encontro=false;
+            $numero=0;
+            for($i=0;$i<count($arreglo);$i++){
+                if($arreglo[$i]['Id']==$_POST['id_producto']){
+                    $encontro=true;
+                    $numero=$i;
                 }
-                if($encontro==true){
-                    $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
-                    $_SESSION['carrito_compras']=$arreglo;
-                }else{
-                    $nombre="";
-                    $precio=0;
-                    $imagen="";
-                    $re=mysqli_query($conn,"select * from producto where id=".$_POST['id_producto']);
-                    while ($f=mysqli_fetch_array($re)) {
-                        $nombre=$f['nombre'];
-                        $precio=$f['precio'];
-                        $imagen=$f['imagen'];
+            }
+            if($encontro==true){
+                $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
+                $_SESSION['carrito_compras']=$arreglo;
+            }else{
+                $nombre="";
+                $precio=0;
+                $imagen="";
+                $re=mysqli_query($conn,"select * from producto where id=".$_POST['id_producto']);
+                while ($f=mysqli_fetch_array($re)) {
+                    $nombre=$f['nombre'];
+                    $precio=$f['precio'];
+                    $imagen=$f['imagen'];
                     }
                     $datosNuevos=array('Id'=>$_POST['id_producto'],
                                     'Nombre'=>$nombre,
@@ -81,148 +82,6 @@ if(isset($_SESSION['carrito_compras'])){
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
-    <!--Estilo del date Picker-->
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">   
-
-    <script>
-
-        function valores(){
-
-            //validacion de terminos  condiciones
-            var terms_conds = $('#terms').prop('checked');
-
-            //cambiar por swal luego
-            if(!terms_conds){
-                alert('Para comprar debes aceptar los términos y condiciones');
-                return false;
-            }
-
-            var precio_1 =  parseInt(document.getElementById("precio_1").value);
-            var precio_2 =  parseInt(document.getElementById("precio_2").value);
-            var precio_3 =  parseInt(document.getElementById("precio_3").value);
-
-           
-
-            console.log("precios 1-->"+precio_1+"precios 2-->"+precio_2+"precios 3-->"+precio_3);
-
-           
-
-            sum =  precio_1 + precio_2 + precio_3;
-
-            console.log('total _--->'+sum);
-
-
-
-            return sum;
-
-
-        }
-
-        function subtotalmenos(){
-            var operacion = 0;
-            var precio_1 =  parseInt(document.getElementById("precio_1").value);
-            
-
-            var  qty =  parseInt(document.getElementById("qty").value);
-            document.getElementById("qty").value = qty-1;
-
-            //asi se rescata el valor dentro de un div
-            var val_actual = parseInt(document.getElementById('subtotal').innerHTML);      
-
-            console.log('valor del div --->'+val_actual);
-
-             operacion =  val_actual - precio_1;
-
-             console.log("operacion --->" + operacion);
-
-             document.getElementById("subtotal").innerHTML = operacion;
-             document.getElementById("total").innerHTML = operacion;
-
-        }
-
-        function subtotalmas(){
-
-            var sub_operacion = 0;
-            var total = 0;
-            var precio_1 =  parseInt(document.getElementById("precio_1").value);
-            
-            console.log("precio 1 ---->"+precio_1);
-
-            var  qty = parseInt(document.getElementById("qty").value);
-            document.getElementById("qty").value = qty + 1;
-
-            console.log("qty -->"+qty);
-
-            sub_operacion = precio_1 * qty;
-
-            console.log("sub_operacion --->" + sub_operacion);
-
-            total =  valores() + sub_operacion;
-
-            console.log("total --->" + total);
-
-
-            document.getElementById("subtotal").innerHTML = total;
-            document.getElementById("total").innerHTML = total;
-            
-            return total;
-
-
-        }
-
-
-
-        function delivery_si(){
-            var val_con_delivery = 0;
-            var delivery =  document.getElementById("delivery").value;
-
-            var val_actual =  parseInt(document.getElementById("subtotal").innerHTML);
-
-            console.log('delivery valor -->' + delivery);
-            
-            if(delivery ==   0){
-
-                val_con_delivery =  val_actual + 5000;
-            }
-
-            console.log('valor con delivery --->' + val_con_delivery);
-
-           //se muestra el valor adicional por delivery
-           $("#delivery_span").show(1000);
-
-           document.getElementById("total").innerHTML = val_con_delivery;
-          
-        }
-
-        function delivery_no(){
-            var val_sin_delivery = 0;
-            var delivery =  document.getElementById("delivery").value;
-
-            console.log('delivery valor -->' + delivery);
-
-            var val_actual =  parseInt(document.getElementById("subtotal").innerHTML);
-
-            if(delivery == 1){
-                val_sin_delivery =  val_actual - 5000;
-            }
-            
-            if(delivery ==   0){
-
-                val_sin_delivery =  val_actual;
-            }
-
-            console.log('valor sin  delivery --->' + val_sin_delivery);
-
-            //se oculta el valor adicional por delivery
-            $("#delivery_span").hide(1000);
-
-            document.getElementById("total").innerHTML = val_sin_delivery;
-
-        }
-      
-
-
-    </script>
 
 </head>
 
@@ -260,6 +119,7 @@ if(isset($_SESSION['carrito_compras'])){
                     <li><a href="categorias/para-ella.php">Para Ella</a></li>
                     <li><a href="categorias/para-el.php">Para Él</a></li>
                     <li><a href="categorias/cumpleanos.php">Cumpleaños</a></li>
+                    <li><a href="categorias/nacimientos.php">Nacimientos</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -310,13 +170,12 @@ if(isset($_SESSION['carrito_compras'])){
                                         <th>Cantidad</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="table-content">
 
                                 <?php
 
                                     if(isset($_SESSION['carrito_compras'])){ 
                                         $datos=$_SESSION['carrito_compras'];
-                                        $total = 0;
                                         for($i=0; $i < count($datos); $i++) { 
                                             
                                             $total += $datos[$i]["Precio"];
@@ -336,12 +195,15 @@ if(isset($_SESSION['carrito_compras'])){
                                             <div class="qty-btn d-flex">
                                                 <p>Cant</p>
                                                 <div class="quantity">
-                                                    <span class="qty-minus" id="cant_menos_1" onclick="subtotalmenos()"><i class="fa fa-minus" aria-hidden="true" style="color: red;"></i></span>
+                                                    <span class="qty-minus" id="cant_menos_1"><i class="fa fa-minus" aria-hidden="true" style="color: red;"></i></span>
                                                     <input type="number" class="qty-text" id="qty" step="1" name="quantity" id="quantity" value="1">
-                                                    <span class="qty-plus" id="cant_mas_1" onclick="subtotalmas()"><i class="fa fa-plus" aria-hidden="true" style="color:green"></i></span>
+                                                    <span class="qty-plus" id="cant_mas_1"><i class="fa fa-plus" aria-hidden="true" style="color:green"></i></span>
                                                 </div>
+                                                
                                             </div>
+                                            <button data-id="<?php echo $datos[$i]["Id"];?>" name="btn_eliminar" id="btn_eliminar" class="btn btn-danger btn-sm btn-eliminar-carro">Eliminar</button>
                                         </td>
+                                       
                                     </tr>
                                     <?php } }else{ ?>
                                       <tr>
@@ -357,21 +219,16 @@ if(isset($_SESSION['carrito_compras'])){
                     
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
-                            <form action="pagar_carro.php" method="POST" name="form_carro" id="form_carro">
+                            <form action="completar_datos.php" method="POST" name="form_carro" id="form_carro">
                                 <h5>Total del carro</h5>
                                 <ul class="summary-table">
                                     <li>
                                         <span>subtotal:</span>
                                         <span>
-                                            <div id="subtotal"></div>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>total:</span>
-                                        <span>
-                                            <!--<div id="total"></div> -->
-                                            <?php echo "$ ".number_format($total, 0, '', '.');?>
-                                            <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $total; ?>">
+                                            <span>
+                                                <?php echo "$ ".number_format($total, 0, '', '.');?>
+                                                <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $total; ?>">
+                                            </span>
                                         </span>
                                     </li>
                                     <li>
@@ -462,6 +319,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
+    <script>
+        $(document).ready(function() {
+           
+        });
+        
+        //funcion para eliminar producto del carro
+        $('.btn').click(function(){
+
+            var id_producto = $(this).attr('data-id');
+            $(this).parentsUntil('.table-content').remove();
+            $.post("eliminar_producto.php",{
+                Id:id_producto
+            },function(response){
+
+                if(response == '0'){
+                    window.location.href="cart.php";
+                }
+
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>

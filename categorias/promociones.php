@@ -35,7 +35,7 @@ $resp  = listarProductosPromociones();
 <div class="sticky-container">
     <ul class="sticky">
         <li>
-            <a href="cart.php">
+            <a href="../cart.php">
                 <img src="../img/shopping-cart.png" width="50" height="50">
             </a>
         </li>
@@ -78,6 +78,7 @@ $resp  = listarProductosPromociones();
                     <li><a href="para-ella.php">Para Ella</a></li>
                     <li><a href="para-el.php">Para Él</a></li>
                     <li><a href="cumpleanos.php">Cumpleaños</a></li>
+                    <li><a href="nacimientos.php">Nacimientos</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -112,8 +113,11 @@ $resp  = listarProductosPromociones();
 
         <!-- Product Catagories Area Start -->
         <div class="products-catagories-area clearfix">
+                <div class="mt-3 ml-20">
+                    <h2>Categorias/ Promoción</h2>
+                    <p>Estás indeciso o indecisa aun en cuanto a qué llevar, revisa estas promos</p>
+                </div>
             <div class="amado-pro-catagory clearfix">
-
             <?php while($row =  mysqli_fetch_array($resp)){ ?>
                 <!-- Single Catagory -->
                 

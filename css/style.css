@@ -76,6 +76,13 @@
 }
 /*margen de 25 para cuando sea necesario*/
 
+
+/*margen de 20 a la izquierda para cuando sea necesario*/
+.ml-20{
+    margin-left: 20px;
+}
+/*margen de 20 a la izquierda para cuando sea necesario*/
+
 /*
 centra el contenido con respecto a la barra de categorias y el resto de la pantalla
 se usa en : informaciones.php
@@ -145,3 +152,10 @@ visibility: visible;
 opacity: 1;
 }
 /* CSS DEL TOOLTIP*/
+
+/*btn eliminar del carro*/
+.btn-eliminar-carro{
+    width: 120px;
+    margin-top: 5px;
+}
+/*btn eliminar del carro*/

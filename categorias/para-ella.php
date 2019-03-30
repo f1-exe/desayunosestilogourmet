@@ -76,6 +76,7 @@ $resp  = listarProductosParaEllas();
                         <li><a href="para-ella.php">Para Ella</a></li>
                         <li><a href="para-el.php">Para Él</a></li>
                         <li><a href="cumpleanos.php">Cumpleaños</a></li>
+                        <li><a href="nacimientos.php">Nacimientos</a></li>
                         <li>
                             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                             <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -110,6 +111,10 @@ $resp  = listarProductosParaEllas();
 
             <!-- Product Catagories Area Start -->
             <div class="products-catagories-area clearfix">
+                    <div class="mt-3 ml-20">
+                        <h2>Categorias/ Para Ellas</h2>
+                        <p>Productos seleccionados especialmente para nosotras</p>
+                    </div> 
                 <div class="amado-pro-catagory clearfix">
 
                     <?php  while($row =  mysqli_fetch_array($resp)){ ?>

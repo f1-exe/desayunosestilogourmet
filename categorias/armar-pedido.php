@@ -35,7 +35,7 @@ $resp  = listarProductosArmaTuPedido();
 <div class="sticky-container">
     <ul class="sticky">
         <li>
-            <a href="cart.php">
+            <a href="../cart.php">
                 <img src="../img/shopping-cart.png" width="50" height="50">
             </a>
         </li>
@@ -78,6 +78,7 @@ $resp  = listarProductosArmaTuPedido();
                     <li><a href="para-ella.php">Para Ella</a></li>
                     <li><a href="para-el.php">Para Él</a></li>
                     <li><a href="cumpleanos.php">Cumpleaños</a></li>
+                    <li><a href="nacimientos.php">Nacimientos</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
                         <ul class="sidenav-second-level collapse" id="collapseComponents">
@@ -112,8 +113,11 @@ $resp  = listarProductosArmaTuPedido();
 
         <!-- Product Catagories Area Start -->
         <div class="products-catagories-area clearfix">
+                <div class="mt-3 ml-20">
+                    <h2>Categorias/ Arma tu pedido</h2>
+                    <p>Escoge lo que más te guste de los productos y armalo a tu pinta </p>
+                </div>
             <div class="amado-pro-catagory clearfix">
-
             <?php while($row =  mysqli_fetch_array($resp)){ ?>
                 <!-- Single Catagory -->
                 
@@ -133,6 +137,7 @@ $resp  = listarProductosArmaTuPedido();
 
                                                         <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
                                                         <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
+                                                        
                                                         
                                                         <button onclick='modalIndex("<?php echo utf8_encode($row["nombre"]);?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
                                                     </div>
