@@ -22,7 +22,7 @@ function modal(nombre_producto, precio,id,imagen){
                 '<hr>'+
                 '<a href="javascript:void(0)" onclick="Swal.close();">o siguir comprando</a>'+
             '</div>',
-        imageUrl: '/Proyectos/desayunosestilogourmet/img/productos/'+imagen,
+        imageUrl: '/desayunosestilogourmet/img/productos/'+imagen,
         imageWidth: 200,
         imageHeight: 200,
         imageAlt: 'Producto Desayuno Estilo Gourmet',
@@ -50,11 +50,11 @@ function modalIndex(nombre_producto, precio,id,imagen){
             '<br>'+
             '<div style="text-align:center;">'+
                 '<td colspan="2"><a href="javascript:void(0)" onclick="Swal.close();"><button class="btn btn-primary">Seguir comprando</button></a><td>&nbsp;&nbsp;'+
-                '<td colspan="2"><a href="/Proyectos/desayunosestilogourmet/cart.php"><button class="btn btn-warning" style="color:white;">Revisar el carrito</button></a><td>'+
+                '<td colspan="2"><a href="/desayunosestilogourmet/cart.php"><button class="btn btn-warning" style="color:white;">Revisar el carrito</button></a><td>'+
                 '<hr>'+
                 '<a href="javascript:void(0)" onclick="Swal.close();">o siguir comprando</a>'+
             '</div>',
-        imageUrl: '/Proyectos/desayunosestilogourmet/img/productos/'+imagen,
+        imageUrl: '/desayunosestilogourmet/img/productos/'+imagen,
         imageWidth: 200,
         imageHeight: 200,
         imageAlt: 'Producto Desayuno Estilo Gourmet',
