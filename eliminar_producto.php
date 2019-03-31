@@ -10,7 +10,9 @@ for($i=0; $i<count($arreglo); $i++) {
             'Id'=>$arreglo[$i]['Id'],
             'Nombre'=>$arreglo[$i]['Nombre'],
             'Precio'=>$arreglo[$i]['Precio'],
-            'Imagen'=>$arreglo[$i]['Imagen']
+            'Imagen'=>$arreglo[$i]['Imagen'],
+            'Stock'=>$arreglo[$i]['Stock'],
+            'Cantidad'=>$arreglo[$i]['Cantidad']
         );
     }
 }

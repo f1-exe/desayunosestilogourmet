@@ -1,66 +1,11 @@
 <?php
 session_start();
-//var_dump($_POST); 
+// var_dump($_SESSION['carrito_compras']);
 $total = 0;
-
-$conn = mysqli_connect("localhost", "root","", "dev_desayunosgourmet");
-
+$cant = 0;
 if(isset($_SESSION['carrito_compras'])){
-    if(isset($_POST['id_producto'])){
-            $arreglo=$_SESSION['carrito_compras'];
-            $encontro=false;
-            $numero=0;
-            for($i=0;$i<count($arreglo);$i++){
-                if($arreglo[$i]['Id']==$_POST['id_producto']){
-                    $encontro=true;
-                    $numero=$i;
-                }
-            }
-            if($encontro==true){
-                $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
-                $_SESSION['carrito_compras']=$arreglo;
-            }else{
-                $nombre="";
-                $precio=0;
-                $imagen="";
-                $re=mysqli_query($conn,"select * from producto where id=".$_POST['id_producto']);
-                while ($f=mysqli_fetch_array($re)) {
-                    $nombre=$f['nombre'];
-                    $precio=$f['precio'];
-                    $imagen=$f['imagen'];
-                    }
-                    $datosNuevos=array('Id'=>$_POST['id_producto'],
-                                    'Nombre'=>$nombre,
-                                    'Precio'=>$precio,
-                                    'Imagen'=>$imagen,
-                                    'Cantidad'=>1);
-
-                    array_push($arreglo, $datosNuevos);
-                    $_SESSION['carrito_compras']=$arreglo;
-
-                }
-    }
-}else{
-    if(isset($_POST['id_producto'])){
-        $nombre="";
-        $precio=0;
-        $imagen="";
-        $QUERY = "select * from producto where id=".$_POST['id_producto']."";
-        $re=mysqli_query($conn,$QUERY);
-        while ($f=mysqli_fetch_array($re)) {
-            $nombre=$f['nombre'];
-            $precio=$f['precio'];
-            $imagen=$f['imagen'];
-        }
-        $arreglo[]=array('Id'=>$_POST['id_producto'],
-                        'Nombre'=>$nombre,
-                        'Precio'=>$precio,
-                        'Imagen'=>$imagen,
-                        'Cantidad'=>1);
-        $_SESSION['carrito_compras']=$arreglo;
-    }
+    $cant = count($_SESSION['carrito_compras']);
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -178,7 +123,7 @@ if(isset($_SESSION['carrito_compras'])){
                                         $datos=$_SESSION['carrito_compras'];
                                         for($i=0; $i < count($datos); $i++) { 
                                             
-                                            $total += $datos[$i]["Precio"];
+                                            $total += ($datos[$i]["Precio"] * $datos[$i]["Cantidad"]);
                                 ?>
                                     <tr>
                                         <td class="cart_product_img">
@@ -189,19 +134,19 @@ if(isset($_SESSION['carrito_compras'])){
                                         </td>
                                         <td class="price">
                                             <span><?php echo "$ ".number_format($datos[$i]["Precio"], 0, '', '.');?></span>
-                                            <input type="hidden" name="precio_1" id="precio_1" value="13000">
+                                            <input type="hidden" name="precio_<?php echo $i; ?>" id="precio_<?php echo $i;?>" value="<?php echo $datos[$i]['Precio']; ?>">
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
                                                 <p>Cant</p>
                                                 <div class="quantity">
-                                                    <span class="qty-minus" id="cant_menos_1"><i class="fa fa-minus" aria-hidden="true" style="color: red;"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" name="quantity" id="quantity" value="1">
-                                                    <span class="qty-plus" id="cant_mas_1"><i class="fa fa-plus" aria-hidden="true" style="color:green"></i></span>
+                                                    <span class="qty-minus" onclick="menosCart(<?php echo $datos[$i]['Stock']; ?>, <?php echo $datos[$i]['Id']; ?>, <?php echo $i; ?>)" id="cant_menos_1"><i class="fa fa-minus" aria-hidden="true" style="color: red;"></i></span>
+                                                    <input type="number" class="qty-text" id="qty_<?php echo $i; ?>" step="1" name="quantity_<?php echo $i; ?>" id="quantity" value="<?php echo $datos[$i]['Cantidad']; ?>">
+                                                    <span class="qty-plus" onclick="masCart(<?php echo $datos[$i]['Stock']; ?>, <?php echo $datos[$i]['Id']; ?>, <?php echo $i; ?>)" id="cant_mas_1"><i class="fa fa-plus" aria-hidden="true" style="color:rgb(31, 226, 13)"></i></span>
                                                 </div>
                                                 
                                             </div>
-                                            <button data-id="<?php echo $datos[$i]["Id"];?>" name="btn_eliminar" id="btn_eliminar" class="btn btn-danger btn-sm btn-eliminar-carro">Eliminar</button>
+                                            <button data-id="<?php echo $datos[$i]["Id"];?>" name="btn_eliminar" id="btn_eliminar" onclick="window.location.href='cart.php';" class="btn btn-danger btn-sm btn-eliminar-carro">Eliminar</button>
                                         </td>
                                        
                                     </tr>
@@ -226,7 +171,11 @@ if(isset($_SESSION['carrito_compras'])){
                                         <span>subtotal:</span>
                                         <span>
                                             <span>
-                                                <?php echo "$ ".number_format($total, 0, '', '.');?>
+                                                <div id="ee">
+                                                    <?php echo "$ ".number_format($total, 0, '', '.');?>
+                                                </div>
+                                                <!-- <input type="text" name="subTotal" id="subTotal" value="111111"> -->
+                                                
                                                 <input type="hidden" name="monto_total" id="monto_total" value="<?php echo $total; ?>">
                                             </span>
                                         </span>
@@ -319,30 +268,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-
-    <script>
-        $(document).ready(function() {
-           
-        });
-        
-        //funcion para eliminar producto del carro
-        $('.btn').click(function(){
-
-            var id_producto = $(this).attr('data-id');
-            $(this).parentsUntil('.table-content').remove();
-            $.post("eliminar_producto.php",{
-                Id:id_producto
-            },function(response){
-
-                if(response == '0'){
-                    window.location.href="cart.php";
-                }
-
-            });
-
-        });
-
-    </script>
+    <script src="js/mas&menos.js"></script>
+    <script src="js/eliminar_producto.js"></script>
 </body>
 
 </html>
