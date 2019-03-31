@@ -22,7 +22,7 @@ function modal(nombre_producto, precio,id,imagen){
                 '<hr>'+
                 '<a href="javascript:void(0)" onclick="Swal.close();">o siguir comprando</a>'+
             '</div>',
-        imageUrl: '/Proyectos/desayunosestilogourmet/img/productos/'+imagen,
+        imageUrl: '/desayunosestilogourmet/img/productos/'+imagen,
         imageWidth: 200,
         imageHeight: 200,
         imageAlt: 'Producto Desayuno Estilo Gourmet',

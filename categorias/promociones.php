@@ -74,14 +74,14 @@ $resp  = listarProductosPromociones();
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul id="exampleAccordion">
-                    <li class="active"><a href="../index.php">Categorías</a></li>
+                    <li><a href="../index.php">Categorías</a></li>
                     <li><a href="para-ella.php">Para Ella</a></li>
                     <li><a href="para-el.php">Para Él</a></li>
                     <li><a href="cumpleanos.php">Cumpleaños</a></li>
                     <li><a href="nacimientos.php">Nacimientos</a></li>
                     <li>
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
-                        <ul class="sidenav-second-level collapse" id="collapseComponents">
+                        <ul class="sidenav-second-level collapse ml-20" id="collapseComponents">
                             <li >
                                 <a href="dia-padre.php">Día del padre</a>
                             </li>
@@ -94,7 +94,7 @@ $resp  = listarProductosPromociones();
                         </ul>
                     </li>
                     <li><a href="armar-pedido.php">Arma tu pedido</a></li>
-                    <li><a href="promociones.php">Promociones</a></li>
+                    <li class="active"><a href="promociones.php">Promociones</a></li>
                 </ul>
             </nav>
             <!-- Button Group

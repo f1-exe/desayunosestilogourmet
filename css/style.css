@@ -160,56 +160,44 @@ opacity: 1;
 }
 /*btn eliminar del carro*/
 
-/* Barra de progreso del proceso de compra */
 
-.progressbar {
-    counter-reset: step;
-}
-
-.progressbar li {
-    list-style-type: none;
-    width: 25%;
-    float: left;
-    font-size: 12px;
+/* CSS DEL TOOLTIP BUTTON DISABLED*/    
+#tooltipBD {
     position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+  }
+  
+  #tooltipBD #tooltiptextBD {
+    visibility: hidden;
+    width: 220px;
+    background-color: #555;
+    color: #fff;
     text-align: center;
-    text-transform: uppercase;
-    color: #7d7d7d;
-}
-.progressbar li:before {
-    width: 30px;
-    height: 30px;
-    content: counter(step);
-    counter-increment: step;
-    line-height: 30px;
-    border: 2px solid #7d7d7d;
-    display: block;
-    text-align: center;
-    margin: 0 auto 10px auto;
-    border-radius: 50%;
-    background-color: white;
-}
-.progressbar li:after {
-    width: 100%;
-    height: 2px;
-    content: '';
+    border-radius: 6px;
+    padding: 5px 0;
     position: absolute;
-    background-color: #7d7d7d;
-    top: 15px;
-    left: -50%;
-    z-index: -1;
-}
-.progressbar li:first-child:after {
-    content: none;
-}
-.progressbar li.active {
-    color: green;
-}
-.progressbar li.active:before {
-    border-color: #55b776;
-}
-.progressbar li.active + li:after {
-    background-color: #55b776;
-}
-        
-/* Barra de progreso del proceso de compra */
+    z-index: 1;
+    top: 117%;
+    left: 32%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  #tooltipBD #tooltiptextBD::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+  }
+  
+  #tooltipBD:hover #tooltiptextBD {
+    visibility: visible;
+    opacity: 1;
+  }
+/* CSS DEL TOOLTIP BUTTON DISABLED*/

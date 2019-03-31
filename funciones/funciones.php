@@ -1,6 +1,6 @@
 <?php
 
-include 'C:/xampp/htdocs/Proyectos/desayunosestilogourmet/conexion/BDconexion.php';
+include '/Procyectos/desayunosestilogourmet/conexion/BDconexion.php';
 
 
 

@@ -26,6 +26,18 @@ $row = mysqli_fetch_array($resp);
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
+
+
+    <style>
+        .sinstock{
+            color: red;
+            font-size: 12px;
+        }
+    
+    </style>
+
 </head>
 
 <body>
@@ -245,42 +257,9 @@ $row = mysqli_fetch_array($resp);
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-lg-7">
-                        <div class="single_product_thumb">
-                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/pro-big-1.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/pro-big-2.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/pro-big-3.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/pro-big-4.jpg);">
-                                    </li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/pro-big-1.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-1.jpg" alt="First slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-2.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-2.jpg" alt="Second slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-3.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-3.jpg" alt="Third slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-4.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a class="gallery_img" href="img/productos/<?php echo $row['imagen']; ?>">
+                            <img class="d-block w-100" src="img/productos/<?php echo $row['imagen']; ?>" alt="First slide">
+                        </a>
                     </div>
                     <div class="col-12 col-lg-5">
                         <div class="single_product_desc">
@@ -293,7 +272,11 @@ $row = mysqli_fetch_array($resp);
                                 </a>
                                
                                 <!-- Avaiable -->
-                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                                <?php if($row["stock"] > 0){ ?>
+                                <p class="avaibility"><i class="fa fa-circle"></i> En stock</p>
+                                <?php }else if($row["stock"] == 0){ ?>
+                                    <p class="avaibility"><i class="fa fa-circle" style="color: red;"></i> Sin stock</p>
+                                <?php } ?>
                             </div>
 
                             <div class="short_overview my-5">
@@ -305,16 +288,40 @@ $row = mysqli_fetch_array($resp);
                             </div>
 
                             <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="POST" action="cart.php">
+                            <form class="cart clearfix" method="POST" action="product-details-action.php">
                                 <div class="cart-btn d-flex mb-50">
-                                    <p>Cantidad</p>
-                                    <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                                    </div>
+                                    <?php if ($row['stock'] > 0){ ?>
+                                        <div id="tooltip">
+                                            <p>Cantidad (*)</p>
+                                            <span id="tooltiptext">Stock máximo <?php echo $row['stock']; ?></span>
+                                        </div>
+                                        
+                                        <div class="quantity">
+                                            <span class="qty-minus" onclick="menos(<?php echo $row['stock']; ?>)"><i class="fa fa-minus" aria-hidden="true" style="color: red;"></i></span>
+                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="<?php echo $row['stock']; ?>" name="quantity" value="1">
+                                            <span class="qty-plus" onclick="mas(<?php echo $row['stock']; ?>)"><i class="fa fa-plus" aria-hidden="true" style="color:rgb(31, 226, 13)"></i></span>
+                                        </div>
+                                    <?php }else if($row['stock'] == 0){ ?>
+                                        <div id="tooltip">
+                                            <p>Cantidad (*)</p>
+                                            <span id="tooltiptext">Sin stock</span>
+                                        </div>
+                                        
+                                        <div class="quantity">
+                                            <!-- <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span> -->
+                                            <input readonly type="number" class="qty-text" id="qty" step="1" min="1" max="1" name="quantity" value="0">
+                                            <!-- <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span> -->
+                                        </div>
+                                    <?php } ?>
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Añadir al carro</button>
+                                <?php if($row['stock'] == 0){ ?>
+                                    <div id="tooltipBD">
+                                        <button type="submit" name="addtocart" value="5" class="btn amado-btn" disabled>Añadir al carro</button>
+                                        <span id="tooltiptextBD">No se puede agregar producto si no hay stock</span>
+                                    </div>
+                                <?php }else if($row['stock'] > 0){ ?>
+                                    <button type="submit" name="addtocart" value="5" class="btn amado-btn">Añadir al carro</button>
+                                <?php } ?>
                                 <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $row["id"];?>">
                             </form>
 
@@ -397,6 +404,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script src="js/mas&menos.js"></script>
 
 </body>
 

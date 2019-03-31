@@ -8,7 +8,10 @@ $('.btn').click(function(){
     },function(response){
 
         if(response == '0'){
-            window.location.href="cart.php";
+            
+            
+            
+            
         }
 
     });

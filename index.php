@@ -104,7 +104,7 @@ if(isset($_SESSION["carrito_compras"])){
                         <li><a href="categorias/nacimientos.php">Nacimientos</a></li>
                         <li>
                             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">Feliz día</a>
-                            <ul class="sidenav-second-level collapse" id="collapseComponents">
+                            <ul class="sidenav-second-level collapse ml-20" id="collapseComponents">
                                 <li>
                                     <a href="categorias/dia-padre.php">Día del padre</a>
                                 </li>
