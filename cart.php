@@ -81,6 +81,36 @@ if(isset($_SESSION['carrito_compras'])){
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <style>
+        .amado2-btn2{
+            display: inline-block;
+            min-width: 160px;
+            height: 55px;
+            color: #ffffff;
+            border: none;
+            border-radius: 0;
+            padding: 0 7px;
+            font-size: 18px;
+            line-height: 56px;
+            background-color: #fbb710;
+            font-weight: 400;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .w-110{
+            width: 100%!important;
+        }
+
+        .amado2-btn2:hover{
+            background-color: black;
+            color:#ffffff;
+           
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -217,7 +247,7 @@ if(isset($_SESSION['carrito_compras'])){
                     
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
-                            <form action="completar_datos.php" method="POST" name="form_carro" id="form_carro">
+                          <form action="completar_datos.php" method="POST" name="form_cart" id="form_cart">
                                 <h5>Total del carro</h5>
                                 <ul class="summary-table">
                                     <li>
@@ -235,7 +265,7 @@ if(isset($_SESSION['carrito_compras'])){
                                     </li>
                                 </ul>
                                 <div class="cart-btn">
-                                    <a href="javascript:void()" onclick="enviarFormulario(event)" class="btn amado-btn w-100">Siguiente Paso</a>
+                                    <button type="button" onclick="enviarFormulario();" class="amado2-btn2 w-110">Siguiente Paso</button>
                                 </div>
                             </form>
                         </div>
