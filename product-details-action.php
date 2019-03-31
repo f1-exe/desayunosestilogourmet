@@ -2,11 +2,20 @@
 session_start();
 //var_dump($_POST); 
 $total = 0;
+$cantidad = 0;
 
 // echo "<pre>";
 // var_dump($_POST);
 // exit;
 $conn = mysqli_connect("localhost", "root","", "dev_desayunosgourmet");
+
+
+if(isset($_POST['quantity'])){
+    $cantidad =  $_POST['quantity'];
+}else{
+    $cantidad = 1;
+}
+
 
 if(isset($_SESSION['carrito_compras'])){
     if(isset($_POST['id_producto'])){
@@ -20,7 +29,7 @@ if(isset($_SESSION['carrito_compras'])){
                 }
             }
             if($encontro==true){
-                $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+$_POST['quantity'];
+                $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+$cantidad;
                 $_SESSION['carrito_compras']=$arreglo;
             }else{
                 $nombre="";
@@ -38,7 +47,7 @@ if(isset($_SESSION['carrito_compras'])){
                                     'Precio'=>$precio,
                                     'Imagen'=>$imagen,
                                     'Stock'=>$stock,
-                                    'Cantidad'=>$_POST['quantity']);
+                                    'Cantidad'=>$cantidad);
 
                     array_push($arreglo, $datosNuevos);
                     $_SESSION['carrito_compras']=$arreglo;
@@ -63,7 +72,7 @@ if(isset($_SESSION['carrito_compras'])){
                         'Precio'=>$precio,
                         'Imagen'=>$imagen,
                         'Stock'=>$stock,
-                        'Cantidad'=>$_POST['quantity']);
+                        'Cantidad'=>$cantidad);
         $_SESSION['carrito_compras']=$arreglo;
     }
 }

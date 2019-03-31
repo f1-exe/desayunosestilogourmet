@@ -21,6 +21,10 @@ $row = selectDatosCompraAndTBK($orden_compra);
 
   <!-- Bootstrap CDN CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="css/style.css">
+
+  
   <style>
     .avatar {
       height: 150px;
@@ -42,6 +46,18 @@ $row = selectDatosCompraAndTBK($orden_compra);
         <div>
           <img src="img/core-img/logo_deg.png" class="avatar mt-3"> 
         </div> 
+         <!--barra de progreso-->
+         <div class="container mt-5">
+              <ul class="progressbar">
+                  <li class="active">Armar Carro</li>
+                  <li class="active">Completar datos</li>
+                  <li class="active">Confirmar y pagar</li>
+                  <li class="active">comporbante pago</li>
+              </ul>
+         </div>
+        <!--barra de progreso-->
+        <br>
+        <br>
         <?php if($row['tbk_codigo_transaccion'] == 0){ ?> 
         <h1 class="mt-5">
              <label style="color:green">Transacción Finalizada correctamente</label>
@@ -64,12 +80,12 @@ $row = selectDatosCompraAndTBK($orden_compra);
               <tr><td>Fecha Transacción</td><td><?php echo $row['fecha_registro']; ?></td></tr>
               <tr><td>Nombre</td><td><?php echo $row['nombre_usuario'];?></td></tr>
               <tr><td>Correo</td><td><?php echo $row['correo_usuario'];?></td></tr>
-              <tr><td>Monto</td><td><?php echo $row['monto_compra'];?></td></tr>
+              <tr><td>Monto</td><td><?php echo "$ ".number_format($row['monto_compra'], 0, '', '.');?></td></tr>
               <tr><td>Comuna delivery</td><td><?php echo $row['id_comuna_delivery']; ?></td></tr>
               <tr><td>Fecha delivery</td><td><?php echo $row['fecha_delivery']; ?> </td></tr>
             </tbody>
           </table>
-          <button class="btn  btn-primary" onclick="window.location.href='index.php'">Volver a Desayunos estilo gourmet</button>
+          <button class="btn  btn-primary" onclick="window.location.href='destruir_sesion.php'">Volver a Desayunos estilo gourmet</button>
          </div>
         <?php }else{ ?>
           <div>
@@ -90,10 +106,10 @@ $row = selectDatosCompraAndTBK($orden_compra);
                 <td>Estado Transacción</td>
                 <td><img src="img/transaccion_failure.png" width="30" height="30"></td></tr>
               <tr><td>Fecha Transacción</td><td><?php echo $row['fecha_registro']; ?></td></tr>
-              <tr><td>Monto</td><td><?php echo $row['monto_compra'];?></td></tr>
+              <tr><td>Monto</td><td><?php echo "$ ".number_format($row['monto_compra'], 0, '', '.');?></td></tr>
             </tbody>
           </table>
-          <button class="btn  btn-primary" onclick="window.location.href='index.php'">Volver a Desayunos estilo gourmet</button> 
+          <button class="btn  btn-primary" onclick="window.location.href='destruir_sesion.php'">Volver a Desayunos estilo gourmet</button>
           </div>
         <?php } ?>  
       </div>
@@ -101,7 +117,8 @@ $row = selectDatosCompraAndTBK($orden_compra);
   </div>
   <br>
   <br>
-
+    
 </body>
 
 </html>
+

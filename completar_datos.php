@@ -75,12 +75,11 @@ if(isset($_SESSION["datos_formulario"])){
                             <li>Confirmar y pagar</li>
                             <li>comporbante pago</li>
                         </ul>
-                    </div>
-                <div class="col-lg-12 text-center">
+                </div>
                 <!--barra de progreso-->
 
-               
-
+                <div class="col-lg-12 text-center">
+                
                     <h1 class="mt-5">
                         Completar datos compra
                     </h1>
@@ -118,7 +117,7 @@ if(isset($_SESSION["datos_formulario"])){
                             <div class="form-group row justify-content-center">
                                 <label for="cbo_delivery" class="col-sm-2 col-form-label">Dirección del delivery</label>
                                 <div class="col-sm-6">
-                                <input  type="text" class="form-control" name="direccion_delivery" id="direccion_delivery" placeholder="Nombre Calle 2334, Departamento , Nombre calle referencia, Comuna" value="<?php echo $direccion_delivery;?>">    
+                                <input  type="text" class="form-control" name="direccion_delivery" id="direccion_delivery" placeholder="Nombre Calle 2334, Departamento , Nombre calle referencia" value="<?php echo $direccion_delivery;?>">    
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center">

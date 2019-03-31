@@ -1,6 +1,16 @@
 <?php
+session_start();
+
 include '../funciones/funciones.php';
 $resp  = listarProductosNacimientos();
+
+$cantidad_productos = 0;
+if(isset($_SESSION["carrito_compras"])){
+    $cantidad_productos =  count($_SESSION["carrito_compras"]);
+}else{
+    $cantidad_productos = 0;
+}
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -29,8 +39,8 @@ $resp  = listarProductosNacimientos();
 
     <body>
 
-        <!--Bola flotante de carrito de compras -->
-        <div class="sticky-container">
+<!--Bola flotante de carrito de compras -->
+<div class="sticky-container">
             <ul class="sticky">
                 <li>
                     <a href="../cart.php">
@@ -38,11 +48,15 @@ $resp  = listarProductosNacimientos();
                     </a>
                 </li>
                 <div id="contador_carro">
-                    <span class="badge badge-pill badge-danger">2</span>
+                    <span class="badge badge-pill badge-danger">
+                        <div id="cantidad_productos">
+                            <?php echo $cantidad_productos;?>
+                        </div>    
+                    </span>
                 </div>
             </ul>
         </div>
-        <!--Bola flotante de carrito de compras -->
+<!--Bola flotante de carrito de compras -->
 
         <!-- ##### Main Content Wrapper Start ##### -->
         <div class="main-content-wrapper d-flex clearfix">

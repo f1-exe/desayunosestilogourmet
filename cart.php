@@ -27,35 +27,6 @@ if(isset($_SESSION['carrito_compras'])){
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        .amado2-btn2{
-            display: inline-block;
-            min-width: 160px;
-            height: 55px;
-            color: #ffffff;
-            border: none;
-            border-radius: 0;
-            padding: 0 7px;
-            font-size: 18px;
-            line-height: 56px;
-            background-color: #fbb710;
-            font-weight: 400;
-            -webkit-transition-duration: 0.4s; /* Safari */
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-
-        .w-110{
-            width: 100%!important;
-        }
-
-        .amado2-btn2:hover{
-            background-color: black;
-            color:#ffffff;
-           
-        }
-
-    </style>
     <link rel="stylesheet" href="css/animate.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
 
@@ -175,9 +146,9 @@ if(isset($_SESSION['carrito_compras'])){
                                                     <input type="number" class="qty-text" id="qty_<?php echo $i; ?>" step="1" name="quantity_<?php echo $i; ?>" id="quantity" value="<?php echo $datos[$i]['Cantidad']; ?>">
                                                     <span class="qty-plus" onclick="masCart(<?php echo $datos[$i]['Stock']; ?>, <?php echo $datos[$i]['Id']; ?>, <?php echo $i; ?>)" id="cant_mas_1"><i class="fa fa-plus" aria-hidden="true" style="color:rgb(31, 226, 13)"></i></span>
                                                 </div>
-                                                
                                             </div>
                                             <button data-id="<?php echo $datos[$i]["Id"];?>" name="btn_eliminar" id="btn_eliminar" onclick="window.location.href='cart.php';" class="btn btn-danger btn-sm btn-eliminar-carro">Eliminar</button>
+                                            <input type="hidden" name="id_producto[]" id="id_producto[]" value="<?php print_r($datos);?>">
                                         </td>
                                        
                                     </tr>

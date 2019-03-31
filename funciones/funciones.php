@@ -1,6 +1,6 @@
 <?php
 
-include '/Procyectos/desayunosestilogourmet/conexion/BDconexion.php';
+include 'C:\xampp\htdocs\Proyectos\desayunosestilogourmet\conexion/BDconexion.php';
 
 
 
@@ -204,6 +204,8 @@ function insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto){
   global $conn;
   $query= "INSERT INTO productos_compras (orden_compra,id_producto,cantidad_producto) VALUES ('".$orden_compra."',".$id_producto.",".$cantidad_producto.")";
   $result =  mysqli_query($conn,$query);
+
+  //echo 'query insertar Productos Compra ->'.$query.'<br>';
   
   if($result){
     return true;
@@ -221,6 +223,33 @@ function verDetalleProducto($id_producto){
   $query = "SELECT * FROM producto WHERE id =  ".$id_producto."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
+
+}
+
+function getStock($id_producto){
+  global $conn;
+  $query = "SELECT stock FROM producto WHERE id =  ".$id_producto."";
+  $resp =  mysqli_query($conn,$query);  
+  $row = mysqli_fetch_array($resp);
+
+  //echo 'query getStock ->'.$query.'<br>';
+
+  return $row["stock"];
+
+}
+
+function actualizarStock($id_producto,$stock){
+  global $conn;
+  $query =  "UPDATE producto SET stock = ".$stock." WHERE id =  ".$id_producto."";
+  $resp =  mysqli_query($conn,$query);
+
+  //echo 'query actualizarStock ->'.$query.'<br>';
+  
+  if($resp){
+    return true;
+  }else{
+    return false;
+  }
 
 }
 

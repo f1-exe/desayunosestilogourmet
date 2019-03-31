@@ -1,7 +1,16 @@
 <?php
-include '../funciones/funciones.php';
+session_start();
 
+include '../funciones/funciones.php';
 $resp  = listarProductosArmaTuPedido();
+
+$cantidad_productos = 0;
+if(isset($_SESSION["carrito_compras"])){
+    $cantidad_productos =  count($_SESSION["carrito_compras"]);
+}else{
+    $cantidad_productos = 0;
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -33,17 +42,21 @@ $resp  = listarProductosArmaTuPedido();
 
 <!--Bola flotante de carrito de compras -->
 <div class="sticky-container">
-    <ul class="sticky">
-        <li>
-            <a href="../cart.php">
-                <img src="../img/shopping-cart.png" width="50" height="50">
-            </a>
-        </li>
-        <div id="contador_carro">
-                <span class="badge badge-pill badge-danger">2</span>     
+            <ul class="sticky">
+                <li>
+                    <a href="../cart.php">
+                        <img src="../img/shopping-cart.png" width="50" height="50">
+                    </a>
+                </li>
+                <div id="contador_carro">
+                    <span class="badge badge-pill badge-danger">
+                        <div id="cantidad_productos">
+                            <?php echo $cantidad_productos;?>
+                        </div>    
+                    </span>
+                </div>
+            </ul>
         </div>
-    </ul>
-</div>
 <!--Bola flotante de carrito de compras -->
 
     <!-- ##### Main Content Wrapper Start ##### -->

@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+
+// echo '<pre>';
+// var_dump($_SESSION);
+
+// echo count($_SESSION["carrito_compras"]);
+
+
 use Freshwork\Transbank\CertificationBagFactory;
 use Freshwork\Transbank\TransbankServiceFactory;
 use Freshwork\Transbank\RedirectorHelper;
@@ -9,25 +16,46 @@ include 'vendor/autoload.php';
 include 'funciones/funciones.php';
 
 //rescato los datos de la transaccion
-$monto_total = $_POST["monto_total"];
-$nombre_cliente = $_POST["nombre_cliente"];
-$correo_cliente = $_POST["correo_cliente"];
-$id_producto = $_POST["id_producto"];
-$comuna_delivery = $_POST["comuna"];
-$fecha_delivery = $_POST["fecha_delivery"];
-$cantidad_producto = $_POST["cantidad"];
-$direccion_delivery =  $_POST["direccion_delivery"];
-$mensaje = $_POST['mensaje'];
+$monto_total = $_SESSION["datos_formulario"]["monto_total"];
+$nombre_cliente = $_SESSION["datos_formulario"]["nombre_cliente"];
+$correo_cliente = $_SESSION["datos_formulario"]["correo_cliente"];
+$comuna_delivery = $_SESSION["datos_formulario"]["id_comuna"];
+$fecha_delivery = $_SESSION["datos_formulario"]["fecha_delivery"];
+$direccion_delivery =  $_SESSION["datos_formulario"]["direccion_delivery"];
+$mensaje = $_SESSION["datos_formulario"]['mensaje'];
+
+//$id_producto = $_SESSION["id_producto"];
 
 $orden_compra =  "DEG-".obtenerMaxIdComercio_transacciones();
 
 
 //se registra la compra
-registrarCompra($orden_compra,99,$direccion_delivery,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,$mensaje);
+$registroCompra = registrarCompra($orden_compra,99,$direccion_delivery,$comuna_delivery,$fecha_delivery,$monto_total,$nombre_cliente,$correo_cliente,$mensaje);
+
+if($registroCompra){
+// //quito los valores de la sesion de los datos del formulario
+// unset($_SESSION["datos_formulario"]);
 
 //[CONTINUAR CON LOGICA DESPUES] - NO OLVIDAR
 
-//insertarProductosCompra($orden_compra,$id_producto,$cantidad_producto);
+    for ($i=0; $i<count($_SESSION["carrito_compras"]) ; $i++) { 
+
+        $stock = getStock($_SESSION["carrito_compras"][$i]["Id"]);
+        $nuevoStock =  $stock - $_SESSION["carrito_compras"][$i]["Cantidad"];
+
+        $insertarProductosCompra = insertarProductosCompra($orden_compra,$_SESSION["carrito_compras"][$i]["Id"],$_SESSION["carrito_compras"][$i]["Cantidad"]);
+        if($insertarProductosCompra){
+            actualizarStock($_SESSION["carrito_compras"][$i]["Id"],$nuevoStock);
+        }
+    }
+
+}else{
+ echo 'Se ha producido un error al registrar la compra <br>';
+ echo 'Será redirigido al incio de la página.';
+ echo '<a href="index.php">Volver al inicio</a>';
+}
+
+
 
 //guardo la orden de compra en sesion para luego rescatar los datos de la transaccion en la vista 
 //boucher_final.php
@@ -42,7 +70,7 @@ $webPay = TransbankServiceFactory::normal($bag);
 $webPay->addTransactionDetail($monto_total, $orden_compra);
 
 // Debes además, registrar las URLs a las cuales volverá el cliente durante y después del flujo de Webpay
-$response =  $webPay->initTransaction('http://localhost/desayunosestilogourmet/response.php', 'http://localhost/desayunosestilogourmet/boucher_final.php');
+$response =  $webPay->initTransaction('https://localhost/Proyectos/desayunosestilogourmet/response.php', 'https://localhost/Proyectos/desayunosestilogourmet/boucher_final.php');
 
 /*print_r($response); 
 exit;   

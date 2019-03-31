@@ -38,7 +38,7 @@ function modal(nombre_producto, precio,id,imagen){
 function modalIndex(nombre_producto, precio,id,imagen){
 
     //se envia el id del producto por post para agregarlo al carrito    
-    $.post("/Proyectos/desayunosestilogourmet/cart.php",{
+    $.post("/Proyectos/desayunosestilogourmet/product-details-action.php",{
         id_producto:id
     });
 

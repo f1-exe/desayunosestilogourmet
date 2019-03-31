@@ -1,6 +1,7 @@
 <?php 
 session_start();
 
+
 include 'funciones/funciones.php';
 
 $monto_total = $_POST["monto_total"];
@@ -14,6 +15,12 @@ $direccion_delivery = $_POST["direccion_delivery"];
 $fecha_delivery = $_POST["fecha_delivery"];
 $mensaje = $_POST["mensaje"];
 
+$resp2 =  getDatosComuna($id_comuna);
+$row = mysqli_fetch_array($resp2);
+
+$monto_total_final = 0;
+$monto_total_final =  $monto_total + $row["valor"];
+
 $datos_formulario =  array(
     "nombre_cliente"=>$nombre_cliente,
     "correo_cliente"=>$correo_cliente,
@@ -21,15 +28,10 @@ $datos_formulario =  array(
     "direccion_delivery"=>$direccion_delivery,
     "fecha_delivery"=>$fecha_delivery,
     "mensaje"=>$mensaje,
-    "monto_total"=>$monto_total);
+    "monto_total"=>$monto_total_final);
 
 $_SESSION["datos_formulario"] =  $datos_formulario;
 
-$resp2 =  getDatosComuna($id_comuna);
-$row = mysqli_fetch_array($resp2);
-
-$monto_total_final = 0;
-$monto_total_final =  $monto_total + $row["valor"];
 
 ?>
     <!DOCTYPE html>
@@ -49,66 +51,7 @@ $monto_total_final =  $monto_total + $row["valor"];
         <!-- Bootstrap CDN CSS -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- swal include -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
-
-        <style>
-            .progressbar {
-                counter-reset: step;
-            }
-            
-            .progressbar li {
-                list-style-type: none;
-                width: 25%;
-                float: left;
-                font-size: 12px;
-                position: relative;
-                text-align: center;
-                text-transform: uppercase;
-                color: #7d7d7d;
-            }
-            
-            .progressbar li:before {
-                width: 30px;
-                height: 30px;
-                content: counter(step);
-                counter-increment: step;
-                line-height: 30px;
-                border: 2px solid #7d7d7d;
-                display: block;
-                text-align: center;
-                margin: 0 auto 10px auto;
-                border-radius: 50%;
-                background-color: white;
-            }
-            
-            .progressbar li:after {
-                width: 100%;
-                height: 2px;
-                content: '';
-                position: absolute;
-                background-color: #7d7d7d;
-                top: 15px;
-                left: -50%;
-                z-index: -1;
-            }
-            
-            .progressbar li:first-child:after {
-                content: none;
-            }
-            
-            .progressbar li.active {
-                color: green;
-            }
-            
-            .progressbar li.active:before {
-                border-color: #55b776;
-            }
-            
-            .progressbar li.active + li:after {
-                background-color: #55b776;
-            }
-        </style>
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>      
     </head>
 
     <body>
@@ -128,9 +71,11 @@ $monto_total_final =  $monto_total + $row["valor"];
                         <li>comporbante pago</li>
                     </ul>
                 </div>
-                <div class="col-lg-12 text-center">
-                    <!--barra de progreso-->
+                <!--barra de progreso-->
 
+                
+                <div class="col-lg-12 text-center">
+                    
                     <h1 class="mt-5">
                         Confirmar y pagar
                     </h1>
