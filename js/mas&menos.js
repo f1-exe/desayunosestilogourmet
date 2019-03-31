@@ -6,7 +6,7 @@ function mas(stock){
         document.getElementById('qty').value = suma;
         //alert("Se suma por que el valor es menor o igual a estock "+suma);
     }else{
-        alert("no se puede agregar mas ");
+        MensajeAlerta("<label style='color:red'><strong>No se puede </strong></label> agregar más de "+stock+" productos");
     }
 
 }
@@ -20,10 +20,11 @@ function menos(stock){
             document.getElementById('qty').value = suma;
             //alert("Se suma por que el valor es menor o igual a estock "+suma);
         }else{
-            alert("no se puede quitar mas ");
+            // alert("no se puede quitar mas ");
         }
     }else{
-        alert("El valor debe ser mayor que 1 para quitar productos");
+        MensajeAlerta("La cantidad mínima de productos a agregar <label style='color:red'><strong>debe ser</strong></label> al menos 1");
+        // alert("El valor debe ser mayor que 1 para quitar productos");
     }
     
 }
@@ -49,7 +50,7 @@ function masCart(stock, id_p, id){
             cantidad: suma
         })
     }else{
-        alert("no se puede agregar mas ");
+        MensajeAlerta("<label style='color:red'><strong>No se puede </strong></label> agregar más de "+stock+" productos");
     }
 
 }
@@ -74,10 +75,22 @@ function menosCart(stock, id_p, id){
                 cantidad: resta
             })
         }else{
-            alert("no se puede quitar mas ");
+            // MensajeAlerta("La cantidad de productos a agregar <label style='color:red'><strong>no puede ser</strong></label> menor a 1");
+            alert("No puede llevas mas de "+stock+" productos");
+            document.getElementById('qty_'+id).value = stock;
         }
     }else{
-        alert("El valor debe ser mayor que 1 para quitar productos");
+        MensajeAlerta("La cantidad mínima de productos a agregar <label style='color:red'><strong>debe ser</strong></label> al menos 1");
     }
     
+}
+
+function MensajeAlerta(msg) {
+    Swal.fire({
+        title: "Atención",
+        type: "info",
+        html: msg,
+        animation: false,
+        customClass: "animated tada"
+    })
 }

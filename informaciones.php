@@ -28,22 +28,6 @@
 
 <body>
 
-    <!--Bola flotante de carrito de compras -->
-    <div class="sticky-container">
-        <ul class="sticky">
-            <li>
-                <a href="cart.php">
-                    <img src="img/shopping-cart.png" width="50" height="50">
-                </a>
-            </li>
-            <div id="contador_carro">
-                <span class="badge badge-pill badge-danger">2</span>
-            </div>
-        </ul>
-    </div>
-    <!--Bola flotante de carrito de compras -->
-
-
     <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
 
