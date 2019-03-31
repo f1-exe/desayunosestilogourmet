@@ -60,8 +60,6 @@ if(isset($_SESSION['carrito_compras'])){
         $_SESSION['carrito_compras']=$arreglo;
     }
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -237,7 +235,7 @@ if(isset($_SESSION['carrito_compras'])){
                                     </li>
                                 </ul>
                                 <div class="cart-btn">
-                                    <a href="#" onclick="document.getElementById('form_carro').submit();" class="btn amado-btn w-100">Siguiente paso</a>
+                                    <a href="javascript:void()" onclick="enviarFormulario(event)" class="btn amado-btn w-100">Siguiente Paso</a>
                                 </div>
                             </form>
                         </div>
@@ -319,30 +317,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-
-    <script>
-        $(document).ready(function() {
-           
-        });
-        
-        //funcion para eliminar producto del carro
-        $('.btn').click(function(){
-
-            var id_producto = $(this).attr('data-id');
-            $(this).parentsUntil('.table-content').remove();
-            $.post("eliminar_producto.php",{
-                Id:id_producto
-            },function(response){
-
-                if(response == '0'){
-                    window.location.href="cart.php";
-                }
-
-            });
-
-        });
-
-    </script>
+    <!-- Eliminar producto del carro js-->
+    <script src="js/eliminar_producto.js"></script>
+    <!-- Enviar formulario del carrito js-->
+    <script src="js/enviar_carrito.js"></script>
 </body>
 
 </html>

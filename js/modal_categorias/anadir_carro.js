@@ -32,9 +32,22 @@ function modal(nombre_producto, precio,id,imagen){
       });
 }
 
+
 //este modal se lista solo en el index, ya que las categorias estan otro directorio al momento de utilizar 
 //el modal de arriba no se puede llagar a las imagenes del producto ya que no estan en la misma altura de carpetas
 function modalIndex(nombre_producto, precio,id,imagen){
+
+    //se envia el id del producto por post para agregarlo al carrito    
+    $.post("/Proyectos/desayunosestilogourmet/cart.php",{
+        id_producto:id
+    });
+
+    //se envia el id del producto por post para agregarlo al carrito    
+    $.post("/Proyectos/desayunosestilogourmet/contador_carro.php",function(response){
+        document.getElementById("cantidad_productos").innerHTML =  response;
+    });
+
+   
     Swal({
         title: '<h3 style="color:#0E9700;">Agregado al carrito!</h3>',
         html: '<table style="width:100%;">'+
@@ -48,12 +61,25 @@ function modalIndex(nombre_producto, precio,id,imagen){
                 '</tr>'+
             '</table>'+
             '<br>'+
-            '<div style="text-align:center;">'+
-                '<td colspan="2"><a href="javascript:void(0)" onclick="Swal.close();"><button class="btn btn-primary">Seguir comprando</button></a><td>&nbsp;&nbsp;'+
-                '<td colspan="2"><a href="/Proyectos/desayunosestilogourmet/cart.php"><button class="btn btn-warning" style="color:white;">Revisar el carrito</button></a><td>'+
+            
+            '<div class="container" style="text-align:center;">'+
+                '<div class="container-fluid full-width">'+
+                    '<div class="row-fluid">'+
+
+                        '<a href="javascript:void(0)" onclick="Swal.close();"><button style="display:inline-block; margin-top:5px;  width: 190px;" class="btn btn-primary">Seguir comprando</button></a>&nbsp;&nbsp;'+
+                        '<a href="/Proyectos/desayunosestilogourmet/cart.php"><button style="display:inline-block; color:white; margin-top:5px;" class="btn btn-warning">Revisar el carrito</button></a>'+
+                        
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+                
+                
+                
+            
+            
                 '<hr>'+
-                '<a href="javascript:void(0)">Desayunos Estilo Gourmet</a>'+
-            '</div>',
+                '<a href="javascript:void(0)">Desayunos Estilo Gourmet</a>',
+            
         imageUrl: '/Proyectos/desayunosestilogourmet/img/productos/'+imagen,
         imageWidth: 200,
         imageHeight: 200,
@@ -63,3 +89,4 @@ function modalIndex(nombre_producto, precio,id,imagen){
         showConfirmButton: false
       });
 }
+

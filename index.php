@@ -1,6 +1,15 @@
 <?php
+session_start();
 include 'funciones/funciones.php';
 $resp =  listarProductosIndex();
+
+$cantidad_productos = 0;
+if(isset($_SESSION["carrito_compras"])){
+    $cantidad_productos =  count($_SESSION["carrito_compras"]);
+}else{
+    $cantidad_productos = 0;
+}
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -50,7 +59,11 @@ $resp =  listarProductosIndex();
                     </a>
                 </li>
                 <div id="contador_carro">
-                    <span class="badge badge-pill badge-danger">2</span>
+                    <span class="badge badge-pill badge-danger">
+                        <div id="cantidad_productos">
+                            <?php echo $cantidad_productos;?>
+                        </div>    
+                    </span>
                 </div>
             </ul>
         </div>
@@ -151,7 +164,7 @@ $resp =  listarProductosIndex();
                                                 <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
                                                 <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
 
-                                                <button onclick='modalIndex("<?php echo $row["nombre"];?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                                <button onclick='modalIndex("<?php echo utf8_encode($row["nombre"]);?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
                                             </div>
                                         </form>
                                     </div>
