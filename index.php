@@ -31,8 +31,7 @@ if(isset($_SESSION["carrito_compras"])){
         <link rel="stylesheet" href="css/core-style.css">
         <link rel="stylesheet" href="css/style.css">
 
-        <!-- swal include -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
+      
 
         <style>
             .avatar {
@@ -254,6 +253,8 @@ if(isset($_SESSION["carrito_compras"])){
         <script src="js/plugins.js"></script>
         <!-- Active js -->
         <script src="js/active.js"></script>
+        <!-- swal include -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
         <!--Modal para añadir al carro-->
         <script src="js/modal_categorias/anadir_carro.js"></script>
 

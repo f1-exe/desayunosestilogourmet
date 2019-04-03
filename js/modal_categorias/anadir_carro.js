@@ -32,9 +32,7 @@ function modal(nombre_producto, precio,id,imagen){
       });
 }
 
-
-//este modal se lista solo en el index, ya que las categorias estan otro directorio al momento de utilizar 
-//el modal de arriba no se puede llagar a las imagenes del producto ya que no estan en la misma altura de carpetas
+//este es el modal que se esta utilizando
 function modalIndex(nombre_producto, precio,id,imagen){
 
     //se envia el id del producto por post para agregarlo al carrito    
@@ -72,11 +70,7 @@ function modalIndex(nombre_producto, precio,id,imagen){
                     '</div>'+
                 '</div>'+
             '</div>'+
-                
-                
-                
-            
-            
+
                 '<hr>'+
                 '<a href="javascript:void(0)">Desayunos Estilo Gourmet</a>',
             
@@ -86,7 +80,7 @@ function modalIndex(nombre_producto, precio,id,imagen){
         imageAlt: 'Producto Desayuno Estilo Gourmet',
         animation: false,
         showCloseButton: true,
-        showConfirmButton: false
+        showConfirmButton: false,
       });
 }
 
