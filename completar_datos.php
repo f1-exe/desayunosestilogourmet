@@ -80,7 +80,7 @@ if(isset($_SESSION["datos_formulario"])){
 
                 <div class="col-lg-12 text-center">
                 
-                    <h1 class="mt-5">
+                    <h1 class="mt-5 titulo-cursivo">
                         Completar datos compra
                     </h1>
                     <p>Para completar el proceso de compra, por favor ingrese la siguiente información.
@@ -107,9 +107,9 @@ if(isset($_SESSION["datos_formulario"])){
                                         <option value="0">Seleccione comuna</option>
                                         <?php while($row =  mysqli_fetch_array($resp)){ 
                                         if($id_comuna == $row["id"]) {?>
-                                            <option selected value="<?php echo $row["id"];?>"><?php echo utf8_encode($row["nombre"])." - $".number_format($row["valor"], 0, '', '.');;?></option>
+                                            <option selected value="<?php echo $row["id"];?>"><?php echo $row["nombre"]." - $".number_format($row["valor"], 0, '', '.');;?></option>
                                         <?php }else{ ?>
-                                            <option value="<?php echo $row["id"];?>"><?php echo utf8_encode($row["nombre"])." - $".number_format($row["valor"], 0, '', '.');;?></option>    
+                                            <option value="<?php echo $row["id"];?>"><?php echo $row["nombre"]." - $".number_format($row["valor"], 0, '', '.');;?></option>    
                                         <?php } } ?>      
                                     </select>
                                 </div>

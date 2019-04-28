@@ -3,7 +3,12 @@ session_start();
 include 'funciones/funciones.php';
 
 $orden_compra = $_SESSION['orden_compra'];
+// var_dump($_SESSION["orden_compra"]);
+// exit;
 $row = selectDatosCompraAndTBK($orden_compra);
+
+$resp =  getDatosComuna($row["id_comuna_delivery"]);
+$rowComuna = mysqli_fetch_array($resp);
 
 ?>
 <!DOCTYPE html>
@@ -60,7 +65,7 @@ $row = selectDatosCompraAndTBK($orden_compra);
         <br>
         <?php if($row['tbk_codigo_transaccion'] == 0){ ?> 
         <h1 class="mt-5">
-             <label style="color:green">Transacción Finalizada correctamente</label>
+             <label style="color:green" class="titulo-cursivo">Transacción Finalizada correctamente</label>
         </h1>
         <p>Gracias por comprar con nosotros</p>
          <div>
@@ -81,7 +86,7 @@ $row = selectDatosCompraAndTBK($orden_compra);
               <tr><td>Nombre</td><td><?php echo $row['nombre_usuario'];?></td></tr>
               <tr><td>Correo</td><td><?php echo $row['correo_usuario'];?></td></tr>
               <tr><td>Monto</td><td><?php echo "$ ".number_format($row['monto_compra'], 0, '', '.');?></td></tr>
-              <tr><td>Comuna delivery</td><td><?php echo $row['id_comuna_delivery']; ?></td></tr>
+              <tr><td>Comuna delivery</td><td><?php echo $rowComuna["nombre"] ?></td></tr>
               <tr><td>Fecha delivery</td><td><?php echo $row['fecha_delivery']; ?> </td></tr>
             </tbody>
           </table>
@@ -90,7 +95,7 @@ $row = selectDatosCompraAndTBK($orden_compra);
         <?php }else{ ?>
           <div>
           <h1 class="mt-5">
-             <label style="color:red">Transacción Finalizada con error</label>
+             <label style="color:red" class="titulo-cursivo">Transacción Finalizada con error</label>
         </h1>
          <div>
          <table class="table">

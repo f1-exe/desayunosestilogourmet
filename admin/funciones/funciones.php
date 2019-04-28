@@ -1,6 +1,7 @@
 <?php 
 
-include '../conexion/BDconexion.php';
+//include '../conexion/BDconexion.php';
+include __DIR__.'/../conexion/BDconexion.php';
 
 //Se valida si el usuario se encuentra registrado en la BD
 function validaUsuario($nombre){

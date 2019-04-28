@@ -1,22 +1,7 @@
 <?php
 
-include 'C:\xampp\htdocs\Proyectos\desayunosestilogourmet\conexion/BDconexion.php';
-
-
-
-//reCaptcha
-function getCaptcha($secreKey){
-
-  $url = "https://www.google.com/recaptcha/api/siteverify?secret=6Le3VIkUAAAAAO60G-COdGNRLA6fPFq_sRSKKtOA&response={$secreKey}";
-  $ch = curl_init();
-  curl_setopt ($ch, CURLOPT_URL, $url);
-  curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-  $file_contents = curl_exec($ch);
-  curl_close($ch);
-  $json =  json_decode($file_contents);
-  return $json;
-}
-
+//include '../conexion/BDconexion.php';
+include __DIR__.'/../conexion/BDconexion.php';
 
 //Se valida si el usuario se encuentra registrado en la BD
 function validaUsuario($usuario){

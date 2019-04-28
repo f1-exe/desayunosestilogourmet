@@ -7,7 +7,10 @@ $cantidad = 0;
 // echo "<pre>";
 // var_dump($_POST);
 // exit;
+
+//$conn = mysqli_connect("10.128.0.2", "desayuno","5Fe7L!yUe06#zT","desayuno_qa");
 $conn = mysqli_connect("localhost", "root","", "dev_desayunosgourmet");
+
 
 
 if(isset($_POST['quantity'])){

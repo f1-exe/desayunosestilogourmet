@@ -104,7 +104,7 @@ if(isset($_SESSION['carrito_compras'])){
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="cart-title mt-50">
-                            <h2>Carrito de compras</h2>
+                            <h2 class="titulo-cursivo">Carro de compras</h2>
                         </div>
 
                         <div class="cart-table clearfix">
@@ -132,7 +132,7 @@ if(isset($_SESSION['carrito_compras'])){
                                             <a href="#"><img src="img/productos/<?php echo $datos[$i]['Imagen'];?>" alt="Producto del carrito"></a>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <h5><?php echo utf8_encode($datos[$i]['Nombre']);?></h5>
+                                            <h5><?php echo $datos[$i]['Nombre'];?></h5>
                                         </td>
                                         <td class="price">
                                             <span><?php echo "$ ".number_format($datos[$i]["Precio"], 0, '', '.');?></span>
@@ -155,7 +155,7 @@ if(isset($_SESSION['carrito_compras'])){
                                     <?php } }else{ ?>
                                       <tr>
                                           <td>
-                                               <div>Aún no ha agregado nada a su carrito :c<div>
+                                               <div>Aún no ha agregado nada a su carro<div>
                                           </td>
                                       </tr>
                                     <?php } ?>

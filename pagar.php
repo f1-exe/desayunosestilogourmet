@@ -13,7 +13,7 @@ use Freshwork\Transbank\TransbankServiceFactory;
 use Freshwork\Transbank\RedirectorHelper;
 
 include 'vendor/autoload.php';
-include 'funciones/funciones.php';
+include 'funciones/funciones2.php';
 
 //rescato los datos de la transaccion
 $monto_total = $_SESSION["datos_formulario"]["monto_total"];
@@ -70,7 +70,7 @@ $webPay = TransbankServiceFactory::normal($bag);
 $webPay->addTransactionDetail($monto_total, $orden_compra);
 
 // Debes además, registrar las URLs a las cuales volverá el cliente durante y después del flujo de Webpay
-$response =  $webPay->initTransaction('https://localhost/Proyectos/desayunosestilogourmet/response.php', 'https://localhost/Proyectos/desayunosestilogourmet/boucher_final.php');
+$response =  $webPay->initTransaction('http://degqa.desayunosestilogourmet.cl/response.php', 'http://degqa.desayunosestilogourmet.cl/boucher_final.php');
 
 /*print_r($response); 
 exit;   

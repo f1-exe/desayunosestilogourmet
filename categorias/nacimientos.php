@@ -126,7 +126,7 @@ if(isset($_SESSION["carrito_compras"])){
             <!-- Product Catagories Area Start -->
             <div class="products-catagories-area clearfix">
                     <div class="mt-3 ml-20">
-                        <h2>Categorias/ Nacimientos</h2>
+                        <h2 class="titulo-cursivo">Categorias/ Nacimientos</h2>
                         <p>Productos seleccionados especialmente para los nacimientos</p>
                     </div> 
                 <div class="amado-pro-catagory clearfix">
@@ -151,10 +151,10 @@ if(isset($_SESSION["carrito_compras"])){
                                         <form name="form_detalle_prod" method="POST" action="../product-details.php">
                                             <div style="text-align:center">
 
-                                                <button class="btn btn-primary btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
+                                                <button class="btn btn-detalle btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
                                                 <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
 
-                                                <button onclick='modalIndex("<?php echo utf8_encode($row["nombre"]);?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                                <button onclick='modalIndex("<?php echo $row["nombre"];?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
                                             </div>
                                         </form>
                                     </div>

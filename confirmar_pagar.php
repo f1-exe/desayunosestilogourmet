@@ -76,7 +76,7 @@ $_SESSION["datos_formulario"] =  $datos_formulario;
                 
                 <div class="col-lg-12 text-center">
                     
-                    <h1 class="mt-5">
+                    <h1 class="mt-5 titulo-cursivo">
                         Confirmar y pagar
                     </h1>
                     <p>Confirme la información de la compra, una vez que esté seguro, presione el botón pagar, el cual le dirigirá al portal de pago WebPay.</p>
@@ -94,7 +94,7 @@ $_SESSION["datos_formulario"] =  $datos_formulario;
                                 </tr>
                                 <tr>
                                     <td>Comuna</td>
-                                    <td><?php echo utf8_encode($row["nombre"]);?></td>
+                                    <td><?php echo $row["nombre"];?></td>
                                 </tr>
                                 <tr>
                                     <td>Direccion delivery</td>

@@ -282,3 +282,17 @@ opacity: 1;
    
 }
 /*CSS DEL BOTON SIGUIENTE PASO EN CART.PHP*/
+
+/*color del boton ver detalle*/
+.btn-detalle{
+    background-color:#0fcfc4;
+    color: white;
+}
+/*color del boton ver detalle*/
+
+/*cursiva para los titulos*/
+.titulo-cursivo{
+    font-style: italic;
+}
+
+/*crusiva para los titulos*/
