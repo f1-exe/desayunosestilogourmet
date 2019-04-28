@@ -76,6 +76,12 @@
 }
 /*margen de 25 para cuando sea necesario*/
 
+/*margen de 3 px a la izquierda*/
+.mr-18{
+    margin-right: 18px;
+}
+/*margen de 3 px a la izquierda*/
+
 
 /*margen de 20 a la izquierda para cuando sea necesario*/
 .ml-20{

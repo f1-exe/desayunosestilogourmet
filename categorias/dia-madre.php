@@ -2,7 +2,7 @@
 session_start();
 
 include '../funciones/funciones.php';
-$resp  = listarProductosDiaMadre();
+$cant_prod =  obtenerCantidadDiaMadre();
 
 $cantidad_productos = 0;
 if(isset($_SESSION["carrito_compras"])){
@@ -130,7 +130,31 @@ if(isset($_SESSION["carrito_compras"])){
                     <p>Demuéstrale cuánto quieres a tu mamá enviandole algo de esta categoría</p>
                 </div>
             <div class="amado-pro-catagory clearfix">
-            <?php while($row =  mysqli_fetch_array($resp)){ ?>
+            <?php 
+
+            if($cant_prod > 0) {
+                $page = false;
+    
+                //examino la pagina a mostrar y el inicio del registro a mostrar
+                if (isset($_GET["page"])) {
+                    $page = $_GET["page"];
+                }
+    
+                if (!$page) {
+                    $start = 0;
+                    $page = 1;
+                } else {
+                    $start = ($page - 1) * NUM_ITEMS_BY_PAGE;
+                }
+                //calculo el total de paginas
+                $total_pages = ceil($cant_prod / NUM_ITEMS_BY_PAGE);  
+    
+                //query que trae los productos 
+                $resp  = listarProductosDiaMadre($start);
+    
+                if($resp->num_rows > 0){
+            
+            while($row =  mysqli_fetch_array($resp)){ ?>
                 <!-- Single Catagory -->
                 
                     <div class="single-products-catagory clearfix">
@@ -157,13 +181,56 @@ if(isset($_SESSION["carrito_compras"])){
                                     </div>
                             </div>
                     </div>
-              <?php } ?>      
+              <?php } } ?>      
                    
             </div>
         </div>
         <!-- Product Catagories Area End -->
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
+
+    <!-- PAGINADOR --> 
+    <?php 
+                        
+                        echo '<nav aria-label="navigation" class="mr-18">';
+                            echo '<ul class="pagination justify-content-end mt-50">';
+
+                            if ($total_pages > 1) {
+                                
+                                if ($page != 1) {
+                                    echo '<li class="page-item"><a class="page-link" href="dia-madre.php?page='.($page-1).'"><span aria-hidden="true">&laquo;</span></a></li>';
+                                }
+
+                                if($page > 3 && $page < $total_pages-2){
+                                    $inicio = $page-2;
+                                    $final = $page+2;
+                                }else if($page < 4){
+                                    $inicio = 1;
+                                    $final = 5;
+                                }else if($page >= $total_pages-2){
+                                    $inicio = $total_pages-4;
+                                    $final = $total_pages;
+                                }
+
+                                for ($i=$inicio; $i<= $final ;$i++) {
+
+                                    if($page == $i) {
+                                        echo '<li class="page-item active"><a class="page-link" href="#">'.$page.'</a></li>';
+                                    } else {
+                                        echo '<li class="page-item"><a class="page-link" href="dia-madre.php?page='.$i.'">'.$i.'</a></li>';
+                                    }
+                                }
+
+                                if ($page != $total_pages) {
+                                    echo '<li class="page-item"><a class="page-link" href="dia-madre.php?page='.($page+1).'"><span aria-hidden="true">&raquo;</span></a></li>';
+                                }
+                            }
+                            echo '</ul>';
+                           echo '</nav>';
+                          
+                    } ?>
+            <!-- PAGINADOR -->
+
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer_area clearfix mt-25">

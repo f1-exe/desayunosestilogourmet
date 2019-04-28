@@ -2,7 +2,7 @@
 session_start();
 
 include '../funciones/funciones.php';
-$resp  = listarProductosParaEllas();
+$cant_prod =  obtenerCantidadParEllas();
 
 $cantidad_productos = 0;
 if(isset($_SESSION["carrito_compras"])){
@@ -131,42 +131,108 @@ if(isset($_SESSION["carrito_compras"])){
                     </div> 
                 <div class="amado-pro-catagory clearfix">
 
-                    <?php  while($row =  mysqli_fetch_array($resp)){ ?>
-                        <!-- Single Catagory -->
+                    <?php
 
-                        <div class="single-products-catagory clearfix">
-                            <div class="col-sm-4 py-2">
-                                <div class="card mt-25" style="width: 18rem;">
-                                    <img class="card-img-top" src="../img/productos/<?php echo $row["imagen"];?>" alt="Producto Desayuno Estilo Gourmet">
-                                    <div class="card-body">
+                        if ($cant_prod > 0) {
+                            $page = false;
 
-                                        <h5 class="card-title"><?php echo $row["nombre"];?></h5>
-                                        <p class="card-text">
-                                            Precio :
-                                            <?php echo "$ ".number_format($row['precio'], 0, '', '.');?>
-                                            <br>
+                            //examino la pagina a mostrar y el inicio del registro a mostrar
+                            if (isset($_GET["page"])) {
+                                $page = $_GET["page"];
+                            }
 
-                                        </p>
+                            if (!$page) {
+                                $start = 0;
+                                $page = 1;
+                            } else {
+                                $start = ($page - 1) * NUM_ITEMS_BY_PAGE;
+                            }
+                            //calculo el total de paginas
+                            $total_pages = ceil($cant_prod / NUM_ITEMS_BY_PAGE);  
 
-                                        <form name="form_detalle_prod" method="POST" action="../product-details.php">
-                                            <div style="text-align:center">
+                            //query que trae los productos 
+                            $resp  = listarProductosParaEllas($start);
 
-                                                <button class="btn btn-detalle btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
-                                                <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
+                            if($resp->num_rows > 0){
+                    
+                            while($row =  mysqli_fetch_array($resp)){ ?>
+                                <!-- Single Catagory -->
 
-                                                <button onclick='modalIndex("<?php echo $row["nombre"];?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                <div class="single-products-catagory clearfix">
+                                    <div class="col-sm-4 py-2">
+                                        <div class="card mt-25" style="width: 18rem;">
+                                            <img class="card-img-top" src="../img/productos/<?php echo $row["imagen"];?>" alt="Producto Desayuno Estilo Gourmet">
+                                            <div class="card-body">
+
+                                                <h5 class="card-title"><?php echo $row["nombre"];?></h5>
+                                                <p class="card-text">
+                                                    Precio :
+                                                    <?php echo "$ ".number_format($row['precio'], 0, '', '.');?>
+                                                    <br>
+
+                                                </p>
+
+                                                <form name="form_detalle_prod" method="POST" action="../product-details.php">
+                                                    <div style="text-align:center">
+
+                                                        <button class="btn btn-detalle btn-sm" id="ver_detalle" name="ver_detalle">Ver detalle</button>
+                                                        <input type="hidden" name="id_producto" value="<?php echo $row["id"];?>"/>
+
+                                                        <button onclick='modalIndex("<?php echo $row["nombre"];?>", "<?php echo $row["precio"];?>","<?php echo $row["id"];?>","<?php echo $row["imagen"]?>")' type="button" class="btn btn-warning btn-sm" style="color:white;" id="add_carro" name="add_carro">Añadir al carro</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <?php  } ?>
+                                <?php  } } ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
         <!-- ##### Main Content Wrapper End ##### -->
+
+                    <!-- PAGINADOR --> 
+                    <?php 
+                        
+                        echo '<nav aria-label="navigation" class="mr-18">';
+                            echo '<ul class="pagination justify-content-end mt-50">';
+
+                            if ($total_pages > 1) {
+                                
+                                if ($page != 1) {
+                                    echo '<li class="page-item"><a class="page-link" href="para-ella.php?page='.($page-1).'"><span aria-hidden="true">&laquo;</span></a></li>';
+                                }
+
+                                if($page > 3 && $page < $total_pages-2){
+                                    $inicio = $page-2;
+                                    $final = $page+2;
+                                }else if($page < 4){
+                                    $inicio = 1;
+                                    $final = 5;
+                                }else if($page >= $total_pages-2){
+                                    $inicio = $total_pages-4;
+                                    $final = $total_pages;
+                                }
+
+                                for ($i=$inicio; $i<= $final ;$i++) {
+
+                                    if($page == $i) {
+                                        echo '<li class="page-item active"><a class="page-link" href="#">'.$page.'</a></li>';
+                                    } else {
+                                        echo '<li class="page-item"><a class="page-link" href="para-ella.php?page='.$i.'">'.$i.'</a></li>';
+                                    }
+                                }
+
+                                if ($page != $total_pages) {
+                                    echo '<li class="page-item"><a class="page-link" href="para-ella.php?page='.($page+1).'"><span aria-hidden="true">&raquo;</span></a></li>';
+                                }
+                            }
+                            echo '</ul>';
+                           echo '</nav>';
+                          
+                    } ?>
+            <!-- PAGINADOR -->
 
         <!-- ##### Footer Area Start ##### -->
         <footer class="footer_area clearfix mt-25">
