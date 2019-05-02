@@ -239,13 +239,7 @@ if(isset($_SESSION["carrito_compras"])){
                         <div class="footer-logo mr-50">
                             <a href="../index.php"><img src="../img/core-img/logo2.png" alt=""></a>
                         </div>
-                        <!-- Copywrite Text -->
-                        <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-
-                    
-                      
+                                             
 <!-- Social Button -->
                         <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -288,6 +282,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
+
+    <div style="background-color: #252525; text-align: center">
+             <!-- Copywrite Text -->
+            <span class="copywrite" style="color:gray">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>
+                    document.write(new Date().getFullYear());
+                </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a style="color:gray" href="https://colorlib.com" target="_blank">Colorlib</a>. Desarrollado por <a style="color:white" href="https://www.f1puntoexe.cl" target="_blank">F1.exe</a> 
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </span>
+    </div>
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="../js/jquery/jquery-2.2.4.min.js"></script>
