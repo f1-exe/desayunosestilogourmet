@@ -157,7 +157,7 @@ if(isset($_SESSION["carrito_compras"])){
                 <!-- Single Catagory -->
                     <div class="single-products-catagory clearfix">
                             <div class="col-sm-4 py-2">
-                                    <div class="card mt-25" style="width: 18rem;">
+                                    <div class="card mt-25 centrado-card" style="width: 18rem;">
                                             <img class="card-img-top" src="../img/productos/<?php echo $row["imagen"];?>" alt="Producto Desayuno Estilo Gourmet">
                                             <div class="card-body">
                                                 
@@ -191,7 +191,7 @@ if(isset($_SESSION["carrito_compras"])){
       <?php 
                         
                         echo '<nav aria-label="navigation" class="mr-18">';
-                            echo '<ul class="pagination justify-content-end mt-50">';
+                            echo '<ul class="pagination justify-content-end mt-50 centrado-paginador">';
 
                             if ($total_pages > 1) {
                                 
@@ -236,11 +236,15 @@ if(isset($_SESSION["carrito_compras"])){
             <div class="row align-items-center">
                 <!-- Single Widget Area -->
                 <div class="col-12 col-lg-4">
-                    <div class="single_widget_area">
+                    <div class="single_widget_area resolucion-img-footer">
                         <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            <a href="../index.php"><img src="../img/core-img/logo2.png" alt=""></a>
+                        <div class="avatar-footer">
+                                <div class="footer-logo">
+                                    <a href="../index.php"><img class="img-footer" src="../img/core-img/dgtrans.png"  alt="Logo Desayunos estilo gourmet"></a>
+                                </div>
                         </div>
+                        <br>
+                        <br>
                        
 <!-- Social Button -->
                         <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>

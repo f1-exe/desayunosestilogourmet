@@ -214,18 +214,20 @@
             <div class="row align-items-center">
                 <!-- Single Widget Area -->
                 <div class="col-12 col-lg-4">
-                    <div class="single_widget_area">
+                    <div class="single_widget_area resolucion-img-footer">
                         <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            <a href="index.php"><img src="img/core-img/logo2.png" alt=""></a>
-                        </div>
-                       
-                        
-<!-- Social Button -->
-                        <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                        <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-<!-- Social Button -->
-
+                            <div class="avatar-footer">
+                                    <div class="footer-logo">
+                                        <a href="index.php"><img class="img-footer" src="img/core-img/dgtrans.png"  alt="Logo Desayunos estilo gourmet"></a>
+                                    </div>
+                            </div>
+                            <br>
+                            <br>          
+                            <!-- Social Button -->
+                                <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <!-- Social Button -->
+                    
                     </div>
                 </div>
                 <!-- Single Widget Area -->

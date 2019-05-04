@@ -265,7 +265,7 @@ _______________________________________
 /**[Categorias]**/
 
 //variable que define el numero de productos por pagina para la paginacion
-define('NUM_ITEMS_BY_PAGE', 9);
+define('NUM_ITEMS_BY_PAGE', 12);
 
 //funcion para listar porductos / categoria : index
 //aqui se listan 9 productos en aleatoriamente de cualquier categoria

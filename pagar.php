@@ -70,7 +70,7 @@ $webPay = TransbankServiceFactory::normal($bag);
 $webPay->addTransactionDetail($monto_total, $orden_compra);
 
 // Debes además, registrar las URLs a las cuales volverá el cliente durante y después del flujo de Webpay
-$response =  $webPay->initTransaction('http://degqa.desayunosestilogourmet.cl/response.php', 'http://degqa.desayunosestilogourmet.cl/boucher_final.php');
+$response =  $webPay->initTransaction('https://degqa.desayunosestilogourmet.cl/response.php', 'https//degqa.desayunosestilogourmet.cl/boucher_final.php');
 
 /*print_r($response); 
 exit;   

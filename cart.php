@@ -30,6 +30,13 @@ if(isset($_SESSION['carrito_compras'])){
     <link rel="stylesheet" href="css/animate.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
 
+    <style>
+        .extra-border{
+            border-top: none;
+            background-color: #f5f7fa;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -115,7 +122,11 @@ if(isset($_SESSION['carrito_compras'])){
                                         <th>Nombre</th>
                                         <th>Valor</th>
                                         <th>Cantidad</th>
-                                    </tr>
+                                        <td style=" border-top: none;
+                                        background-color: #f5f7fa;"></td>
+                                        <td style=" border-top: none;
+                                        background-color: #f5f7fa;"></td>
+                                    </tr>  
                                 </thead>
 
                                 <tbody class="table-content">
@@ -152,13 +163,17 @@ if(isset($_SESSION['carrito_compras'])){
                                         </td>
                                        
                                     </tr>
-                                    <?php } }else{ ?>
+                                    <?php } }else{ 
                                       
-                                     <div>Aún no ha agregado nada a su carro<div>
+                                        //<!-- <div>Aún no ha agregado nada a su carro<div> -->
+                                         function textoCarroVacio(){
+                                             return "<p style='text-align:center';>Aún no ha agregado nada a su carro</p>";
+                                         }
                                          
-                                    <?php } ?>
+                                    } ?>
                                 </tbody>
                             </table>
+                               <?php if(!isset($_SESSION['carrito_compras'])){echo textoCarroVacio();}?>     
                         </div>
                     </div>
                     
@@ -203,17 +218,20 @@ if(isset($_SESSION['carrito_compras'])){
             <div class="row align-items-center">
                 <!-- Single Widget Area -->
                 <div class="col-12 col-lg-4">
-                    <div class="single_widget_area">
+                    <div class="single_widget_area resolucion-img-footer">
                         <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            <a href="index.php"><img src="img/core-img/logo2.png" alt=""></a>
-                        </div>
-                       
-<!-- Social Button -->
-                        <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                        <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-<!-- Social Button -->
-           
+                            <div class="avatar-footer">
+                                    <div class="footer-logo">
+                                        <a href="index.php"><img class="img-footer" src="img/core-img/dgtrans.png"  alt="Logo Desayunos estilo gourmet"></a>
+                                    </div>
+                            </div>
+                            <br>
+                            <br>          
+                            <!-- Social Button -->
+                                <a id="href-footer" target="_blank" href="https://www.instagram.com/estilo_gourmet_/?hl=es-la"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a id="href-footer" target="_blank" style="margin-left: 50px;" href="https://www.facebook.com/Regaladesayunosconestilo"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <!-- Social Button -->
+                    
                     </div>
                 </div>
               <!-- Single Widget Area -->
