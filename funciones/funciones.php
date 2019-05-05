@@ -270,9 +270,9 @@ define('NUM_ITEMS_BY_PAGE', 12);
 //funcion para listar porductos / categoria : index
 //aqui se listan 9 productos en aleatoriamente de cualquier categoria
 
-function listarProductosIndex($start){
+function listarProductosIndex($start, $order, $item){
   global $conn;
-  $query = "SELECT nombre,id,precio,imagen FROM producto ORDER BY RAND()  DESC LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT nombre,id,precio,imagen FROM producto ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -303,9 +303,9 @@ function obtenerCantidadParEllas(){
 
 
 //funcion para listar productos / categoria : Para-ella
-function listarProductosParaEllas($start){
+function listarProductosParaEllas($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  1 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  1 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -325,9 +325,9 @@ function obtenerCantidadParEl(){
 }
 
 //funcion para listar productos / categoria : Para-el
-function listarProductosParaEl($start){
+function listarProductosParaEl($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  2 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  2 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -347,9 +347,9 @@ function obtenerCantidadCumpleanos(){
 
 
 //funcion para listar productos / categoria : Cumpleaños
-function listarProductosCumpleanos($start){
+function listarProductosCumpleanos($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  3 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  3 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -370,9 +370,9 @@ function obtenerCantidadNacimientos(){
 
 
 //funcion para listar productos / categoria : nacimientos
-function listarProductosNacimientos($start){
+function listarProductosNacimientos($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  4 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  4 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -392,9 +392,9 @@ function obtenerCantidadDiaPadre(){
 
 
 //funcion para listar productos / categoria : dia del padre
-function listarProductosDiaPadre($start){
+function listarProductosDiaPadre($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  5 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  5 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -414,9 +414,9 @@ function obtenerCantidadDiaMadre(){
 }
 
 //funcion para listar productos / categoria : Dia madre
-function listarProductosDiaMadre($start){
+function listarProductosDiaMadre($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  6 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  6 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -436,9 +436,9 @@ function obtenerCantidadSanValentin(){
 
 
 //funcion para listar productos / categoria : san valentin
-function listarProductosSanValentin($start){
+function listarProductosSanValentin($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  7 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  7 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -458,9 +458,9 @@ function obtenerCantidadArmaTuPedido(){
 
 
 //funcion para listar productos / categoria : Arma tu pedido
-function listarProductosArmaTuPedido($start){
+function listarProductosArmaTuPedido($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  8 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  8 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }
@@ -471,7 +471,7 @@ function obtenerCantidadPromociones(){
 
   global $conn;
 
-  $query = 'SELECT COUNT(*) as cantidad_productos FROM producto WHERE categoria = 8';
+  $query = 'SELECT COUNT(*) as cantidad_productos FROM producto WHERE categoria = 9';
   $resp =  mysqli_query($conn,$query);
   $row =  mysqli_fetch_array($resp);
 
@@ -480,9 +480,9 @@ function obtenerCantidadPromociones(){
 }
 
 //funcion para listar productos / categoria : promociones
-function listarProductosPromociones($start){
+function listarProductosPromociones($start, $order, $item){
   global $conn;
-  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  9 LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
+  $query = "SELECT id,nombre,precio,imagen FROM producto WHERE categoria =  9 ORDER BY ".$item." ".$order." LIMIT ".$start.", ".NUM_ITEMS_BY_PAGE."";
   $resp =  mysqli_query($conn,$query);  
   return $resp;
 }

@@ -11,6 +11,18 @@ if(isset($_SESSION["carrito_compras"])){
     $cantidad_productos = 0;
 }
 
+if(isset($_SESSION["ubicacion"])){
+    if($_SESSION["ubicacion"] != 9){
+        unset($_SESSION["filtro"]);
+        unset($_SESSION["ubicacion"]);
+    }    
+}
+
+if (isset($_GET["page"])) {
+    $pagina = $_GET["page"];
+}else{
+    $pagina = "0";
+}
 
 ?>
 <!DOCTYPE html>
@@ -130,6 +142,17 @@ if(isset($_SESSION["carrito_compras"])){
                     <h2 class="titulo-cursivo">Categorias/ Promoción</h2>
                     <p>Estás indeciso o indecisa aun en cuanto a qué llevar, revisa estas promos</p>
                 </div>
+                <div class="dropdown centrado-filtro">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filtrar por
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a onclick="filtro(this)" class="dropdown-item" href="#" data-value="1" data-location="promociones.php" data-pagina="<?php echo $pagina; ?>">Nombre A-Z</a>
+                            <a onclick="filtro(this)" class="dropdown-item" href="#" data-value="2" data-location="promociones.php" data-pagina="<?php echo $pagina; ?>">Nombre Z-A</a>
+                            <a onclick="filtro(this)" class="dropdown-item" href="#" data-value="3" data-location="promociones.php" data-pagina="<?php echo $pagina; ?>">Precio de menor a mayor</a>
+                            <a onclick="filtro(this)" class="dropdown-item" href="#" data-value="4" data-location="promociones.php" data-pagina="<?php echo $pagina; ?>">Precio de mayor a menor</a>
+                        </div>
+                </div>
             <div class="amado-pro-catagory clearfix">
             <?php 
             if($cant_prod > 0) {
@@ -150,7 +173,19 @@ if(isset($_SESSION["carrito_compras"])){
                 $total_pages = ceil($cant_prod / NUM_ITEMS_BY_PAGE);  
     
                 //query que trae los productos 
-                $resp  = listarProductosPromociones($start);
+                if(isset($_SESSION["filtro"])){
+                    if($_SESSION["filtro"] == 1){
+                        $resp  = listarProductosPromociones($start, "ASC", "nombre");
+                    }else if($_SESSION["filtro"] == 2){
+                        $resp  = listarProductosPromociones($start, "DESC", "nombre");
+                    }else if($_SESSION["filtro"] == 3){
+                        $resp  = listarProductosPromociones($start, "ASC", "precio");
+                    }else if($_SESSION["filtro"] == 4){
+                        $resp  = listarProductosPromociones($start, "DESC", "precio");
+                    }
+                }else{
+                    $resp  = listarProductosPromociones($start, "ASC", "nombre");
+                }
     
                 if($resp->num_rows > 0){
             
@@ -193,23 +228,40 @@ if(isset($_SESSION["carrito_compras"])){
      <?php 
                         
                         echo '<nav aria-label="navigation" class="mr-18">';
-                            echo '<ul class="pagination justify-content-end mt-50 centrado-paginador">';
+                            echo '<ul class="pagination mt-50 centrado-paginador">';
 
+                            // echo $total_pages;
                             if ($total_pages > 1) {
                                 
                                 if ($page != 1) {
                                     echo '<li class="page-item"><a class="page-link" href="promociones.php?page='.($page-1).'"><span aria-hidden="true">&laquo;</span></a></li>';
                                 }
 
-                                if($page > 3 && $page < $total_pages-2){
-                                    $inicio = $page-2;
-                                    $final = $page+2;
-                                }else if($page < 4){
-                                    $inicio = 1;
-                                    $final = 5;
-                                }else if($page >= $total_pages-2){
-                                    $inicio = $total_pages-4;
-                                    $final = $total_pages;
+                                if($total_pages <= 5){
+                                    if($cant_prod > NUM_ITEMS_BY_PAGE && $cant_prod < ((NUM_ITEMS_BY_PAGE * 2) + 1) ){
+                                        $inicio = 1;
+                                        $final = 2;
+                                    }else if($cant_prod > (NUM_ITEMS_BY_PAGE * 2) && $cant_prod < ((NUM_ITEMS_BY_PAGE * 3)) + 1){
+                                        $inicio = 1;
+                                        $final = 3;
+                                    }else if($cant_prod > (NUM_ITEMS_BY_PAGE * 3) && $cant_prod < ((NUM_ITEMS_BY_PAGE * 4) + 1)){
+                                        $inicio = 1;
+                                        $final = 4;
+                                    }else if($cant_prod > (NUM_ITEMS_BY_PAGE * 4) && $cant_prod < ((NUM_ITEMS_BY_PAGE * 5) + 1)){
+                                        $inicio = 1;
+                                        $final = 5;
+                                    }
+                                }else{
+                                    if($page > 3 && $page < $total_pages-2){
+                                        $inicio = $page-2;
+                                            $final = $page+2;
+                                        }else if($page < 4){
+                                            $inicio = 1;
+                                            $final = 5;
+                                        }else if($page >= $total_pages-2){
+                                            $inicio = $total_pages-4;
+                                            $final = $total_pages;
+                                        }
                                 }
 
                                 for ($i=$inicio; $i<= $final ;$i++) {
@@ -224,6 +276,10 @@ if(isset($_SESSION["carrito_compras"])){
                                 if ($page != $total_pages) {
                                     echo '<li class="page-item"><a class="page-link" href="promociones.php?page='.($page+1).'"><span aria-hidden="true">&raquo;</span></a></li>';
                                 }
+                            }else{
+                                echo '<li class="page-item disabled"><a class="page-link" href="san-valentin.php?page='.($page-1).'"><span aria-hidden="true">&laquo;</span></a></li>';
+                                echo '<li class="page-item active"><a class="page-link" href="#">'.$page.'</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="san-valentin.php?page='.($page+1).'"><span aria-hidden="true">&raquo;</span></a></li>';
                             }
                             echo '</ul>';
                            echo '</nav>';
@@ -314,7 +370,8 @@ if(isset($_SESSION["carrito_compras"])){
     <!-- Active js -->
     <script src="../js/active.js"></script>
     <!--Modal para añadir al carro-->
-    <script src="../js/modal_categorias/anadir_carro.js"></script>  
+    <script src="../js/modal_categorias/anadir_carro.js"></script>
+    <script src="../js/filtro.js"></script>  
 
 </body>
 
